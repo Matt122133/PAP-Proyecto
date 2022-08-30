@@ -50,6 +50,11 @@ public class AltaUsuario extends JInternalFrame {
 	private JTextField textFieldDescripcion;
 	private JTextField textFieldBiografia;
 	private JComboBox<String> comboBoxInstitucion;
+	private JLabel lblInstitucion;
+	private JLabel lblBiografia;
+	private JLabel lblSitioWeb;
+	private JLabel lblOpcionales;
+	private JLabel lblDescripcion;
 	
 	/**
 	 * Launch the application.
@@ -92,13 +97,19 @@ public class AltaUsuario extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				rdbtnProfesor.setSelected(false);
 				rdbtnSocio.setSelected(true);
-				comboBoxInstitucion.setEnabled(false);
-				textFieldSitioWeb.setEnabled(false);
-			    textFieldBiografia.setEnabled(false);
-			    textFieldDescripcion.setEnabled(false);
+				comboBoxInstitucion.setVisible(false);
+				textFieldSitioWeb.setVisible(false);
+			    textFieldBiografia.setVisible(false);
+			    textFieldDescripcion.setVisible(false);
 				textFieldSitioWeb.setText("");
 			    textFieldBiografia.setText("");
 			    textFieldDescripcion.setText("");
+			    lblInstitucion.setVisible(false);
+			    lblBiografia.setVisible(false);
+			    lblOpcionales.setVisible(false);
+			    lblSitioWeb.setVisible(false);
+			    lblDescripcion.setVisible(false);
+			    
 			}
 		});
 		rdbtnSocio.setBounds(147, 0, 63, 23);
@@ -109,10 +120,15 @@ public class AltaUsuario extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				rdbtnProfesor.setSelected(true);
 				rdbtnSocio.setSelected(false);
-				comboBoxInstitucion.setEnabled(true);
-				textFieldSitioWeb.setEnabled(true);
-			    textFieldBiografia.setEnabled(true);
-			    textFieldDescripcion.setEnabled(true);
+				comboBoxInstitucion.setVisible(true);
+				textFieldSitioWeb.setVisible(true);
+			    textFieldBiografia.setVisible(true);
+			    textFieldDescripcion.setVisible(true);
+			    lblInstitucion.setVisible(true);
+			    lblBiografia.setVisible(true);
+			    lblOpcionales.setVisible(true);
+			    lblSitioWeb.setVisible(true);
+			    lblDescripcion.setVisible(true);
 			}
 		});
 		rdbtnProfesor.setSelected(true);
@@ -167,7 +183,7 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
-		JLabel lblInstitucion = new JLabel("Institucion:");
+		lblInstitucion = new JLabel("Institucion:");
 		lblInstitucion.setBounds(12, 189, 83, 15);
 		getContentPane().add(lblInstitucion);
 		
@@ -175,15 +191,15 @@ public class AltaUsuario extends JInternalFrame {
 		comboBoxInstitucion.setBounds(96, 184, 114, 24);
 		getContentPane().add(comboBoxInstitucion);
 		
-		JLabel lblOpcionales = new JLabel("Opcionales:");
+		lblOpcionales = new JLabel("Opcionales:");
 		lblOpcionales.setBounds(222, 86, 104, 15);
 		getContentPane().add(lblOpcionales);
 		
-		JLabel lblBiografia = new JLabel("Biografia:");
+		lblBiografia = new JLabel("Biografia:");
 		lblBiografia.setBounds(222, 140, 70, 15);
 		getContentPane().add(lblBiografia);
 		
-		JLabel lblSitioWeb = new JLabel("Sitio Web:");
+		lblSitioWeb = new JLabel("Sitio Web:");
 		lblSitioWeb.setBounds(222, 113, 83, 15);
 		getContentPane().add(lblSitioWeb);
 		
@@ -192,7 +208,7 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(textFieldSitioWeb);
 		textFieldSitioWeb.setColumns(10);
 		
-		JLabel lblDescripcion = new JLabel("Descripcion:");
+		lblDescripcion = new JLabel("Descripcion:");
 		lblDescripcion.setBounds(222, 27, 104, 15);
 		getContentPane().add(lblDescripcion);
 		
@@ -223,6 +239,8 @@ public class AltaUsuario extends JInternalFrame {
 		textFieldBiografia.setBounds(222, 158, 206, 19);
 		getContentPane().add(textFieldBiografia);
 		textFieldBiografia.setColumns(10);
+		
+		
 	}
 
 	public void inicializarComboBoxes() {
