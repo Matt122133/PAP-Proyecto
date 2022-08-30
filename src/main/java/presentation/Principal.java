@@ -56,7 +56,7 @@ public class Principal {
 	 */
 	public Principal() {
 		initialize();
-		
+		System.out.println("pepe");
 		Fabrica fabrica = Fabrica.getInstancia();
 		IControladorAltaUsuario iconAU = fabrica.getIControladorAU();
 		IControladorAltaInstitucionDeportiva iconAI = fabrica.getIControladorAI();
