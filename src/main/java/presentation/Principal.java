@@ -56,7 +56,6 @@ public class Principal {
 	 */
 	public Principal() {
 		initialize();
-		System.out.println("nico deja de romper todo");
 		Fabrica fabrica = Fabrica.getInstancia();
 		IControladorAltaUsuario iconAU = fabrica.getIControladorAU();
 		IControladorAltaInstitucionDeportiva iconAI = fabrica.getIControladorAI();
