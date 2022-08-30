@@ -1,7 +1,5 @@
 package presentation;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
@@ -31,22 +29,7 @@ public class AltaActividad extends JInternalFrame {
 	private JTextField textFieldCosto;
 	private JComboBox<String> comboBoxInstitucion;
 	private JTextField textFieldDescripcion;
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AltaActividad frame = new AltaActividad();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
+	
 	/**
 	 * Create the frame.
 	 */

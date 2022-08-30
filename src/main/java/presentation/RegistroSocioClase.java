@@ -1,6 +1,5 @@
 package presentation;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
@@ -21,9 +20,6 @@ import exceptions.RegistroRepetidoException;
 
 public class RegistroSocioClase extends JInternalFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private IControladorRegistroClase iconRC;
 	private JTextField textFieldNombre;

@@ -1,7 +1,5 @@
 package presentation;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
@@ -19,14 +17,10 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
 
-import exceptions.ActividadRepetidaException;
 import exceptions.ClaseRepetidaException;
 
 public class AltaClase extends JInternalFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private IControladorAltaDictadoDeClase iconAC;
 	private JTextField textFieldNombre;
@@ -36,22 +30,7 @@ public class AltaClase extends JInternalFrame {
 	private JComboBox<String> comboBoxActividad;
 	private JComboBox<String> comboBoxProfesor;
 	private JDateChooser dateChooser;
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AltaClase frame = new AltaClase();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
+	
 	/**
 	 * Create the frame.
 	 */

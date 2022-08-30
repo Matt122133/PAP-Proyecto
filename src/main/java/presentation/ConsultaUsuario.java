@@ -1,6 +1,5 @@
 package presentation;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -55,22 +54,6 @@ public class ConsultaUsuario extends JInternalFrame {
 	private JLabel lblSitioWeb;
 	private JTextField textFieldBiografia;
 	private JTextField textFieldSitioWeb;
-
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ConsultaUsuario frame = new ConsultaUsuario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the frame.

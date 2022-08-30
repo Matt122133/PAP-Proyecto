@@ -1,7 +1,5 @@
 package presentation;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 
 import interfaces.IControladorAltaInstitucionDeportiva;
@@ -19,25 +17,6 @@ import java.awt.event.ActionEvent;
 
 public class AltaInstitucion extends JInternalFrame {
 
-	/**
-	 * Launch the application.
-	 */
-	/**public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AltaInstitucion frame = new AltaInstitucion();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}**/
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private IControladorAltaInstitucionDeportiva iconAI;

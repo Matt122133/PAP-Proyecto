@@ -1,6 +1,5 @@
 package presentation;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JInternalFrame;
@@ -21,9 +20,6 @@ import java.util.Calendar;
 
 public class ConsultaC extends JInternalFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private IControladorConsultaClase iconCC;
 	private JTextField textFieldNombre;
@@ -37,22 +33,6 @@ public class ConsultaC extends JInternalFrame {
 	private JButton btnElegirAct;
 	private JButton btnElegirClase;
 
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ConsultaC frame = new ConsultaC();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
 	/**
 	 * Create the frame.
 	 */

@@ -1,7 +1,5 @@
 package presentation;
 
-import java.awt.EventQueue;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JInternalFrame;
 
@@ -38,21 +36,6 @@ public class ModificarUsuario extends JInternalFrame {
 	private JLabel lblDescripcion;
 	private JLabel lblSitioWeb;
 	private JTextField textFieldSitioWeb;
-	/**
-	 * Launch the application.
-	 */
-	/**public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ModificarUsuario frame = new ModificarUsuario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	} **/
 
 	/**
 	 * Create the frame.

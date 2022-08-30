@@ -1,7 +1,5 @@
 package presentation;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -19,9 +17,7 @@ import java.util.Calendar;
 import java.awt.event.ActionEvent;
 
 public class ConsultaAD extends JInternalFrame {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private IControladorConsultaAct iconCA;
 	private JTextField textFieldNombre;
