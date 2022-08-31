@@ -16,6 +16,7 @@ import interfaces.IControladorAltaUsuario;
 import interfaces.IControladorConsultaAct;
 import interfaces.IControladorConsultaClase;
 import interfaces.IControladorConsultaUsuario;
+import interfaces.IControladorModificarInstitucion;
 import interfaces.IControladorModificarUsuario;
 import interfaces.IControladorRegistroClase;
 
@@ -35,6 +36,7 @@ public class Principal {
 	private RegistroSocioClase registroRCInternalFrame;
 	private ConsultaUsuario consultaUsuarioInternalFrame;
 	private ModificarUsuario modificarUsuarioInternalFrame;
+	private ModificarInstitucion modificarInstitucionInternalFrame;
 	/**
 	 * Launch the application.
 	 */
@@ -66,12 +68,13 @@ public class Principal {
 		IControladorRegistroClase iconRC = fabrica.getIControladorRC();
 		IControladorConsultaUsuario iconCU = fabrica.getIControladorCU();
 		IControladorModificarUsuario iconMU = fabrica.getIControladorMU();
+		IControladorModificarInstitucion iconMI = fabrica.getIControladorMI();
 		
 		Dimension desktopSize = frame.getSize();
 		Dimension jInternalFrameSize;
 		
 		altaUsuarioInternalFrame = new AltaUsuario(iconAU);
-		altaUsuarioInternalFrame.setBounds(0, 0, 450, 300);
+		altaUsuarioInternalFrame.setBounds(120, 12, 450, 300);
 		frame.getContentPane().add(altaUsuarioInternalFrame);
 		jInternalFrameSize = altaUsuarioInternalFrame.getSize();
 		altaUsuarioInternalFrame.setVisible(false);
@@ -123,6 +126,12 @@ public class Principal {
 		modificarUsuarioInternalFrame.setLocation(12, 39);
 		frame.getContentPane().add(modificarUsuarioInternalFrame);
 		modificarUsuarioInternalFrame.setVisible(false);
+		
+		modificarInstitucionInternalFrame = new ModificarInstitucion(iconMI);
+		jInternalFrameSize = modificarInstitucionInternalFrame.getSize();
+		modificarInstitucionInternalFrame.setLocation(12, 39);
+		frame.getContentPane().add(modificarInstitucionInternalFrame);
+		modificarInstitucionInternalFrame.setVisible(false);
 	}
 
 	/**
@@ -219,6 +228,12 @@ public class Principal {
 		mnModificar.add(mntmUsuarioModificar);
 		
 		JMenuItem mntmInstitucionModificar = new JMenuItem("Institucion");
+		mntmInstitucionModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				modificarInstitucionInternalFrame.inicializarComboBoxes();
+				modificarInstitucionInternalFrame.setVisible(true);
+			}
+		});
 		mnModificar.add(mntmInstitucionModificar);
 		
 		JMenuItem mntmActividadModificar = new JMenuItem("Actividad");

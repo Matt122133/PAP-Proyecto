@@ -76,67 +76,83 @@ public class ConsultaUsuario extends JInternalFrame {
 		internalFrameClase.setIconifiable(true);
         internalFrameClase.setMaximizable(true);
         internalFrameClase.setClosable(true);
-		internalFrameClase.setBounds(0, 7, 440, 244);
+		internalFrameClase.setBounds(0, 12, 440, 244);
 		getContentPane().add(internalFrameClase);
 		internalFrameClase.getContentPane().setLayout(null);
 		
 		textFieldActDep = new JTextField();
-		textFieldActDep.setBounds(129, 143, 114, 19);
+		textFieldActDep.setBounds(123, 81, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldActDep);
 		textFieldActDep.setColumns(10);
 		
 		JLabel lblActividadDep = new JLabel("Actividad Dep");
-		lblActividadDep.setBounds(14, 145, 101, 15);
+		lblActividadDep.setBounds(14, 83, 101, 15);
 		internalFrameClase.getContentPane().add(lblActividadDep);
 		
 		textFieldNombreClase = new JTextField();
-		textFieldNombreClase.setBounds(24, 44, 114, 19);
+		textFieldNombreClase.setBounds(14, 16, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldNombreClase);
 		textFieldNombreClase.setColumns(10);
 		
 		JLabel lblNombreClase = new JLabel("Nombre");
-		lblNombreClase.setBounds(53, 30, 55, 15);
+		lblNombreClase.setBounds(43, 2, 55, 15);
 		internalFrameClase.getContentPane().add(lblNombreClase);
 		
 		textFieldFechaAltaClase = new JTextField();
-		textFieldFechaAltaClase.setBounds(158, 44, 114, 19);
+		textFieldFechaAltaClase.setBounds(148, 16, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldFechaAltaClase);
 		textFieldFechaAltaClase.setColumns(10);
 		
 		JLabel lblFechaReg = new JLabel("FechaReg");
-		lblFechaReg.setBounds(177, 30, 70, 15);
+		lblFechaReg.setBounds(167, 2, 70, 15);
 		internalFrameClase.getContentPane().add(lblFechaReg);
 		
 		textFieldFechaClase = new JTextField();
-		textFieldFechaClase.setBounds(292, 44, 114, 19);
+		textFieldFechaClase.setBounds(282, 16, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldFechaClase);
 		textFieldFechaClase.setColumns(10);
 		
 		JLabel lblFechaInicio = new JLabel("FechaInicio");
-		lblFechaInicio.setBounds(303, 28, 92, 15);
+		lblFechaInicio.setBounds(293, 0, 92, 15);
 		internalFrameClase.getContentPane().add(lblFechaInicio);
 		
 		JLabel lblHorainicio = new JLabel("HoraInicio");
-		lblHorainicio.setBounds(95, 68, 84, 15);
+		lblHorainicio.setBounds(90, 40, 84, 15);
 		internalFrameClase.getContentPane().add(lblHorainicio);
 		
 		textFieldHoraInicioClase = new JTextField();
-		textFieldHoraInicioClase.setBounds(70, 84, 114, 19);
+		textFieldHoraInicioClase.setBounds(71, 56, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldHoraInicioClase);
 		textFieldHoraInicioClase.setColumns(10);
 		
 		JLabel lblUrl = new JLabel("URL");
-		lblUrl.setBounds(293, 68, 47, 15);
+		lblUrl.setBounds(257, 40, 34, 15);
 		internalFrameClase.getContentPane().add(lblUrl);
 		
 		textFieldURLClase = new JTextField();
-		textFieldURLClase.setBounds(254, 84, 114, 19);
+		textFieldURLClase.setBounds(227, 56, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldURLClase);
 		textFieldURLClase.setColumns(10);
 		
 		btnVerInfoActividad = new JButton("Ver Info Actividad");
-		btnVerInfoActividad.setBounds(257, 140, 157, 25);
+		btnVerInfoActividad.setBounds(249, 78, 157, 25);
 		internalFrameClase.getContentPane().add(btnVerInfoActividad);
+		
+		JLabel lblNombreAct = new JLabel("Nombre");
+		lblNombreAct.setBounds(14, 120, 60, 15);
+		internalFrameClase.getContentPane().add(lblNombreAct);
+		
+		JLabel lblDuracionAct = new JLabel("Duracion");
+		lblDuracionAct.setBounds(14, 147, 70, 15);
+		internalFrameClase.getContentPane().add(lblDuracionAct);
+		
+		JLabel lblDescripcion_1 = new JLabel("Descripcion");
+		lblDescripcion_1.setBounds(104, 120, 84, 15);
+		internalFrameClase.getContentPane().add(lblDescripcion_1);
+		
+		JLabel lblCostoAct = new JLabel("Costo");
+		lblCostoAct.setBounds(221, 120, 48, 15);
+		internalFrameClase.getContentPane().add(lblCostoAct);
 		internalFrameClase.setVisible(true);
 		
 		internalFrameClase.setVisible(false);
@@ -159,56 +175,56 @@ public class ConsultaUsuario extends JInternalFrame {
 		getContentPane().add(btnVerInfoUsuario);
 		
 		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(159, 76, 114, 19);
+		textFieldNombre.setBounds(96, 74, 114, 19);
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
 		textFieldNickname = new JTextField();
-		textFieldNickname.setBounds(24, 110, 114, 19);
+		textFieldNickname.setBounds(96, 47, 114, 19);
 		getContentPane().add(textFieldNickname);
 		textFieldNickname.setColumns(10);
 		
 		lblNickname = new JLabel("Nickname");
-		lblNickname.setBounds(46, 89, 70, 15);
+		lblNickname.setBounds(24, 49, 70, 15);
 		getContentPane().add(lblNickname);
 		
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(181, 49, 70, 15);
+		lblNombre.setBounds(24, 76, 70, 15);
 		getContentPane().add(lblNombre);
 		
 		lblApellido = new JLabel("Apellido");
-		lblApellido.setBounds(181, 107, 70, 15);
+		lblApellido.setBounds(24, 103, 70, 15);
 		getContentPane().add(lblApellido);
 		
 		textFieldApellido = new JTextField();
-		textFieldApellido.setBounds(159, 137, 114, 19);
+		textFieldApellido.setBounds(96, 101, 114, 19);
 		getContentPane().add(textFieldApellido);
 		textFieldApellido.setColumns(10);
 		
 		lblEmail = new JLabel("Email");
-		lblEmail.setBounds(328, 49, 70, 15);
+		lblEmail.setBounds(24, 125, 70, 15);
 		getContentPane().add(lblEmail);
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(306, 76, 114, 19);
+		textFieldEmail.setBounds(96, 123, 114, 19);
 		getContentPane().add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
 		textFieldFechaNac = new JTextField();
-		textFieldFechaNac.setBounds(306, 137, 114, 19);
+		textFieldFechaNac.setBounds(96, 150, 114, 19);
 		getContentPane().add(textFieldFechaNac);
 		textFieldFechaNac.setColumns(10);
 		
 		lblFechanac = new JLabel("FechaNac");
-		lblFechanac.setBounds(328, 107, 70, 15);
+		lblFechanac.setBounds(24, 152, 70, 15);
 		getContentPane().add(lblFechanac);
 		
 		JLabel lblClases = new JLabel("Clases");
-		lblClases.setBounds(77, 236, 47, 15);
+		lblClases.setBounds(238, 152, 47, 15);
 		getContentPane().add(lblClases);
 		
 		comboBoxClases = new JComboBox<String>();
-		comboBoxClases.setBounds(132, 231, 92, 24);
+		comboBoxClases.setBounds(303, 147, 92, 24);
 		getContentPane().add(comboBoxClases);
 		
 		JButton btnVerInfoClases = new JButton("Ver Info");
@@ -217,33 +233,33 @@ public class ConsultaUsuario extends JInternalFrame {
 				abrirInternalFrame(e);
 			}
 		});
-		btnVerInfoClases.setBounds(232, 231, 117, 25);
+		btnVerInfoClases.setBounds(291, 182, 117, 25);
 		getContentPane().add(btnVerInfoClases);
 		
 		lblDescripcion = new JLabel("Descripcion");
-		lblDescripcion.setBounds(35, 170, 92, 15);
+		lblDescripcion.setBounds(228, 49, 92, 15);
 		getContentPane().add(lblDescripcion);
 		
 		textFieldDescripcion = new JTextField();
-		textFieldDescripcion.setBounds(24, 197, 114, 19);
+		textFieldDescripcion.setBounds(314, 47, 114, 19);
 		getContentPane().add(textFieldDescripcion);
 		textFieldDescripcion.setColumns(10);
 		
 		lblBiografia = new JLabel("Biografia");
-		lblBiografia.setBounds(181, 170, 70, 15);
+		lblBiografia.setBounds(228, 76, 70, 15);
 		getContentPane().add(lblBiografia);
 		
 		lblSitioWeb = new JLabel("Sitio Web");
-		lblSitioWeb.setBounds(328, 170, 70, 15);
+		lblSitioWeb.setBounds(228, 103, 70, 15);
 		getContentPane().add(lblSitioWeb);
 		
 		textFieldBiografia = new JTextField();
-		textFieldBiografia.setBounds(159, 197, 114, 19);
+		textFieldBiografia.setBounds(314, 74, 114, 19);
 		getContentPane().add(textFieldBiografia);
 		textFieldBiografia.setColumns(10);
 		
 		textFieldSitioWeb = new JTextField();
-		textFieldSitioWeb.setBounds(306, 197, 114, 19);
+		textFieldSitioWeb.setBounds(314, 101, 114, 19);
 		getContentPane().add(textFieldSitioWeb);
 		textFieldSitioWeb.setColumns(10);
 		
@@ -356,16 +372,4 @@ public class ConsultaUsuario extends JInternalFrame {
 
 				
 	}
-
-	
-	/*public void limpiarFormulario(){
-		textFieldNickname.setText(" ");
-		textFieldNombre.setText(" ");
-		textFieldApellido.setText(" ");
-		textFieldEmail.setText(" ");
-		textFieldFechaNac.setText(" ");
-		textFieldDescripcion.setText(" ");
-		textFieldBiografia.setText(" ");
-		textFieldSitioWeb.setText(" ");
-	}*/
 }

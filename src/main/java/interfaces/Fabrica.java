@@ -1,5 +1,6 @@
 package interfaces;
 
+import datatypes.DtInstitucion;
 import logic.ControladorAltaActividadDeportiva;
 import logic.ControladorAltaDictadoDeClase;
 import logic.ControladorAltaInstitucionDeportiva;
@@ -47,5 +48,19 @@ public class Fabrica {
 	}
 	public IControladorModificarUsuario getIControladorMU(){
 		return new ControladorModificarUsuario();
+	}
+	public IControladorModificarInstitucion getIControladorMI(){
+		return new IControladorModificarInstitucion() {
+			
+			public void modificarInstDep(DtInstitucion actualizado) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public String[] listarInstituciones() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		};();
 	}
 }
