@@ -54,6 +54,11 @@ public class ConsultaUsuario extends JInternalFrame {
 	private JLabel lblSitioWeb;
 	private JTextField textFieldBiografia;
 	private JTextField textFieldSitioWeb;
+	private JLabel lblNombreAct;
+	private JLabel lblDuracionAct;
+	private JLabel lblCosto;
+	private JLabel lblDescActiv;
+	private JTextField textFieldNomAct;
 
 	/**
 	 * Create the frame.
@@ -76,16 +81,21 @@ public class ConsultaUsuario extends JInternalFrame {
 		internalFrameClase.setIconifiable(true);
         internalFrameClase.setMaximizable(true);
         internalFrameClase.setClosable(true);
+
 		internalFrameClase.setBounds(0, 12, 440, 244);
+
 		getContentPane().add(internalFrameClase);
 		internalFrameClase.getContentPane().setLayout(null);
 		
 		textFieldActDep = new JTextField();
+
 		textFieldActDep.setBounds(123, 81, 114, 19);
+
 		internalFrameClase.getContentPane().add(textFieldActDep);
 		textFieldActDep.setColumns(10);
 		
 		JLabel lblActividadDep = new JLabel("Actividad Dep");
+
 		lblActividadDep.setBounds(14, 83, 101, 15);
 		internalFrameClase.getContentPane().add(lblActividadDep);
 		
@@ -95,6 +105,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		textFieldNombreClase.setColumns(10);
 		
 		JLabel lblNombreClase = new JLabel("Nombre");
+
 		lblNombreClase.setBounds(43, 2, 55, 15);
 		internalFrameClase.getContentPane().add(lblNombreClase);
 		
