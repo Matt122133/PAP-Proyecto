@@ -18,6 +18,7 @@ import interfaces.IControladorConsultaClase;
 import interfaces.IControladorConsultaUsuario;
 import interfaces.IControladorModificarInstitucion;
 import interfaces.IControladorModificarUsuario;
+import interfaces.IControladorRankingActividadDeportiva;
 import interfaces.IControladorRankingClases;
 import interfaces.IControladorRegistroClase;
 
@@ -39,6 +40,7 @@ public class Principal {
 	private ModificarUsuario modificarUsuarioInternalFrame;
 	private ModificarInstitucion modificarInstitucionInternalFrame;
 	private RankingClases rankingClasesInternalFrame;
+	private RankingActividades rankingActividadesInternalFrame;
 	/**
 	 * Launch the application.
 	 */
@@ -72,6 +74,7 @@ public class Principal {
 		IControladorModificarUsuario iconMU = fabrica.getIControladorMU();
 		IControladorModificarInstitucion iconMI = fabrica.getIControladorMI();
 		IControladorRankingClases iconRankingC = fabrica.getIControladorRankingC();
+		IControladorRankingActividadDeportiva iconRA = fabrica.getIControladorRA();
 		
 		Dimension desktopSize = frame.getSize();
 		Dimension jInternalFrameSize;
@@ -141,6 +144,18 @@ public class Principal {
 		rankingClasesInternalFrame.setLocation(12, 39);
 		frame.getContentPane().add(rankingClasesInternalFrame);
 		rankingClasesInternalFrame.setVisible(false);
+		
+		rankingClasesInternalFrame = new RankingClases(iconRankingC);
+		jInternalFrameSize = rankingClasesInternalFrame.getSize();
+		rankingClasesInternalFrame.setLocation(12, 39);
+		frame.getContentPane().add(rankingClasesInternalFrame);
+		rankingClasesInternalFrame.setVisible(false);
+		
+		rankingActividadesInternalFrame = new RankingActividades(iconRA);
+		jInternalFrameSize = rankingActividadesInternalFrame.getSize();
+		rankingActividadesInternalFrame.setLocation(12, 39);
+		frame.getContentPane().add(rankingActividadesInternalFrame);
+		rankingActividadesInternalFrame.setVisible(false);
 	}
 
 	/**
@@ -252,6 +267,12 @@ public class Principal {
 		menuBar.add(mnRanking);
 		
 		JMenuItem mntmActividadRanking = new JMenuItem("Actividad");
+		mntmActividadRanking.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rankingActividadesInternalFrame.setVisible(true);
+				rankingActividadesInternalFrame.inicializarComboBoxes();
+			}
+		});
 		mnRanking.add(mntmActividadRanking);
 		
 		JMenuItem mntmClaseRanking = new JMenuItem("Clase");

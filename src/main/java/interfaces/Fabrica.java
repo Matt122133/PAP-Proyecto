@@ -10,6 +10,7 @@ import logic.ControladorConsultaClase;
 import logic.ControladorConsultaUsuario;
 import logic.ControladorModificarInstitucion;
 import logic.ControladorModificarUsuario;
+import logic.ControladorRankingActividadDeportiva;
 import logic.ControladorRankingClases;
 import logic.ControladorRegistroClase;
 
@@ -58,7 +59,9 @@ public class Fabrica {
 	public IControladorRankingClases getIControladorRankingC(){
 		return new ControladorRankingClases();
 	}
-	
+	public IControladorRankingActividadDeportiva getIControladorRA(){
+		return new ControladorRankingActividadDeportiva();
+	}
 	
 
 }

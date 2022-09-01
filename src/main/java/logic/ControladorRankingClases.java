@@ -36,7 +36,7 @@ public class ControladorRankingClases implements IControladorRankingClases{
 			m=l.getFecha().get(Calendar.MONTH) +1;
 			y=l.getFecha().get(Calendar.YEAR);
 			b++;
-			clases_ret[a]= b +": "+ l.getNombre()+" " + d +"/"+ m +"/"+ y +l.getUrl() ;
+			clases_ret[a]= b +":   "+ l.getNombre()+"   " + d +"/"+ m +"/"+ y+"   "  +l.getUrl() ;
 			a++;
 		}
 		

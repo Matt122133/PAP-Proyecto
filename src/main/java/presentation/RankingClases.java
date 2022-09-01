@@ -9,6 +9,7 @@ import interfaces.IControladorRankingClases;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 
 public class RankingClases extends JInternalFrame {
 	
@@ -43,12 +44,16 @@ public class RankingClases extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Ranking Clases");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 417, 139);
 		getContentPane().setLayout(null);
 		
 		comboBoxRankingC = new JComboBox<String>();
-		comboBoxRankingC.setBounds(73, 53, 291, 24);
+		comboBoxRankingC.setBounds(48, 53, 291, 24);
 		getContentPane().add(comboBoxRankingC);
+		
+		JLabel lblRankingClases = new JLabel("Ranking Clases");
+		lblRankingClases.setBounds(127, 12, 132, 15);
+		getContentPane().add(lblRankingClases);
 		
 
 	}
