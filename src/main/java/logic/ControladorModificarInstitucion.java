@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import datatypes.DtInstitucion;
 import interfaces.IControladorModificarInstitucion;
 
-public class ControladorModificarInsitutcion implements IControladorModificarInstitucion {
+public class ControladorModificarInstitucion implements IControladorModificarInstitucion {
 	
 	public void modificarInstDep(DtInstitucion actualizado) {
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();

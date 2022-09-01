@@ -8,6 +8,7 @@ import logic.ControladorAltaUsuario;
 import logic.ControladorConsultaAct;
 import logic.ControladorConsultaClase;
 import logic.ControladorConsultaUsuario;
+import logic.ControladorModificarInstitucion;
 import logic.ControladorModificarUsuario;
 import logic.ControladorRegistroClase;
 
@@ -50,17 +51,6 @@ public class Fabrica {
 		return new ControladorModificarUsuario();
 	}
 	public IControladorModificarInstitucion getIControladorMI(){
-		return new IControladorModificarInstitucion() {
-			
-			public void modificarInstDep(DtInstitucion actualizado) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			public String[] listarInstituciones() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-		};();
-	}
+		return new ControladorModificarInstitucion(); }
+	
 }
