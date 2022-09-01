@@ -74,7 +74,7 @@ public class Principal {
 		Dimension jInternalFrameSize;
 		
 		altaUsuarioInternalFrame = new AltaUsuario(iconAU);
-		altaUsuarioInternalFrame.setBounds(120, 12, 450, 300);
+		altaUsuarioInternalFrame.setBounds(0, 0, 450, 300);
 		frame.getContentPane().add(altaUsuarioInternalFrame);
 		jInternalFrameSize = altaUsuarioInternalFrame.getSize();
 		altaUsuarioInternalFrame.setVisible(false);

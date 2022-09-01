@@ -28,8 +28,8 @@ public class ConsultaAD extends JInternalFrame {
 	private JComboBox<String> comboBoxInstitucion;
 	private JComboBox<String> comboBoxActividad;
 	private JComboBox<String> comboBoxClase;
-	private JButton btnElegirAct;
 	private JButton btnElegirClase;
+	private JButton btnElegirAct;
 	private JTextField textFieldNombreClase;
 	private JTextField textFieldFechaClase;
 	private JTextField textFieldFechaRegClase;
@@ -47,6 +47,7 @@ public class ConsultaAD extends JInternalFrame {
 	private JLabel lblFechaRegClase;
 	private JLabel lblHoraDeInicioClase;
 	private JLabel lblURLClase;
+	private JLabel lblClase_1;
 	/**
 	 * Launch the application.
 	 */
@@ -142,7 +143,7 @@ public class ConsultaAD extends JInternalFrame {
 		getContentPane().add(textFieldFechaReg);
 		textFieldFechaReg.setColumns(10);
 		
-		JLabel lblClase_1 = new JLabel("Clase");
+		lblClase_1 = new JLabel("Clase");
 		lblClase_1.setBounds(75, 237, 51, 15);
 		getContentPane().add(lblClase_1);
 		
@@ -163,6 +164,15 @@ public class ConsultaAD extends JInternalFrame {
 		btnElegirAct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				elegirActActionPerformed(e);
+				textFieldNombre.setEnabled(false);
+				textFieldDescripcion.setEnabled(false);
+				textFieldDuracion.setEnabled(false);
+				textFieldCosto.setEnabled(false);
+				textFieldFechaReg.setEnabled(false);
+				
+				lblClase_1.setVisible(true);
+				comboBoxClase.setVisible(true);
+				btnElegirClase.setVisible(true);
 			}
 		});
 		btnElegirAct.setBounds(244, 55, 117, 25);
@@ -172,6 +182,11 @@ public class ConsultaAD extends JInternalFrame {
 		btnElegirClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				elegirClaseActionPerformed(e);
+				textFieldNombreClase.setEnabled(false);
+				textFieldFechaClase.setEnabled(false);
+				textFieldFechaRegClase.setEnabled(false);
+				textFieldHoraInicioClase.setEnabled(false);
+				textFieldURLClase.setEnabled(false);
 			}
 		});
 		btnElegirClase.setBounds(295, 232, 117, 25);	
@@ -225,8 +240,10 @@ public class ConsultaAD extends JInternalFrame {
 		
 		comboBoxActividad.setEnabled(false);
 		btnElegirAct.setEnabled(false);
-		comboBoxClase.setEnabled(false);
-		btnElegirClase.setEnabled(false);
+		
+		lblClase_1.setVisible(false);
+		comboBoxClase.setVisible(false);
+		btnElegirClase.setVisible(false);
 			
 		visibleActividad(false);
 		visibleClase(false);

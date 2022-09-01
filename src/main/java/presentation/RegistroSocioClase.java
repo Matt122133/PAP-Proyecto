@@ -36,7 +36,12 @@ public class RegistroSocioClase extends JInternalFrame {
 	private JLabel lblSocio;
 	private JButton btnAceptar;
 	private JButton btnCancelar;
-
+	private JLabel lblNombre;
+	private JLabel lblFecha;
+	private JLabel lblHoraDeInicio;
+	private JLabel lblUrl;
+	private JLabel lblFechareg;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -117,28 +122,51 @@ public class RegistroSocioClase extends JInternalFrame {
 		btnElegirClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				elegirClaseActionPerformed(e);
+				
+				textFieldNombre.setVisible(true);
+				textFieldFecha.setVisible(true);
+				textFieldHoraInicio.setVisible(true);
+				textFieldURL.setVisible(true);
+				textFieldFechaReg.setVisible(true);
+				
+				textFieldNombre.setEnabled(false);
+				textFieldFecha.setEnabled(false);
+				textFieldHoraInicio.setEnabled(false);
+				textFieldURL.setEnabled(false);
+				textFieldFechaReg.setEnabled(false);
+				
+				lblNombre.setVisible(true);
+				lblFecha.setVisible(true);
+				lblHoraDeInicio.setVisible(true);
+				lblUrl.setVisible(true);
+				lblFechareg.setVisible(true);
+				lblSocio.setVisible(true);
+				
+				comboBoxSocio.setVisible(true);
+				btnCancelar.setVisible(true);
+				btnAceptar.setVisible(true);
 			}
 		});
 		btnElegirClase.setBounds(253, 76, 117, 25);
 		getContentPane().add(btnElegirClase);
 		
-		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(53, 108, 61, 15);
 		getContentPane().add(lblNombre);
 		
-		JLabel lblFecha = new JLabel("Fecha");
+		lblFecha = new JLabel("Fecha");
 		lblFecha.setBounds(193, 108, 51, 15);
 		getContentPane().add(lblFecha);
 		
-		JLabel lblHoraDeInicio = new JLabel("Hora de Inicio");
+		lblHoraDeInicio = new JLabel("Hora de Inicio");
 		lblHoraDeInicio.setBounds(307, 108, 107, 15);
 		getContentPane().add(lblHoraDeInicio);
 		
-		JLabel lblUrl = new JLabel("URL");
+		lblUrl = new JLabel("URL");
 		lblUrl.setBounds(54, 166, 36, 15);
 		getContentPane().add(lblUrl);
 		
-		JLabel lblFechareg = new JLabel("FechaReg");
+		lblFechareg = new JLabel("FechaReg");
 		lblFechareg.setBounds(322, 166, 70, 15);
 		getContentPane().add(lblFechareg);
 		
@@ -203,6 +231,23 @@ public class RegistroSocioClase extends JInternalFrame {
 		});
 		btnCancelar.setBounds(253, 224, 117, 25);
 		getContentPane().add(btnCancelar);
+		
+		textFieldNombre.setVisible(false);
+		textFieldFecha.setVisible(false);
+		textFieldHoraInicio.setVisible(false);
+		textFieldURL.setVisible(false);
+		textFieldFechaReg.setVisible(false);
+		
+		lblNombre.setVisible(false);
+		lblFecha.setVisible(false);
+		lblHoraDeInicio.setVisible(false);
+		lblUrl.setVisible(false);
+		lblFechareg.setVisible(false);
+		lblSocio.setVisible(false);
+		
+		comboBoxSocio.setVisible(false);
+		btnCancelar.setVisible(false);
+		btnAceptar.setVisible(false);
 
 	}
 	

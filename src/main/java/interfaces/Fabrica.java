@@ -50,7 +50,8 @@ public class Fabrica {
 	public IControladorModificarUsuario getIControladorMU(){
 		return new ControladorModificarUsuario();
 	}
-	public IControladorModificarInstitucion getIControladorMI(){
-		return new ControladorModificarInstitucion(); }
 	
+	public IControladorModificarInstitucion getIControladorMI(){
+		return new ControladorModificarInstitucion();}
+
 }

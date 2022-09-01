@@ -69,4 +69,6 @@ public class Clase {
 	public void agregarRegistro(Registro registro) {
 		registros.add(registro);
 	}
+	
+	
 }

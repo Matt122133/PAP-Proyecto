@@ -3,6 +3,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtUsuario;
 import interfaces.IControladorConsultaUsuario;
@@ -107,4 +108,30 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 		
 	}
 	
-}
+
+	public DtActividadDeportiva obtenerDtAct(String nombreClase, String nombreActividad){
+		ArrayList<InstitucionDeportiva> instituciones;
+		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
+		instituciones = mI.obtenerInstis();
+		List<ActividadDeportiva> Act = new ArrayList<ActividadDeportiva>();
+
+		for(InstitucionDeportiva i:instituciones){
+			Act=i.getActDeportivas();
+			for(ActividadDeportiva j:Act) {
+				if(j.existeClase(nombreClase)) {
+					return j.obtenerDtPorString(nombreActividad);
+				}
+			}
+		}
+		return null;
+		
+		/*InstitucionDeportiva inst = null;
+		return inst.obtenerDtActDep(nombreActividad);*/
+	}
+		
+		
+	}
+	
+	
+	
+

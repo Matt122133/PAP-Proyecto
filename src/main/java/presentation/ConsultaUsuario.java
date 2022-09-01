@@ -15,6 +15,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
@@ -23,6 +24,7 @@ import datatypes.DtUsuario;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class ConsultaUsuario extends JInternalFrame {
 
@@ -58,7 +60,14 @@ public class ConsultaUsuario extends JInternalFrame {
 	private JLabel lblDuracionAct;
 	private JLabel lblCosto;
 	private JLabel lblDescActiv;
+	private JLabel lblFechaRegisAct;
+	private JTextField textFieldDescAct;
 	private JTextField textFieldNomAct;
+	private JTextField textFieldDurAct;
+	private JTextField textFieldCostoAct;
+	private JTextField textFieldFechaRegAct;
+	private JButton btnVerInfoClases;
+	private JLabel lblClases;
 
 	/**
 	 * Create the frame.
@@ -66,7 +75,7 @@ public class ConsultaUsuario extends JInternalFrame {
 	public ConsultaUsuario(IControladorConsultaUsuario iconCU) {
 		this.iconCU=iconCU;
 		
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 618, 403);
 		getContentPane().setLayout(null);
 		
 		setResizable(true);
@@ -81,89 +90,134 @@ public class ConsultaUsuario extends JInternalFrame {
 		internalFrameClase.setIconifiable(true);
         internalFrameClase.setMaximizable(true);
         internalFrameClase.setClosable(true);
-
 		internalFrameClase.setBounds(0, 12, 440, 244);
-
 		getContentPane().add(internalFrameClase);
 		internalFrameClase.getContentPane().setLayout(null);
 		
 		textFieldActDep = new JTextField();
-
-		textFieldActDep.setBounds(123, 81, 114, 19);
-
+		textFieldActDep.setBounds(106, 105, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldActDep);
 		textFieldActDep.setColumns(10);
 		
-		JLabel lblActividadDep = new JLabel("Actividad Dep");
-
-		lblActividadDep.setBounds(14, 83, 101, 15);
+		JLabel lblActividadDep = new JLabel("Actividad Deportiva");
+		lblActividadDep.setBounds(10, 108, 127, 15);
 		internalFrameClase.getContentPane().add(lblActividadDep);
 		
 		textFieldNombreClase = new JTextField();
-		textFieldNombreClase.setBounds(14, 16, 114, 19);
+		textFieldNombreClase.setBounds(10, 30, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldNombreClase);
 		textFieldNombreClase.setColumns(10);
 		
 		JLabel lblNombreClase = new JLabel("Nombre");
-
-		lblNombreClase.setBounds(43, 2, 55, 15);
+		lblNombreClase.setBounds(10, 14, 55, 15);
 		internalFrameClase.getContentPane().add(lblNombreClase);
 		
 		textFieldFechaAltaClase = new JTextField();
-		textFieldFechaAltaClase.setBounds(148, 16, 114, 19);
+		textFieldFechaAltaClase.setBounds(144, 30, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldFechaAltaClase);
 		textFieldFechaAltaClase.setColumns(10);
 		
-		JLabel lblFechaReg = new JLabel("FechaReg");
-		lblFechaReg.setBounds(167, 2, 70, 15);
+		JLabel lblFechaReg = new JLabel("Fecha Registro");
+		lblFechaReg.setBounds(144, 14, 114, 15);
 		internalFrameClase.getContentPane().add(lblFechaReg);
 		
 		textFieldFechaClase = new JTextField();
-		textFieldFechaClase.setBounds(282, 16, 114, 19);
+		textFieldFechaClase.setBounds(279, 30, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldFechaClase);
 		textFieldFechaClase.setColumns(10);
 		
 		JLabel lblFechaInicio = new JLabel("FechaInicio");
-		lblFechaInicio.setBounds(293, 0, 92, 15);
+		lblFechaInicio.setBounds(279, 14, 114, 15);
 		internalFrameClase.getContentPane().add(lblFechaInicio);
 		
 		JLabel lblHorainicio = new JLabel("HoraInicio");
-		lblHorainicio.setBounds(90, 40, 84, 15);
+		lblHorainicio.setBounds(76, 56, 85, 15);
 		internalFrameClase.getContentPane().add(lblHorainicio);
 		
 		textFieldHoraInicioClase = new JTextField();
-		textFieldHoraInicioClase.setBounds(71, 56, 114, 19);
+		textFieldHoraInicioClase.setBounds(76, 72, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldHoraInicioClase);
 		textFieldHoraInicioClase.setColumns(10);
 		
 		JLabel lblUrl = new JLabel("URL");
-		lblUrl.setBounds(257, 40, 34, 15);
+		lblUrl.setBounds(266, 56, 28, 15);
 		internalFrameClase.getContentPane().add(lblUrl);
 		
 		textFieldURLClase = new JTextField();
-		textFieldURLClase.setBounds(227, 56, 114, 19);
+		textFieldURLClase.setBounds(223, 72, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldURLClase);
 		textFieldURLClase.setColumns(10);
 		
 		btnVerInfoActividad = new JButton("Ver Info Actividad");
-		btnVerInfoActividad.setBounds(249, 78, 157, 25);
+		btnVerInfoActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				llenarInfoActividad(e);
+				lblNombreAct.setVisible(true);
+				lblDuracionAct.setVisible(true);
+				lblCosto.setVisible(true);
+				lblDescActiv.setVisible(true);
+				lblFechaRegisAct.setVisible(true);
+				
+				textFieldNomAct.setVisible(true);
+				textFieldCostoAct.setVisible(true);
+				textFieldDescAct.setVisible(true);
+				textFieldDurAct.setVisible(true);
+				textFieldFechaRegAct.setVisible(true);
+				
+				textFieldNomAct.setEnabled(false);
+				textFieldCostoAct.setEnabled(false);
+				textFieldDescAct.setEnabled(false);
+				textFieldDurAct.setEnabled(false);
+				textFieldFechaRegAct.setEnabled(false);
+			}
+		});
+		btnVerInfoActividad.setBounds(233, 103, 157, 25);
 		internalFrameClase.getContentPane().add(btnVerInfoActividad);
 		
-		JLabel lblNombreAct = new JLabel("Nombre");
-		lblNombreAct.setBounds(14, 120, 60, 15);
+		lblNombreAct = new JLabel("Nombre");
+		lblNombreAct.setBounds(10, 137, 79, 15);
 		internalFrameClase.getContentPane().add(lblNombreAct);
 		
-		JLabel lblDuracionAct = new JLabel("Duracion");
-		lblDuracionAct.setBounds(14, 147, 70, 15);
+		lblDuracionAct = new JLabel("Duracion");
+		lblDuracionAct.setBounds(10, 186, 79, 15);
 		internalFrameClase.getContentPane().add(lblDuracionAct);
 		
-		JLabel lblDescripcion_1 = new JLabel("Descripcion");
-		lblDescripcion_1.setBounds(104, 120, 84, 15);
-		internalFrameClase.getContentPane().add(lblDescripcion_1);
+		lblCosto = new JLabel("Costo");
+		lblCosto.setBounds(257, 142, 41, 15);
+		internalFrameClase.getContentPane().add(lblCosto);
 		
-		JLabel lblCostoAct = new JLabel("Costo");
-		lblCostoAct.setBounds(221, 120, 48, 15);
-		internalFrameClase.getContentPane().add(lblCostoAct);
+		lblDescActiv = new JLabel("Descripcion");
+		lblDescActiv.setBounds(10, 161, 114, 15);
+		internalFrameClase.getContentPane().add(lblDescActiv);
+		
+		textFieldDescAct = new JTextField();
+		textFieldDescAct.setBounds(94, 159, 96, 20);
+		internalFrameClase.getContentPane().add(textFieldDescAct);
+		textFieldDescAct.setColumns(10);
+		
+		textFieldNomAct = new JTextField();
+		textFieldNomAct.setBounds(94, 136, 96, 20);
+		internalFrameClase.getContentPane().add(textFieldNomAct);
+		textFieldNomAct.setColumns(10);
+		
+		textFieldDurAct = new JTextField();
+		textFieldDurAct.setBounds(94, 184, 96, 20);
+		internalFrameClase.getContentPane().add(textFieldDurAct);
+		textFieldDurAct.setColumns(10);
+		
+		textFieldCostoAct = new JTextField();
+		textFieldCostoAct.setBounds(316, 140, 96, 20);
+		internalFrameClase.getContentPane().add(textFieldCostoAct);
+		textFieldCostoAct.setColumns(10);
+		
+		lblFechaRegisAct = new JLabel("Fecha Registro ");
+		lblFechaRegisAct.setBounds(193, 168, 120, 14);
+		internalFrameClase.getContentPane().add(lblFechaRegisAct);
+		
+		textFieldFechaRegAct = new JTextField();
+		textFieldFechaRegAct.setBounds(316, 166, 96, 20);
+		internalFrameClase.getContentPane().add(textFieldFechaRegAct);
+		textFieldFechaRegAct.setColumns(10);
 		internalFrameClase.setVisible(true);
 		
 		internalFrameClase.setVisible(false);
@@ -180,103 +234,139 @@ public class ConsultaUsuario extends JInternalFrame {
 		btnVerInfoUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				llenarInfoActionPerformed(e);
+				textFieldNombre.setEnabled(false);;
+				textFieldNickname.setEnabled(false);
+				textFieldApellido.setEnabled(false);
+				textFieldEmail.setEnabled(false);
+				textFieldFechaNac.setEnabled(false);
+				
+				comboBoxClases.setVisible(true);
+				btnVerInfoClases.setVisible(true);
+				lblClases.setVisible(true);
+				
 			}
 		});
 		btnVerInfoUsuario.setBounds(238, 12, 117, 25);
 		getContentPane().add(btnVerInfoUsuario);
 		
 		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(96, 74, 114, 19);
+		textFieldNombre.setBounds(147, 64, 114, 19);
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
 		textFieldNickname = new JTextField();
-		textFieldNickname.setBounds(96, 47, 114, 19);
+		textFieldNickname.setBounds(23, 64, 114, 19);
 		getContentPane().add(textFieldNickname);
 		textFieldNickname.setColumns(10);
 		
 		lblNickname = new JLabel("Nickname");
-		lblNickname.setBounds(24, 49, 70, 15);
+		lblNickname.setBounds(23, 49, 93, 15);
 		getContentPane().add(lblNickname);
 		
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(24, 76, 70, 15);
+		lblNombre.setBounds(146, 49, 78, 15);
 		getContentPane().add(lblNombre);
 		
 		lblApellido = new JLabel("Apellido");
-		lblApellido.setBounds(24, 103, 70, 15);
+		lblApellido.setBounds(271, 48, 77, 15);
 		getContentPane().add(lblApellido);
 		
 		textFieldApellido = new JTextField();
-		textFieldApellido.setBounds(96, 101, 114, 19);
+		textFieldApellido.setBounds(271, 64, 114, 19);
 		getContentPane().add(textFieldApellido);
 		textFieldApellido.setColumns(10);
 		
 		lblEmail = new JLabel("Email");
-		lblEmail.setBounds(24, 125, 70, 15);
+		lblEmail.setBounds(93, 94, 71, 15);
 		getContentPane().add(lblEmail);
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(96, 123, 114, 19);
+		textFieldEmail.setBounds(93, 109, 114, 19);
 		getContentPane().add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
 		textFieldFechaNac = new JTextField();
-		textFieldFechaNac.setBounds(96, 150, 114, 19);
+		textFieldFechaNac.setBounds(216, 109, 114, 19);
 		getContentPane().add(textFieldFechaNac);
 		textFieldFechaNac.setColumns(10);
 		
-		lblFechanac = new JLabel("FechaNac");
-		lblFechanac.setBounds(24, 152, 70, 15);
+		lblFechanac = new JLabel("Fecha Nacimiento");
+		lblFechanac.setBounds(216, 94, 139, 15);
 		getContentPane().add(lblFechanac);
 		
-		JLabel lblClases = new JLabel("Clases");
-		lblClases.setBounds(238, 152, 47, 15);
+		lblClases = new JLabel("Clases");
+		lblClases.setBounds(39, 225, 59, 15);
 		getContentPane().add(lblClases);
 		
 		comboBoxClases = new JComboBox<String>();
-		comboBoxClases.setBounds(303, 147, 92, 24);
+		comboBoxClases.setBounds(102, 220, 137, 24);
 		getContentPane().add(comboBoxClases);
 		
-		JButton btnVerInfoClases = new JButton("Ver Info");
+		btnVerInfoClases = new JButton("Ver Info");
 		btnVerInfoClases.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				abrirInternalFrame(e);
+				lblNombreAct.setVisible(false);
+				lblDuracionAct.setVisible(false);
+				lblCosto.setVisible(false);
+				lblDescActiv.setVisible(false);
+				lblFechaRegisAct.setVisible(false);
+				
+				
+				textFieldNomAct.setVisible(false);
+				textFieldCostoAct.setVisible(false);
+				textFieldDescAct.setVisible(false);
+				textFieldDurAct.setVisible(false);
+				textFieldFechaRegAct.setVisible(false);
+				
+				textFieldActDep.setEnabled(false);
+				textFieldNombreClase.setEnabled(false);
+				textFieldFechaAltaClase.setEnabled(false);
+				textFieldFechaClase.setEnabled(false);
+				textFieldHoraInicioClase.setEnabled(false);
+				textFieldURLClase.setEnabled(false);
+				
 			}
 		});
-		btnVerInfoClases.setBounds(291, 182, 117, 25);
+		btnVerInfoClases.setBounds(247, 220, 117, 25);
 		getContentPane().add(btnVerInfoClases);
 		
-		lblDescripcion = new JLabel("Descripcion");
-		lblDescripcion.setBounds(228, 49, 92, 15);
+		lblDescripcion = new JLabel("Descripción");
+		lblDescripcion.setBounds(10, 139, 91, 15);
 		getContentPane().add(lblDescripcion);
 		
 		textFieldDescripcion = new JTextField();
-		textFieldDescripcion.setBounds(314, 47, 114, 19);
+		textFieldDescripcion.setBounds(10, 154, 117, 45);
 		getContentPane().add(textFieldDescripcion);
 		textFieldDescripcion.setColumns(10);
 		
-		lblBiografia = new JLabel("Biografia");
-		lblBiografia.setBounds(228, 76, 70, 15);
+		lblBiografia = new JLabel("Biografía");
+		lblBiografia.setBounds(147, 139, 88, 15);
 		getContentPane().add(lblBiografia);
 		
 		lblSitioWeb = new JLabel("Sitio Web");
-		lblSitioWeb.setBounds(228, 103, 70, 15);
+		lblSitioWeb.setBounds(289, 139, 78, 15);
 		getContentPane().add(lblSitioWeb);
 		
 		textFieldBiografia = new JTextField();
-		textFieldBiografia.setBounds(314, 74, 114, 19);
+		textFieldBiografia.setBounds(147, 153, 117, 45);
 		getContentPane().add(textFieldBiografia);
 		textFieldBiografia.setColumns(10);
 		
 		textFieldSitioWeb = new JTextField();
-		textFieldSitioWeb.setBounds(314, 101, 114, 19);
+		textFieldSitioWeb.setBounds(285, 153, 117, 45);
 		getContentPane().add(textFieldSitioWeb);
 		textFieldSitioWeb.setColumns(10);
+		
+		btnVerInfoClases.setVisible(false);
+		
+		comboBoxClases.setVisible(false);
 		
 		lblDescripcion.setVisible(false);
 		lblBiografia.setVisible(false);
 		lblSitioWeb.setVisible(false);
+		lblClases.setVisible(false);
+		
 		textFieldDescripcion.setVisible(false);
 		textFieldBiografia.setVisible(false);
 		textFieldSitioWeb.setVisible(false);
@@ -318,6 +408,9 @@ public class ConsultaUsuario extends JInternalFrame {
 			textFieldDescripcion.setVisible(true);
 			textFieldBiografia.setVisible(true);
 			textFieldSitioWeb.setVisible(true);
+			textFieldDescripcion.setEnabled(false);
+			textFieldBiografia.setEnabled(false);
+			textFieldSitioWeb.setEnabled(false);
 			
 			this.textFieldDescripcion.setText(((DtProfesor) usuario_ret).getDescripcion());
 			this.textFieldBiografia.setText(((DtProfesor) usuario_ret).getBiografia());
@@ -379,8 +472,28 @@ public class ConsultaUsuario extends JInternalFrame {
 			this.textFieldURLClase.setText(clase.getUrl());
 			this.textFieldActDep.setText(iconCU.ActDepDeClase(nombreClase));
 		}
-		
-
 				
+	}
+	
+	public void llenarInfoActividad(ActionEvent e){
+		String nomClase = this.textFieldNombreClase.getText();
+		String nomAct = this.textFieldActDep.getText();
+		DtActividadDeportiva actDep = iconCU.obtenerDtAct(nomClase, nomAct);
+		this.textFieldNomAct.setText(actDep.getNombre());
+		this.textFieldCostoAct.setText(actDep.getCosto().toString());
+		this.textFieldDescAct.setText(actDep.getDescripcion());
+		this.textFieldDurAct.setText(actDep.getDuracion().toString());
+		Integer day = actDep.getFechaReg().get(Calendar.DAY_OF_MONTH);
+		Integer month = actDep.getFechaReg().get(Calendar.MONTH)+1;
+		Integer year = actDep.getFechaReg().get(Calendar.YEAR);
+		this.textFieldFechaRegAct.setText(day.toString()+ "/"+ month.toString()+"/"+ year.toString());
+		
+		
+	}
+	public Font getTextFieldNomActFont() {
+		return textFieldNomAct.getFont();
+	}
+	public void setTextFieldNomActFont(Font font) {
+		textFieldNomAct.setFont(font);
 	}
 }

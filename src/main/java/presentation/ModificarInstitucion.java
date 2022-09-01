@@ -79,6 +79,11 @@ public class ModificarInstitucion extends JInternalFrame {
 		getContentPane().add(btnAceptar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modificarInstitucionCancelarActionPerformed(e);
+			}
+		});
 		btnCancelar.setBounds(243, 218, 117, 25);
 		getContentPane().add(btnCancelar);
 
@@ -106,6 +111,11 @@ public class ModificarInstitucion extends JInternalFrame {
 		DtInstitucion dtInst = this.iconMI.obtenerDtInst(nombre);
 		textFieldURL.setText(dtInst.getUrl());
 		textFieldDescripcion.setText(dtInst.getDescripcion());
+	}
+
+	public void modificarInstitucionCancelarActionPerformed(ActionEvent e){
+		limpiarFormulario();
+		setVisible(false);
 	}
 	
 	private void limpiarFormulario() {

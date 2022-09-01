@@ -56,6 +56,25 @@ public class AltaUsuario extends JInternalFrame {
 	private JLabel lblOpcionales;
 	private JLabel lblDescripcion;
 	
+	/**
+	 * Launch the application.
+	 */
+	/**public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AltaUsuario frame = new AltaUsuario();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}*/
+
+	/**
+	 * Create the frame.
+	 */
 	public AltaUsuario(IControladorAltaUsuario iconAU) {
 		
 		this.iconAU = iconAU;

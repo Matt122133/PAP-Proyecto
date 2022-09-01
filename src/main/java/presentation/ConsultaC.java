@@ -32,6 +32,12 @@ public class ConsultaC extends JInternalFrame {
 	private JComboBox<String> comboBoxClase;
 	private JButton btnElegirAct;
 	private JButton btnElegirClase;
+	private JLabel lblClase;
+	private JLabel lblNombre;
+	private JLabel lblFecha;
+	private JLabel lblHoraDeInicio;
+	private JLabel lblUrl;
+	private JLabel lblFechareg;
 
 	/**
 	 * Create the frame.
@@ -85,7 +91,7 @@ public class ConsultaC extends JInternalFrame {
 		btnElegirAct.setBounds(251, 44, 117, 25);
 		getContentPane().add(btnElegirAct);
 		
-		JLabel lblClase = new JLabel("Clase");
+		lblClase = new JLabel("Clase");
 		lblClase.setBounds(75, 81, 45, 15);
 		getContentPane().add(lblClase);
 		
@@ -97,28 +103,46 @@ public class ConsultaC extends JInternalFrame {
 		btnElegirClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				elegirClaseActionPerformed(e);
+				textFieldNombre.setEnabled(false);
+				textFieldFecha.setEnabled(false);
+				textFieldHoraInicio.setEnabled(false);
+				textFieldURL.setEnabled(false);
+				textFieldFechaReg.setEnabled(false);
+				
+				textFieldNombre.setVisible(true);
+				textFieldFecha.setVisible(true);
+				textFieldHoraInicio.setVisible(true);
+				textFieldURL.setVisible(true);
+				textFieldFechaReg.setVisible(true);
+				
+
+				lblNombre.setVisible(true);
+				lblFecha.setVisible(true);
+				lblHoraDeInicio.setVisible(true);
+				lblUrl.setVisible(true);
+				lblFechareg.setVisible(true);
 			}
 		});
 		btnElegirClase.setBounds(251, 76, 117, 25);
 		getContentPane().add(btnElegirClase);
 		
-		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(55, 133, 61, 15);
 		getContentPane().add(lblNombre);
 		
-		JLabel lblFecha = new JLabel("Fecha");
+		lblFecha = new JLabel("Fecha");
 		lblFecha.setBounds(199, 133, 51, 15);
 		getContentPane().add(lblFecha);
 		
-		JLabel lblHoraDeInicio = new JLabel("Hora de Inicio");
+		lblHoraDeInicio = new JLabel("Hora de Inicio");
 		lblHoraDeInicio.setBounds(305, 133, 107, 15);
 		getContentPane().add(lblHoraDeInicio);
 		
-		JLabel lblUrl = new JLabel("URL");
+		lblUrl = new JLabel("URL");
 		lblUrl.setBounds(112, 207, 36, 15);
 		getContentPane().add(lblUrl);
 		
-		JLabel lblFechareg = new JLabel("FechaReg");
+		lblFechareg = new JLabel("FechaReg");
 		lblFechareg.setBounds(278, 207, 70, 15);
 		getContentPane().add(lblFechareg);
 		
@@ -152,11 +176,18 @@ public class ConsultaC extends JInternalFrame {
 		comboBoxClase.setEnabled(false);
 		btnElegirClase.setEnabled(false);
 		
-		textFieldNombre.setEnabled(false);
-		textFieldFecha.setEnabled(false);
-		textFieldHoraInicio.setEnabled(false);
-		textFieldURL.setEnabled(false);
-		textFieldFechaReg.setEnabled(false);
+		textFieldNombre.setVisible(false);
+		textFieldFecha.setVisible(false);
+		textFieldHoraInicio.setVisible(false);
+		textFieldURL.setVisible(false);
+		textFieldFechaReg.setVisible(false);
+		
+		lblNombre.setVisible(false);
+		lblFecha.setVisible(false);
+		lblHoraDeInicio.setVisible(false);
+		lblUrl.setVisible(false);
+		lblFechareg.setVisible(false);
+		
 
 	}
 	
@@ -185,11 +216,6 @@ public class ConsultaC extends JInternalFrame {
 		DefaultComboBoxModel<String> modelactividades = new DefaultComboBoxModel<String>(iconCC.listarClases(nombreInsti, nombreActividad));
 		comboBoxClase.setModel(modelactividades);
 		
-		textFieldNombre.setEnabled(true);
-		textFieldFecha.setEnabled(true);
-		textFieldHoraInicio.setEnabled(true);
-		textFieldURL.setEnabled(true);
-		textFieldFechaReg.setEnabled(true);
 	}
 
 	public void elegirClaseActionPerformed(ActionEvent e){

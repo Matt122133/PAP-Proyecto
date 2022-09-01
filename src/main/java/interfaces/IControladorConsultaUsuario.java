@@ -1,5 +1,6 @@
 package interfaces;
 
+import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtUsuario;
 import logic.Usuario;
@@ -19,4 +20,7 @@ public interface IControladorConsultaUsuario {
 	public String ActDepDeClase(String nombreClase);
 
 	public DtUsuario obtenerUserDt(String user);
+	
+	public DtActividadDeportiva obtenerDtAct(String nombreClase,String nombreActividad);
+	
 }
