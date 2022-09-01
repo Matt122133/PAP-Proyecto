@@ -10,6 +10,7 @@ import logic.ControladorConsultaClase;
 import logic.ControladorConsultaUsuario;
 import logic.ControladorModificarInstitucion;
 import logic.ControladorModificarUsuario;
+import logic.ControladorRankingClases;
 import logic.ControladorRegistroClase;
 
 public class Fabrica {
@@ -52,6 +53,12 @@ public class Fabrica {
 	}
 	
 	public IControladorModificarInstitucion getIControladorMI(){
-		return new ControladorModificarInstitucion();}
+		return new ControladorModificarInstitucion();
+	}
+	public IControladorRankingClases getIControladorRankingC(){
+		return new ControladorRankingClases();
+	}
+	
+	
 
 }
