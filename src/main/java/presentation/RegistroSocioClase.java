@@ -314,11 +314,13 @@ public class RegistroSocioClase extends JInternalFrame {
 		try {
 			this.iconRC.registroSocioClase(nombreInsti, nombreActividad, nombreSocio, nombreClase, fechaRegSC);
 			JOptionPane.showMessageDialog(this, "El " + nombreSocio+ " ha sido dado de alta con éxito en la clase "+ nombreClase, "Registro de Socio a Clase", JOptionPane.INFORMATION_MESSAGE);
+			limpiarFormulario();
+			setVisible(false);
 		}catch (RegistroRepetidoException p) {
 			JOptionPane.showMessageDialog(this, p.getMessage(), "Registro de Socio a Clase\"", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		limpiarFormulario();
+		
 	}
 
 	public void registroSCCancelarActionPerformed(ActionEvent e) {
