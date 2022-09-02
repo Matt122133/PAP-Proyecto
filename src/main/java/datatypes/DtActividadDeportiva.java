@@ -18,6 +18,7 @@ public class DtActividadDeportiva {
 		this.fechaReg = fechaReg;
 	}
 
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -37,4 +38,12 @@ public class DtActividadDeportiva {
 	public Calendar getFechaReg() {
 		return fechaReg;
 	}
+
+	@Override
+	public String toString() {
+		return "DtActividadDeportiva [nombre=" + nombre + ", descripcion=" + descripcion + ", duracion=" + duracion
+				+ ", costo=" + costo + ", fechaReg=" + fechaReg + "]";
+	}
+	
+	
 }

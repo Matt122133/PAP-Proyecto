@@ -1,7 +1,6 @@
 package logic;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,6 +10,7 @@ public class ControladorRankingActividadDeportiva implements IControladorRanking
 
 	
 	
+	@SuppressWarnings("deprecation")
 	public String[] listarActividades() {
 		ArrayList<InstitucionDeportiva> instituciones;
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
@@ -19,7 +19,6 @@ public class ControladorRankingActividadDeportiva implements IControladorRanking
 		List<ActividadDeportiva> Acts= new ArrayList<ActividadDeportiva>();
 		int a =0;
 		int b =0;
-		int d , m ,y;
 		for(InstitucionDeportiva i:instituciones){
 			Act=i.getActDeportivas();
 			for(ActividadDeportiva j:Act) {
@@ -30,7 +29,6 @@ public class ControladorRankingActividadDeportiva implements IControladorRanking
 		Collections.sort(Acts, (a1,a2) -> new Integer (a2.getClases().size()).compareTo(new Integer(a1.getClases().size())));  
 		String[] act_ret = new String[Acts.size()];
 		for(ActividadDeportiva l:Acts) {
-			
 			b++;
 			act_ret[a]= b +":   "+ l.getNombre() + ":   " + l.getCosto()+ ":   " + l.getDuracion() ;
 			a++;

@@ -19,6 +19,16 @@ public class ManejadorUsuario {
 		usuarios.add(usuario);
 	}
 	
+	
+	public Usuario existeUsuario(String nickname,String email ) {
+		Usuario retorno = null;
+		for(Usuario u: usuarios) {
+			if(u.getNickname().equals(nickname) || u.getEmail().equals(email))
+				retorno = u;
+		}
+		return retorno;
+	}
+	
 	public Usuario buscarUsuario(String nickname) {
 		Usuario retorno = null;
 		for(Usuario u: usuarios) {

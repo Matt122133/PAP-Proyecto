@@ -16,6 +16,7 @@ import interfaces.IControladorAltaUsuario;
 import interfaces.IControladorConsultaAct;
 import interfaces.IControladorConsultaClase;
 import interfaces.IControladorConsultaUsuario;
+import interfaces.IControladorModificarActividad;
 import interfaces.IControladorModificarInstitucion;
 import interfaces.IControladorModificarUsuario;
 import interfaces.IControladorRankingActividadDeportiva;
@@ -41,6 +42,7 @@ public class Principal {
 	private ModificarInstitucion modificarInstitucionInternalFrame;
 	private RankingClases rankingClasesInternalFrame;
 	private RankingActividades rankingActividadesInternalFrame;
+	private ModificarActividad modificarActividadInternalFrame;
 	/**
 	 * Launch the application.
 	 */
@@ -75,6 +77,7 @@ public class Principal {
 		IControladorModificarInstitucion iconMI = fabrica.getIControladorMI();
 		IControladorRankingClases iconRankingC = fabrica.getIControladorRankingC();
 		IControladorRankingActividadDeportiva iconRA = fabrica.getIControladorRA();
+		IControladorModificarActividad iconMA = fabrica.getIControladorMA();
 		
 		Dimension desktopSize = frame.getSize();
 		Dimension jInternalFrameSize;
@@ -145,6 +148,12 @@ public class Principal {
 		frame.getContentPane().add(rankingClasesInternalFrame);
 		rankingClasesInternalFrame.setVisible(false);
 		
+		modificarActividadInternalFrame = new ModificarActividad(iconMA);
+		jInternalFrameSize = modificarActividadInternalFrame.getSize();
+		modificarActividadInternalFrame.setLocation(12, 39);
+		frame.getContentPane().add(modificarActividadInternalFrame);
+		modificarActividadInternalFrame.setVisible(false);
+		
 		rankingClasesInternalFrame = new RankingClases(iconRankingC);
 		jInternalFrameSize = rankingClasesInternalFrame.getSize();
 		rankingClasesInternalFrame.setLocation(12, 39);
@@ -156,6 +165,8 @@ public class Principal {
 		rankingActividadesInternalFrame.setLocation(12, 39);
 		frame.getContentPane().add(rankingActividadesInternalFrame);
 		rankingActividadesInternalFrame.setVisible(false);
+		
+		
 	}
 
 	/**
@@ -261,6 +272,12 @@ public class Principal {
 		mnModificar.add(mntmInstitucionModificar);
 		
 		JMenuItem mntmActividadModificar = new JMenuItem("Actividad");
+		mntmActividadModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				modificarActividadInternalFrame.inicializarComboBoxes();
+				modificarActividadInternalFrame.setVisible(true);
+			}
+		});
 		mnModificar.add(mntmActividadModificar);
 		
 		JMenu mnRanking = new JMenu("Ranking");

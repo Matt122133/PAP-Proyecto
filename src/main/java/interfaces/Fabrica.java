@@ -1,6 +1,5 @@
 package interfaces;
 
-import datatypes.DtInstitucion;
 import logic.ControladorAltaActividadDeportiva;
 import logic.ControladorAltaDictadoDeClase;
 import logic.ControladorAltaInstitucionDeportiva;
@@ -8,6 +7,7 @@ import logic.ControladorAltaUsuario;
 import logic.ControladorConsultaAct;
 import logic.ControladorConsultaClase;
 import logic.ControladorConsultaUsuario;
+import logic.ControladorModificarActividad;
 import logic.ControladorModificarInstitucion;
 import logic.ControladorModificarUsuario;
 import logic.ControladorRankingActividadDeportiva;
@@ -28,27 +28,35 @@ public class Fabrica {
 	public IControladorAltaUsuario getIControladorAU() {
 		return new ControladorAltaUsuario();
 	}
+	
 	public IControladorAltaInstitucionDeportiva getIControladorAI() {
 		return new ControladorAltaInstitucionDeportiva();
 	}
+	
 	public IControladorAltaActividadDeportiva getIControladorAD() {
 		return new ControladorAltaActividadDeportiva();
 	}
+	
 	public IControladorAltaDictadoDeClase getIControladorAC() {
 		return new ControladorAltaDictadoDeClase();
 	}
+	
 	public IControladorConsultaAct  getIControladorCA() {
 		return new ControladorConsultaAct();
 	}
+	
 	public IControladorConsultaClase getIControladorCC() {
 		return new ControladorConsultaClase();
 	}
+	
 	public IControladorRegistroClase getIControladorRC() {
 		return new ControladorRegistroClase();
 	}
+	
 	public IControladorConsultaUsuario getIControladorCU() {
 		return new ControladorConsultaUsuario();
 	}
+	
 	public IControladorModificarUsuario getIControladorMU(){
 		return new ControladorModificarUsuario();
 	}
@@ -56,11 +64,17 @@ public class Fabrica {
 	public IControladorModificarInstitucion getIControladorMI(){
 		return new ControladorModificarInstitucion();
 	}
+	
 	public IControladorRankingClases getIControladorRankingC(){
 		return new ControladorRankingClases();
 	}
+	
 	public IControladorRankingActividadDeportiva getIControladorRA(){
 		return new ControladorRankingActividadDeportiva();
+	}
+	
+	public IControladorModificarActividad getIControladorMA() {
+		return new ControladorModificarActividad();
 	}
 	
 

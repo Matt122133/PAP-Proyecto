@@ -296,8 +296,10 @@ public class AltaUsuario extends JInternalFrame {
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        return true;
-    }
+		return true;
+	}
+        
+    
 	
 	private boolean checkFormularioProfesor() {
 		String institucion = this.comboBoxInstitucion.getSelectedItem().toString();
