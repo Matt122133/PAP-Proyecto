@@ -21,8 +21,6 @@ import javax.swing.JButton;
 public class ModificarActividad extends JInternalFrame {
 	
 	private static final long serialVersionUID = 1L;
-	
-	private JComboBox<String> comboBoxActividades;
 	private IControladorModificarActividad iconMA;
 	private JTextField textFieldNombre;
 	private JTextField textFieldDescripcion;
@@ -32,6 +30,7 @@ public class ModificarActividad extends JInternalFrame {
 	private JButton btnConfirmar;
 	private JButton btnCancelar;
 	private JButton btnModificar;
+	private JComboBox comboBoxAD;
 
 	public ModificarActividad(IControladorModificarActividad iconMA) {
 		this.iconMA = iconMA;
@@ -43,15 +42,6 @@ public class ModificarActividad extends JInternalFrame {
 		setTitle("Modificar Actividad");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
-		
-		comboBoxActividades = new JComboBox<String>();
-		comboBoxActividades.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				inicializarComboBoxes();
-			}
-		});
-		comboBoxActividades.setBounds(138, 18, 135, 22);
-		getContentPane().add(comboBoxActividades);
 		
 		JLabel lblActividades = new JLabel("Actividades Deportivas");
 		lblActividades.setBounds(10, 15, 135, 29);
@@ -133,16 +123,15 @@ public class ModificarActividad extends JInternalFrame {
 		});
 		btnModificar.setBounds(95, 199, 89, 23);
 		getContentPane().add(btnModificar);
+		
+		comboBoxAD = new JComboBox();
+		comboBoxAD.setBounds(152, 17, 121, 24);
+		getContentPane().add(comboBoxAD);
 
 	}
 	
-	public void inicializarComboBoxes(){
-		DefaultComboBoxModel<String> modelactividades = new DefaultComboBoxModel<String>(iconMA.listarActividades());
-		comboBoxActividades.setModel(modelactividades);
-	}
-	
 	public void llenarActividad(ActionEvent e) {
-		String nombre = this.comboBoxActividades.getSelectedItem().toString();
+		String nombre = this.comboBoxAD.getSelectedItem().toString();
 		DtActividadDeportiva dtAct = this.iconMA.obtenerDtActividad(nombre);
 		textFieldNombre.setText(dtAct.getNombre());
 		textFieldDescripcion.setText(dtAct.getDescripcion());
@@ -155,7 +144,7 @@ public class ModificarActividad extends JInternalFrame {
 	}
 	
 	public void modificarActividadActionButton(ActionEvent e){
-		String nombre = this.comboBoxActividades.getSelectedItem().toString();
+		String nombre = this.comboBoxAD.getSelectedItem().toString();
 		String desc = this.textFieldDescripcion.getText();
 		String duracionString = this.textFieldDuracion.getText();
 		int duracion = Integer.parseInt(duracionString);
@@ -169,6 +158,11 @@ public class ModificarActividad extends JInternalFrame {
 		limpiarFormulario();
 		
 		
+	}
+	
+	public void inicializarComboBoxes() {
+		DefaultComboBoxModel<String> rankingAD = new DefaultComboBoxModel<String>(iconMA.listarActividades());
+		comboBoxAD.setModel(rankingAD);
 	}
 	
 	private void limpiarFormulario() {
