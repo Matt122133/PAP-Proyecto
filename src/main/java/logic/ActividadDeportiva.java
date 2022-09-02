@@ -79,10 +79,6 @@ public class ActividadDeportiva {
 		return new DtActividadDeportiva(this.getNombre(),this.getDescripcion(), this.getDuracion(), this.getCosto(), this.getFechaReg());
 	}
 	
-	public DtActividadDeportiva obtenerDtPorString(String nomActividad) {
-		return new DtActividadDeportiva(this.getNombre(),this.getDescripcion(), this.getDuracion(), this.getCosto(), this.getFechaReg());
-	}
-	
 	
 	public ArrayList<String> listarClases() {
 		ArrayList<String> retorno = new ArrayList<String>();

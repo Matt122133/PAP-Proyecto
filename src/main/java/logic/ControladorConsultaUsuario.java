@@ -119,14 +119,12 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 			Act=i.getActDeportivas();
 			for(ActividadDeportiva j:Act) {
 				if(j.existeClase(nombreClase)) {
-					return j.obtenerDtPorString(nombreActividad);
+					return j.obtenerDt();
 				}
 			}
 		}
 		return null;
 		
-		/*InstitucionDeportiva inst = null;
-		return inst.obtenerDtActDep(nombreActividad);*/
 	}
 		
 		

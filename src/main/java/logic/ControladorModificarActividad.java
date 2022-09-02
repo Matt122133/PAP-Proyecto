@@ -37,20 +37,16 @@ public class ControladorModificarActividad implements IControladorModificarActiv
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
 		instituciones = mI.obtenerInstis();
 		List<ActividadDeportiva> Act = new ArrayList<ActividadDeportiva>();
-		List<ActividadDeportiva> Acts= new ArrayList<ActividadDeportiva>();
 		for(InstitucionDeportiva i:instituciones){
 			Act=i.getActDeportivas();
-			for(ActividadDeportiva j:Act) {
-				Acts.add(j);
-				
+			for(ActividadDeportiva l:Act) {
+				if(l.getNombre().equals(nombre)) {
+				DtActividadDeportiva retorno = l.obtenerDt();
+				return retorno;
+				}
 			}
+			
 		}
-		
-		for(ActividadDeportiva l:Acts) {
-			DtActividadDeportiva retorno = l.obtenerDtPorString(nombre);
-			return retorno;
-		}
-		
 		 return null;
 	}
 		
