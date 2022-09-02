@@ -26,7 +26,7 @@ public class ControladorModificarActividad implements IControladorModificarActiv
 		String[] act_ret = new String[Acts.size()];
 		for(ActividadDeportiva l:Acts) {
 			b++;
-			act_ret[a]= b +":   "+ l.getNombre() ;
+			act_ret[a]= l.getNombre() ;
 			a++;
 		}
 		
@@ -58,17 +58,17 @@ public class ControladorModificarActividad implements IControladorModificarActiv
 		
 	
 	public void modificarActDep(DtActividadDeportiva actualizado) {
-		/*ArrayList<InstitucionDeportiva> instituciones;
+		ArrayList<InstitucionDeportiva> instituciones;
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
 		instituciones = mI.obtenerInstis();
 		for(InstitucionDeportiva i:instituciones){
 			ActividadDeportiva actActualizar = i.buscarActividadDeportiva(actualizado.getNombre());
-			actActualizar.setNombre(actualizado.getNombre());
-			actActualizar.setDescripcion(actualizado.getDescripcion());
-			actActualizar.setCosto(actualizado.getCosto());
-			actActualizar.setDuracion(actualizado.getDuracion());
-			actActualizar.setFechaReg(actualizado.getFechaReg());	
-		}*/
+			if(actActualizar != null) {
+				actActualizar.setDescripcion(actualizado.getDescripcion());
+				actActualizar.setCosto(actualizado.getCosto());
+				actActualizar.setDuracion(actualizado.getDuracion());
+			}
+		}
 		
 	}
 

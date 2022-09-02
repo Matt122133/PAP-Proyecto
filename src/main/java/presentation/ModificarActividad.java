@@ -128,7 +128,7 @@ public class ModificarActividad extends JInternalFrame {
 		btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				modificarActividad(e);
+				modificarActividadActionButton(e);
 			}
 		});
 		btnModificar.setBounds(95, 199, 89, 23);
@@ -154,14 +154,13 @@ public class ModificarActividad extends JInternalFrame {
 		this.textFieldFechaReg.setText(day.toString()+ "/"+ month.toString()+"/"+ year.toString());
 	}
 	
-	public void modificarActividad(ActionEvent e){
+	public void modificarActividadActionButton(ActionEvent e){
 		String nombre = this.comboBoxActividades.getSelectedItem().toString();
 		String desc = this.textFieldDescripcion.getText();
 		String duracionString = this.textFieldDuracion.getText();
 		int duracion = Integer.parseInt(duracionString);
 		String costoString = this.textFieldCosto.getText();
 		float costo = Float.parseFloat(costoString);
-		//String fechaReg = this.textFieldFechaReg.getText().toString();
 		Calendar fechaReg = Calendar.getInstance();
 		DtActividadDeportiva actualizada = new DtActividadDeportiva(nombre,desc,duracion,costo,fechaReg);
 		this.iconMA.modificarActDep(actualizada);
@@ -178,6 +177,5 @@ public class ModificarActividad extends JInternalFrame {
 		textFieldDescripcion.setText("");
 		textFieldDuracion.setText("");
 		textFieldCosto.setText("");
-		textFieldFechaReg.setText("");
 	}
 }
