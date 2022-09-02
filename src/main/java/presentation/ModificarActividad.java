@@ -1,7 +1,5 @@
 package presentation;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -21,6 +19,8 @@ import datatypes.DtActividadDeportiva;
 import javax.swing.JButton;
 
 public class ModificarActividad extends JInternalFrame {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private JComboBox<String> comboBoxActividades;
 	private IControladorModificarActividad iconMA;

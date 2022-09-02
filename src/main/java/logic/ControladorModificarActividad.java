@@ -15,7 +15,6 @@ public class ControladorModificarActividad implements IControladorModificarActiv
 		List<ActividadDeportiva> Act = new ArrayList<ActividadDeportiva>();
 		List<ActividadDeportiva> Acts= new ArrayList<ActividadDeportiva>();
 		int a =0;
-		int b =0;
 		for(InstitucionDeportiva i:instituciones){
 			Act=i.getActDeportivas();
 			for(ActividadDeportiva j:Act) {
@@ -25,7 +24,6 @@ public class ControladorModificarActividad implements IControladorModificarActiv
 		
 		String[] act_ret = new String[Acts.size()];
 		for(ActividadDeportiva l:Acts) {
-			b++;
 			act_ret[a]= l.getNombre() ;
 			a++;
 		}
