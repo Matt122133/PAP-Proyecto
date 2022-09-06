@@ -30,7 +30,7 @@ public class ModificarActividad extends JInternalFrame {
 	private JButton btnConfirmar;
 	private JButton btnCancelar;
 	private JButton btnModificar;
-	private JComboBox comboBoxAD;
+	private JComboBox<String> comboBoxAD;
 
 	public ModificarActividad(IControladorModificarActividad iconMA) {
 		this.iconMA = iconMA;
@@ -124,7 +124,7 @@ public class ModificarActividad extends JInternalFrame {
 		btnModificar.setBounds(95, 199, 89, 23);
 		getContentPane().add(btnModificar);
 		
-		comboBoxAD = new JComboBox();
+		comboBoxAD = new JComboBox<String>();
 		comboBoxAD.setBounds(152, 17, 121, 24);
 		getContentPane().add(comboBoxAD);
 

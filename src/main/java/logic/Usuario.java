@@ -2,11 +2,17 @@ package logic;
 
 import java.util.Calendar;
 
-import datatypes.DtProfesor;
-import datatypes.DtSocio;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 import datatypes.DtUsuario;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
+	@Id
 	private String nickname;
 	private String nombre;
 	private String apellido;

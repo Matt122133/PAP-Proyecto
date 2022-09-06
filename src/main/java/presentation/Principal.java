@@ -83,86 +83,100 @@ public class Principal {
 		Dimension jInternalFrameSize;
 		
 		altaUsuarioInternalFrame = new AltaUsuario(iconAU);
-		altaUsuarioInternalFrame.setBounds(0, 12, 450, 300);
-		frame.getContentPane().add(altaUsuarioInternalFrame);
 		jInternalFrameSize = altaUsuarioInternalFrame.getSize();
+		altaUsuarioInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
+		frame.getContentPane().add(altaUsuarioInternalFrame);
 		altaUsuarioInternalFrame.setVisible(false);
 		
 		altaInstitucionInternalFrame = new AltaInstitucion(iconAI);
 		jInternalFrameSize = altaInstitucionInternalFrame.getSize();
-		altaInstitucionInternalFrame.setLocation(12, 39);
+		altaInstitucionInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(altaInstitucionInternalFrame);
 		altaInstitucionInternalFrame.setVisible(false);
 		
 		altaActividadInternalFrame = new AltaActividad(iconAD);
 		jInternalFrameSize = altaActividadInternalFrame.getSize();
-		altaActividadInternalFrame.setLocation(12, 39);
+		altaActividadInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(altaActividadInternalFrame);
 		altaActividadInternalFrame.setVisible(false);
 		
 		altaClaseInternalFrame = new AltaClase(iconAC);
 		jInternalFrameSize = altaClaseInternalFrame.getSize();
-		altaClaseInternalFrame.setLocation(12, 39);
+		altaClaseInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(altaClaseInternalFrame);
 		altaClaseInternalFrame.setVisible(false);
 		
 		consultaADInternalFrame = new ConsultaAD(iconCA);
 		jInternalFrameSize = consultaADInternalFrame.getSize();
-		consultaADInternalFrame.setLocation(12, 39);
+		consultaADInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(consultaADInternalFrame);
 		consultaADInternalFrame.setVisible(false);
 		
 		consultaCInternalFrame = new ConsultaC(iconCC);
 		jInternalFrameSize = consultaCInternalFrame.getSize();
-		consultaCInternalFrame.setLocation(12, 39);
+		consultaCInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(consultaCInternalFrame);
 		consultaCInternalFrame.setVisible(false);
 		
 		registroRCInternalFrame = new RegistroSocioClase(iconRC);
 		jInternalFrameSize = registroRCInternalFrame.getSize();
-		registroRCInternalFrame.setLocation(12, 39);
+		registroRCInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(registroRCInternalFrame);
 		registroRCInternalFrame.setVisible(false);
 		
 		consultaUsuarioInternalFrame = new ConsultaUsuario(iconCU);
 		jInternalFrameSize = consultaUsuarioInternalFrame.getSize();
-		consultaUsuarioInternalFrame.setLocation(12, 39);
+		consultaUsuarioInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(consultaUsuarioInternalFrame);
 		consultaUsuarioInternalFrame.setVisible(false);
 		
 		modificarUsuarioInternalFrame = new ModificarUsuario(iconMU);
 		jInternalFrameSize = modificarUsuarioInternalFrame.getSize();
-		modificarUsuarioInternalFrame.setLocation(12, 39);
+		modificarUsuarioInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(modificarUsuarioInternalFrame);
 		modificarUsuarioInternalFrame.setVisible(false);
 		
 		modificarInstitucionInternalFrame = new ModificarInstitucion(iconMI);
 		jInternalFrameSize = modificarInstitucionInternalFrame.getSize();
-		modificarInstitucionInternalFrame.setLocation(12, 39);
+		modificarInstitucionInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(modificarInstitucionInternalFrame);
 		modificarInstitucionInternalFrame.setVisible(false);
 		
 		rankingClasesInternalFrame = new RankingClases(iconRankingC);
 		jInternalFrameSize = rankingClasesInternalFrame.getSize();
-		rankingClasesInternalFrame.setLocation(12, 39);
+		rankingClasesInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(rankingClasesInternalFrame);
 		rankingClasesInternalFrame.setVisible(false);
 		
 		modificarActividadInternalFrame = new ModificarActividad(iconMA);
 		jInternalFrameSize = modificarActividadInternalFrame.getSize();
-		modificarActividadInternalFrame.setLocation(12, 39);
+		modificarActividadInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(modificarActividadInternalFrame);
 		modificarActividadInternalFrame.setVisible(false);
 		
 		rankingClasesInternalFrame = new RankingClases(iconRankingC);
 		jInternalFrameSize = rankingClasesInternalFrame.getSize();
-		rankingClasesInternalFrame.setLocation(12, 39);
+		rankingClasesInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(rankingClasesInternalFrame);
 		rankingClasesInternalFrame.setVisible(false);
 		
 		rankingActividadesInternalFrame = new RankingActividades(iconRA);
 		jInternalFrameSize = rankingActividadesInternalFrame.getSize();
-		rankingActividadesInternalFrame.setLocation(12, 39);
+		rankingActividadesInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(rankingActividadesInternalFrame);
 		rankingActividadesInternalFrame.setVisible(false);
 		

@@ -1,36 +1,20 @@
 package presentation;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
-
 import interfaces.IControladorRankingClases;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
 public class RankingClases extends JInternalFrame {
 	
+	
 	private IControladorRankingClases iconRankingC;
+
+	private static final long serialVersionUID = 1L;
 	private JComboBox<String> comboBoxRankingC;
 
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RankingClases frame = new RankingClases();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the frame.

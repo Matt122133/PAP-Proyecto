@@ -1,6 +1,5 @@
 package presentation;
 
-import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 
@@ -18,17 +17,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JTextPane;
-
 import com.toedter.calendar.JDateChooser;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import java.awt.TextField;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
-import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class AltaUsuario extends JInternalFrame {
@@ -56,21 +49,6 @@ public class AltaUsuario extends JInternalFrame {
 	private JLabel lblOpcionales;
 	private JLabel lblDescripcion;
 	
-	/**
-	 * Launch the application.
-	 */
-	/**public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AltaUsuario frame = new AltaUsuario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the frame.

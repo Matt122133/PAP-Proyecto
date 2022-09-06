@@ -22,13 +22,16 @@ import java.util.Calendar;
 import java.awt.event.ActionEvent;
 
 public class ModificarUsuario extends JInternalFrame {
+
+	private IControladorModificarUsuario iconMU;
+	
+	private static final long serialVersionUID = 1L;
 	private JComboBox<String> comboBoxInstitucion;
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private JTextField textFieldEmail;
 	private JTextField textFieldBiografia;
 	private JTextField textFieldDescripcion;
-	private IControladorModificarUsuario iconMU;
 	private JComboBox<String> comboBoxUsuarios;
 	private JDateChooser dateChooser;
 	private JLabel lblInstitucion;
@@ -222,7 +225,7 @@ public class ModificarUsuario extends JInternalFrame {
 		else {
 			actualizado = new DtSocio(nick, nombre, apellido, email, fechaNac);
 		}
-		this.iconMU.ModificarUsuario(actualizado);
+		this.iconMU.modificarUsuario(actualizado);
 		JOptionPane.showMessageDialog(this, "El usuario ha sido modificado con éxito", "Modificar Usuario", JOptionPane.INFORMATION_MESSAGE);
 		limpiarFormulario();
 		setVisible(false);

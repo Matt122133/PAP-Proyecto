@@ -5,8 +5,11 @@ package logic;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.persistence.EntityManager;
+
 import exceptions.ClaseRepetidaException;
 import interfaces.IControladorAltaDictadoDeClase;
+import persistencia.Conexion;
 
 
 public class ControladorAltaDictadoDeClase implements IControladorAltaDictadoDeClase{
@@ -25,11 +28,23 @@ public class ControladorAltaDictadoDeClase implements IControladorAltaDictadoDeC
 		
 		if(actDep.existeClase(nombre))
 			throw new ClaseRepetidaException("Ya existe una clase con ese nombre.");
+		
 		Clase nuevaClase = new Clase(nombre, fecha, horaIni, url, fechaReg);
 		actDep.agregarClase(nuevaClase);
 		
-		if (prof instanceof Profesor)
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		eM.getTransaction().begin();
+		eM.persist(actDep);
+		eM.getTransaction().commit();
+		
+		if (prof instanceof Profesor) {
 			((Profesor) prof).agregarClase(nuevaClase);
+			
+			eM.getTransaction().begin();
+			eM.persist(prof);
+			eM.getTransaction().commit();
+		}
 	}
 
 	public String[] listarInstituciones() {

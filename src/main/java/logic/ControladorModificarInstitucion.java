@@ -2,8 +2,11 @@ package logic;
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+
 import datatypes.DtInstitucion;
 import interfaces.IControladorModificarInstitucion;
+import persistencia.Conexion;
 
 public class ControladorModificarInstitucion implements IControladorModificarInstitucion {
 	
@@ -12,6 +15,12 @@ public class ControladorModificarInstitucion implements IControladorModificarIns
 		InstitucionDeportiva aActualizar = mI.buscarInstitucion(actualizado.getNombre());
 		aActualizar.setDescripcion(actualizado.getDescripcion());
 		aActualizar.setUrl(actualizado.getUrl());
+		
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		eM.getTransaction().begin();
+		eM.persist(aActualizar);
+		eM.getTransaction().commit();
 	}
 	
 	public String[] listarInstituciones() {

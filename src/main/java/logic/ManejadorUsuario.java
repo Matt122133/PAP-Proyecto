@@ -3,11 +3,14 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import datatypes.DtUsuario;
+import persistencia.Conexion;
 
 public class ManejadorUsuario {
 	private static ManejadorUsuario instancia = null;
-	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	
 	public static ManejadorUsuario getInstancia() {
 		if(instancia == null)
@@ -16,29 +19,45 @@ public class ManejadorUsuario {
 	}
 	
 	public void agregarUsuario(Usuario usuario) {
-		usuarios.add(usuario);
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		eM.getTransaction().begin();
+		eM.persist(usuario);
+		eM.getTransaction().commit();
 	}
 	
-	
+	@SuppressWarnings("unchecked")
 	public Usuario existeUsuario(String nickname,String email ) {
-		Usuario retorno = null;
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		Query query = eM.createQuery("select u from Usuario u");
+		List<Usuario> usuarios = (List<Usuario>) query.getResultList();
+		
+		Usuario usuario = null;
 		for(Usuario u: usuarios) {
 			if(u.getNickname().equals(nickname) || u.getEmail().equals(email))
-				retorno = u;
+				usuario = u;
 		}
-		return retorno;
+		return usuario;
 	}
 	
 	public Usuario buscarUsuario(String nickname) {
-		Usuario retorno = null;
-		for(Usuario u: usuarios) {
-			if(u.getNickname().equals(nickname))
-				retorno = u;
-		}
-		return retorno;
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		Usuario usuario = eM.find(Usuario.class, nickname);
+		return usuario;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<String> obtenerUsuarios(){
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		Query query = eM.createQuery("select u from Usuario u");
+		List<Usuario> usuarios = (List<Usuario>) query.getResultList();
+		
 		ArrayList<String> aRetornar = new ArrayList<String>();
 		for(Usuario i: usuarios) {
 			aRetornar.add(i.getNickname());		
@@ -46,31 +65,44 @@ public class ManejadorUsuario {
 		return aRetornar;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<String> obtenerProfes(String nombreInsti){
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		Query query = eM.createQuery("select p from Profesor p");
+		List<Profesor> profesores = (List<Profesor>) query.getResultList();
+		
 		ArrayList<String> aRetornar = new ArrayList<String>();
-		for(Usuario i: usuarios) {
-			if (i instanceof Profesor) {
-				if(((Profesor) i).getInstDep().getNombre().equals(nombreInsti)) {
-					aRetornar.add(i.getNickname());
-				}
-			}	
-		}
-		return aRetornar;
-	}
-	
-	public ArrayList<String> obtenerSocios(){
-		ArrayList<String> aRetornar = new ArrayList<String>();
-		for(Usuario i: usuarios) {
-			if (i instanceof Socio) {
+		for(Profesor i: profesores) {
+			if(i.getInstDep().getNombre().equals(nombreInsti)) {
 				aRetornar.add(i.getNickname());
 			}	
 		}
 		return aRetornar;
 	}
 	
-	public DtUsuario getDtUser(String nick) {
-		Usuario user = this.buscarUsuario(nick);
-		return user.getDtUsuario();
+	@SuppressWarnings("unchecked")
+	public ArrayList<String> obtenerSocios(){
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		Query query = eM.createQuery("select s from Socios s");
+		List<Socio> socios = (List<Socio>) query.getResultList();
+		
+		ArrayList<String> aRetornar = new ArrayList<String>();
+		for(Socio i: socios) {
+			aRetornar.add(i.getNickname());
+		}
+		return aRetornar;
+	}
+	
+	public DtUsuario getDtUser(String nickname) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		Usuario usuario = eM.find(Usuario.class, nickname);
+		return usuario.getDtUsuario();
 	}
 	
 }

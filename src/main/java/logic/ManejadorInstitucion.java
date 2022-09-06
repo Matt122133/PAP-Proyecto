@@ -3,10 +3,14 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import persistencia.Conexion;
+
 
 public class ManejadorInstitucion {
 	private static ManejadorInstitucion instancia = null;
-	private List<InstitucionDeportiva> instituciones = new ArrayList<InstitucionDeportiva>();
 	
 	public static ManejadorInstitucion getInstancia() {
 		if(instancia == null)
@@ -15,19 +19,32 @@ public class ManejadorInstitucion {
 	}
 	
 	public void agregarInstitucion(InstitucionDeportiva institucion) {
-		instituciones.add(institucion);
+		
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		eM.getTransaction().begin();
+		eM.persist(institucion);
+		eM.getTransaction().commit();
+		
 	}
 	
 	public InstitucionDeportiva buscarInstitucion(String nombre) {
-		InstitucionDeportiva retorno = null;
-		for(InstitucionDeportiva i: instituciones) {
-			if(i.getNombre().equals(nombre))
-				retorno = i;
-		}
-		return retorno;
+		
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		InstitucionDeportiva institucion = eM.find(InstitucionDeportiva.class, nombre);
+		return institucion;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<String> obtenerInstituciones(){
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		Query query = eM.createQuery("select i from InstitucionDeportiva i");
+		List<InstitucionDeportiva> instituciones = (List<InstitucionDeportiva>) query.getResultList();
+		
 		ArrayList<String> aRetornar = new ArrayList<String>();
 		for(InstitucionDeportiva i: instituciones) {
 			aRetornar.add(i.getNombre());
@@ -35,7 +52,14 @@ public class ManejadorInstitucion {
 		return aRetornar;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList<InstitucionDeportiva> obtenerInstis(){
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		Query query = eM.createQuery("select i from InstitucionDeportiva i");
+		List<InstitucionDeportiva> instituciones = (List<InstitucionDeportiva>) query.getResultList();
+		
 		ArrayList<InstitucionDeportiva> aRetornar = new ArrayList<InstitucionDeportiva>();
 		for(InstitucionDeportiva i: instituciones) {
 			aRetornar.add(i);

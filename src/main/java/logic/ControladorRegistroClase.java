@@ -3,9 +3,12 @@ package logic;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.persistence.EntityManager;
+
 import datatypes.DtClase;
 import exceptions.RegistroRepetidoException;
 import interfaces.IControladorRegistroClase;
+import persistencia.Conexion;
 
 public class ControladorRegistroClase implements IControladorRegistroClase{
 
@@ -96,9 +99,14 @@ public class ControladorRegistroClase implements IControladorRegistroClase{
 				Registro nuevoRegistro = new Registro(fechaReg,(Socio) usuario, clase);
 				((Socio)usuario).agregarRegistro(nuevoRegistro);
 				clase.agregarRegistro(nuevoRegistro);
+				
+				Conexion conexion = Conexion.getInstancia();
+				EntityManager eM= conexion.getEntityManager();
+				eM.getTransaction().begin();
+				eM.persist(clase);
+				eM.getTransaction().commit();
 			}
 		}
 	}
-	
 	
 }

@@ -3,12 +3,20 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import datatypes.DtActividadDeportiva;
 
+@Entity
 public class InstitucionDeportiva {
+	@Id
 	private String nombre;
 	private String descripcion;
 	private String url;
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<ActividadDeportiva> actDeportivas = new ArrayList<ActividadDeportiva>();
 	
 	public String getNombre() {

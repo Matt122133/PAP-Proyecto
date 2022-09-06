@@ -3,10 +3,8 @@ package presentation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
-
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
-
 import interfaces.IControladorRegistroClase;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,9 +17,10 @@ import datatypes.DtClase;
 import exceptions.RegistroRepetidoException;
 
 public class RegistroSocioClase extends JInternalFrame {
+	
+	private IControladorRegistroClase iconRC;
 
 	private static final long serialVersionUID = 1L;
-	private IControladorRegistroClase iconRC;
 	private JTextField textFieldNombre;
 	private JTextField textFieldFecha;
 	private JTextField textFieldHoraInicio;
@@ -42,22 +41,6 @@ public class RegistroSocioClase extends JInternalFrame {
 	private JLabel lblUrl;
 	private JLabel lblFechareg;
 	
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegistroSocioClase frame = new RegistroSocioClase();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
 	/**
 	 * Create the frame.
 	 */

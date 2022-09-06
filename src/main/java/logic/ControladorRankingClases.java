@@ -10,6 +10,7 @@ import interfaces.IControladorRankingClases;
 public class ControladorRankingClases implements IControladorRankingClases{
 	
 	
+	@SuppressWarnings("removal")
 	public String[] listarClases() {
 		ArrayList<InstitucionDeportiva> instituciones;
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();

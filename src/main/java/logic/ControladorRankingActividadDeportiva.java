@@ -10,7 +10,8 @@ public class ControladorRankingActividadDeportiva implements IControladorRanking
 
 	
 	
-	@SuppressWarnings("deprecation")
+	
+	@SuppressWarnings("removal")
 	public String[] listarActividades() {
 		ArrayList<InstitucionDeportiva> instituciones;
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();

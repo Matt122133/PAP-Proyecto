@@ -3,8 +3,11 @@ package logic;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.persistence.EntityManager;
+
 import exceptions.ActividadRepetidaException;
 import interfaces.IControladorAltaActividadDeportiva;
+import persistencia.Conexion;
 
 public class ControladorAltaActividadDeportiva implements IControladorAltaActividadDeportiva{
 	
@@ -15,6 +18,12 @@ public class ControladorAltaActividadDeportiva implements IControladorAltaActivi
 		if (instDep.tengoActDep(nombre))
 			throw new ActividadRepetidaException("La actividad "+ nombre +" ya existe.");		
 		instDep.agregarActividadDeportiva(actDep);
+		
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		eM.getTransaction().begin();
+		eM.persist(instDep);
+		eM.getTransaction().commit();
 	}
 	
 	public String[] listarInstituciones() {

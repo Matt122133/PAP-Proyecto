@@ -4,14 +4,24 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import datatypes.DtClase;
 
+@Entity
 public class Clase {
+	
+	@Id
 	private String nombre;
 	private Calendar fecha;
 	private Integer horaInicio;
 	private String url;
 	private Calendar fechaReg;
+	
+	@OneToMany(mappedBy = "clase",cascade = CascadeType.ALL,orphanRemoval=true)
 	private List<Registro> registros = new ArrayList<Registro>();
 	
 	public String getNombre() {

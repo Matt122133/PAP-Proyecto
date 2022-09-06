@@ -4,14 +4,22 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import datatypes.DtActividadDeportiva;
 
+@Entity
 public class ActividadDeportiva {
+	@Id
 	private String nombre;
 	private String descripcion; 
 	private Integer duracion;
 	private Float costo;
 	private Calendar fechaReg;
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Clase> clases = new ArrayList<Clase>();
 	
 	public String getNombre() {

@@ -24,7 +24,7 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 	}
 
 	 
-	public Usuario obtenerUsuario(String nickname) { //pasarlo a dtusuario
+	public Usuario obtenerUsuario(String nickname) {
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		Usuario usuario_ret = mU.buscarUsuario(nickname);
 		return usuario_ret;
@@ -60,10 +60,7 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
         ManejadorUsuario mU = ManejadorUsuario.getInstancia();
         return mU.getDtUser(user);
     }
-	
-	
-	
-	
+
 	public DtClase obtenerDtClase(String nombreInsti, String nombreActividad, String nombreClase) {
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
 		InstitucionDeportiva institucion = mI.buscarInstitucion(nombreInsti);
@@ -72,7 +69,6 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 		DtClase dtClase = clase.getDtClase();
 		return dtClase;
 	}
-	
 	
 	public DtClase obtenerDtClasePorUsuario(String nombreProfe, String nombreClase) {
 		ManejadorUsuario uI = ManejadorUsuario.getInstancia();
@@ -123,12 +119,10 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 				}
 			}
 		}
-		return null;
-		
+		return null;	
 	}
-		
-		
-	}
+	
+}
 	
 	
 	

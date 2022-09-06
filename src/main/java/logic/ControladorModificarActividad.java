@@ -3,8 +3,11 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import datatypes.DtActividadDeportiva;
 import interfaces.IControladorModificarActividad;
+import persistencia.Conexion;
 
 public class ControladorModificarActividad implements IControladorModificarActividad {
 	
@@ -45,9 +48,8 @@ public class ControladorModificarActividad implements IControladorModificarActiv
 				return retorno;
 				}
 			}
-			
 		}
-		 return null;
+		return null;
 	}
 		
 	
@@ -61,9 +63,13 @@ public class ControladorModificarActividad implements IControladorModificarActiv
 				actActualizar.setDescripcion(actualizado.getDescripcion());
 				actActualizar.setCosto(actualizado.getCosto());
 				actActualizar.setDuracion(actualizado.getDuracion());
+				
+				Conexion conexion = Conexion.getInstancia();
+				EntityManager eM= conexion.getEntityManager();
+				eM.getTransaction().begin();
+				eM.persist(actActualizar);
+				eM.getTransaction().commit();
 			}
 		}
-		
 	}
-
 }

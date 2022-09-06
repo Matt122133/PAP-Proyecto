@@ -2,12 +2,15 @@ package logic;
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+
 import datatypes.DtUsuario;
 import interfaces.IControladorModificarUsuario;
+import persistencia.Conexion;
 
 public class ControladorModificarUsuario implements IControladorModificarUsuario{
 	
-	public void ModificarUsuario(DtUsuario modificado) {
+	public void modificarUsuario(DtUsuario modificado) {
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		Usuario aModificar = mU.buscarUsuario(modificado.getNickname());
 		if(aModificar instanceof Profesor) {
@@ -16,6 +19,12 @@ public class ControladorModificarUsuario implements IControladorModificarUsuario
 		else if(aModificar instanceof Socio) {
 			((Socio) aModificar).actualizarSocio(modificado);
 		}
+		
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		eM.getTransaction().begin();
+		eM.persist(aModificar);
+		eM.getTransaction().commit();
 	}
 	
 	

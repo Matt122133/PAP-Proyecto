@@ -10,14 +10,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
-
 import exceptions.ActividadRepetidaException;
-import exceptions.UsuarioRepetidoException;
-
 import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
 import java.util.Calendar;
-import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class AltaActividad extends JInternalFrame {
@@ -68,7 +63,7 @@ public class AltaActividad extends JInternalFrame {
 		btnCancelar.setBounds(253, 231, 117, 25);
 		getContentPane().add(btnCancelar);
 		
-		comboBoxInstitucion = new JComboBox();
+		comboBoxInstitucion = new JComboBox<String>();
 		comboBoxInstitucion.setBounds(12, 39, 139, 24);
 		getContentPane().add(comboBoxInstitucion);
 		

@@ -1,11 +1,26 @@
 package logic;
 
 import java.util.Calendar;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 
+import persistencia.RegistroID;
+
+@Entity
+@IdClass(RegistroID.class)
 public class Registro {
-	private Calendar fechaReg;
+	
+	@Id
+	@ManyToOne
 	private Socio socio;
+	
+	@Id
+	@ManyToOne
 	private Clase clase;
+	
+	private Calendar fechaReg;
 	
 	public Calendar getFechaReg() {
 		return fechaReg;

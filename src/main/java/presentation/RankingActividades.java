@@ -1,6 +1,6 @@
 package presentation;
 
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -13,12 +13,11 @@ import javax.swing.JLabel;
 
 public class RankingActividades extends JInternalFrame {
 
-	
 	private IControladorRankingActividadDeportiva iconRA;
-	private JComboBox comboBoxAD;
-	/**
-	 * Launch the application.
-	 */
+	
+	private static final long serialVersionUID = 1L;
+	private JComboBox<String> comboBoxAD;
+	
 
 	/**
 	 * Create the frame.
@@ -36,7 +35,7 @@ public class RankingActividades extends JInternalFrame {
 		setBounds(100, 100, 417, 139);
 		getContentPane().setLayout(null);
 		
-		comboBoxAD = new JComboBox();
+		comboBoxAD = new JComboBox<String>();
 		comboBoxAD.setBounds(94, 53, 215, 24);
 		getContentPane().add(comboBoxAD);
 		

@@ -11,10 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-
-import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
-
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 
