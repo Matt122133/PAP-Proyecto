@@ -144,6 +144,7 @@ public class ModificarActividad extends JInternalFrame {
 	}
 	
 	public void modificarActividadActionButton(ActionEvent e){
+		if(checkFormulario()){
 		String nombre = this.comboBoxAD.getSelectedItem().toString();
 		String desc = this.textFieldDescripcion.getText();
 		String duracionString = this.textFieldDuracion.getText();
@@ -157,6 +158,7 @@ public class ModificarActividad extends JInternalFrame {
 		this.setVisible(false);
 		limpiarFormulario();
 		
+		}
 		
 	}
 	
@@ -172,4 +174,24 @@ public class ModificarActividad extends JInternalFrame {
 		textFieldDuracion.setText("");
 		textFieldCosto.setText("");
 	}
+	
+	private boolean checkFormulario() {
+        String descripcion = this.textFieldDescripcion.getText();
+        String duracion = this.textFieldDuracion.getText();
+        String costo = this.textFieldCosto.getText();
+        if (descripcion.isEmpty() || duracion.isEmpty() || costo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Alta Actividad",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        try {
+            Integer.parseInt(duracion);
+			Float.parseFloat(costo);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Duracion y costo deben ser un numero", "Alta Actividad",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
 }

@@ -294,16 +294,17 @@ public class RegistroSocioClase extends JInternalFrame {
 		String nombreSocio = this.comboBoxSocio.getSelectedItem().toString();
 		String nombreClase = this.comboBoxClase.getSelectedItem().toString();
 		Calendar fechaRegSC = Calendar.getInstance();
+		Float costoAct = iconRC.obtenerCostoClase(nombreActividad, nombreInsti);
+		
 		try {
 			this.iconRC.registroSocioClase(nombreInsti, nombreActividad, nombreSocio, nombreClase, fechaRegSC);
-			JOptionPane.showMessageDialog(this, "El " + nombreSocio+ " ha sido dado de alta con éxito en la clase "+ nombreClase, "Registro de Socio a Clase", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "El " + nombreSocio+ " ha sido dado de alta con éxito en la clase " + nombreClase + " con costo " + costoAct , "Registro de Socio a Clase"  , JOptionPane.INFORMATION_MESSAGE);
 			limpiarFormulario();
 			setVisible(false);
 		}catch (RegistroRepetidoException p) {
 			JOptionPane.showMessageDialog(this, p.getMessage(), "Registro de Socio a Clase\"", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
+				
 	}
 
 	public void registroSCCancelarActionPerformed(ActionEvent e) {

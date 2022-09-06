@@ -16,11 +16,14 @@ public class Socio extends Usuario{
 	
 	@OneToMany(mappedBy = "socio",cascade = CascadeType.ALL,orphanRemoval=true)
 	private List<Registro> registros = new ArrayList<Registro>();
-	
+		
 	public Socio(String nickname, String nombre, String apellido, String email, Calendar fechaNac) {
 		super(nickname, nombre, apellido, email, fechaNac);
 	}
-	public Socio() {super();}
+	
+	public Socio() {
+		super();
+	}
 	
 	public List<Registro> getRegistros() {
 		return registros;
@@ -52,6 +55,7 @@ public class Socio extends Usuario{
 		}
 		return arrayRetorno;
 	}
+	
 	public void actualizarSocio(DtUsuario actualizado) {
 		if (actualizado instanceof DtSocio) {
 			this.setNombre(actualizado.getNombre());

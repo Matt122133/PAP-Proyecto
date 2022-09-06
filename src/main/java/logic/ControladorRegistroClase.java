@@ -81,6 +81,13 @@ public class ControladorRegistroClase implements IControladorRegistroClase{
 		}
 		return arraySocios_ret;
 	}
+	
+	public Float obtenerCostoClase(String nomActividad, String nomInsti){
+		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
+		InstitucionDeportiva institucion = mI.buscarInstitucion(nomInsti);
+		ActividadDeportiva actDep = institucion.buscarActividadDeportiva(nomActividad);
+		return actDep.getCosto();
+	}
 
 	
 	public void registroSocioClase(String nombreInsti, String nombreAct, String socio, String nombreClase, Calendar fechaReg) throws RegistroRepetidoException {
@@ -100,11 +107,16 @@ public class ControladorRegistroClase implements IControladorRegistroClase{
 				((Socio)usuario).agregarRegistro(nuevoRegistro);
 				clase.agregarRegistro(nuevoRegistro);
 				
+				
+				
 				Conexion conexion = Conexion.getInstancia();
 				EntityManager eM= conexion.getEntityManager();
 				eM.getTransaction().begin();
 				eM.persist(clase);
+				eM.persist((Socio)usuario);				
 				eM.getTransaction().commit();
+				
+				
 			}
 		}
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import datatypes.DtProfesor;
@@ -16,6 +17,8 @@ public class Profesor extends Usuario{
 	private String descripcion;
 	private String biografia;
 	private String sitioWeb;
+	
+	@ManyToOne
 	private InstitucionDeportiva instDep;
 	
 	@OneToMany(cascade = CascadeType.ALL)
@@ -24,48 +27,64 @@ public class Profesor extends Usuario{
 	public String getDescripcion() {
 		return descripcion;
 	}
+	
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
 	public String getBiografia() {
 		return biografia;
 	}
+	
 	public void setBiografia(String biografia) {
 		this.biografia = biografia;
 	}
+	
 	public String getSitioWeb() {
 		return sitioWeb;
 	}
+	
 	public void setSitioWeb(String sitioWeb) {
 		this.sitioWeb = sitioWeb;
 	}
+	
 	public InstitucionDeportiva getInstDep() {
 		return instDep;
 	}
+	
 	public void setInstDep(InstitucionDeportiva instDep) {
 		this.instDep = instDep;
 	}
+	
 	public List<Clase> getClases() {
 		return clases;
 	}
+	
 	public void setClases(List<Clase> clases) {
 		this.clases = clases;
 	}
+	
 	public Profesor(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String descripcion,
-			String biografia, String sitioWeb, InstitucionDeportiva instDep) {
+		String biografia, String sitioWeb, InstitucionDeportiva instDep) {
 		super(nickname, nombre, apellido, email, fechaNac);
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.sitioWeb = sitioWeb;
 		this.instDep = instDep;
 	}
+	
 	public Profesor(String nickname, String nombre, String apellido, String email, Calendar fechaNac) {
 		super(nickname, nombre, apellido, email, fechaNac);
 	}
-	public Profesor() { super(); }
+	
+	public Profesor() { 
+		super(); 
+	}
+	
 	public void agregarClase(Clase clase) {
 		clases.add(clase);
 	}
+	
 	public Clase buscarClase(String nombreClase) {
 		Clase claseRet = null;
 		for(Clase i:clases) {
@@ -98,6 +117,7 @@ public class Profesor extends Usuario{
 			this.setSitioWeb(((DtProfesor) actualizado).getSitioWeb());
 		}
 	}
+	
 	@Override
 	public DtUsuario getDtUsuario() {
 		return new DtProfesor(this.getNickname(), this.getNombre(),this.getApellido(), this.getEmail(), this.getFechaNac(),this.getDescripcion(),this.getBiografia(),this.getSitioWeb(),this.getInstDep().getNombre());

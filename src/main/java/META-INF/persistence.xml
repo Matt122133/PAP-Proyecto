@@ -10,11 +10,12 @@
 		<class>logic.Clase</class>
 		<class>logic.Registro</class>
 		<properties>
+		<property name="tomee.jpa.factory.lazy" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.connection.username" value="postgres"/>
-			<property name="hibernate.connection.password" value="lapass"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+			<property name="hibernate.connection.password" value="aguasDulces2003"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/papProyecto"/>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 		</properties>
 	</persistence-unit>

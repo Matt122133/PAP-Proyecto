@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import persistencia.RegistroID;
 
 @Entity
-@IdClass(RegistroID.class)
+@IdClass(persistencia.RegistroID.class)
 public class Registro {
 	
 	@Id

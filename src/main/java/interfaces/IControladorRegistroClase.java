@@ -13,5 +13,5 @@ public interface IControladorRegistroClase {
 	public DtClase obtenerDtClase(String nombreInsti, String nombreActividad, String nombreClase); 
 	public String[] listarSocios();
 	public void registroSocioClase(String institucion, String actividad,String socio, String clase, Calendar fechaReg) throws RegistroRepetidoException ;
-
+	public Float obtenerCostoClase(String nomActividad, String nomInsti);
 }

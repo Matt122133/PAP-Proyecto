@@ -204,6 +204,7 @@ public class ModificarUsuario extends JInternalFrame {
 	}
 	
 	public void aceptarButtonActionPerformed(ActionEvent e){
+		if(checkFormularioSocio()) {
 		String nick = this.comboBoxUsuarios.getSelectedItem().toString();
 		String nombre = this.textFieldNombre.getText();
 		String apellido = this.textFieldApellido.getText();
@@ -214,6 +215,8 @@ public class ModificarUsuario extends JInternalFrame {
 			DtUsuario userDt = iconMU.obtenerUserDt(user);
 			fechaNac = userDt.getFechaNac();
 		}
+		
+		if(checkFormularioProfesor()) {
 		DtUsuario actualizado;
 		if(this.lblDescripcion.isVisible() == true) {
 			String descripcion = this.textFieldDescripcion.getText();
@@ -221,6 +224,7 @@ public class ModificarUsuario extends JInternalFrame {
 			String sitioWeb = this.textFieldSitioWeb.getText();
 			String institucion = this.comboBoxInstitucion.getSelectedItem().toString();
 			actualizado = new DtProfesor(nick, nombre, apellido, email, fechaNac, descripcion, biografia, sitioWeb, institucion);
+			
 		}
 		else {
 			actualizado = new DtSocio(nick, nombre, apellido, email, fechaNac);
@@ -229,6 +233,8 @@ public class ModificarUsuario extends JInternalFrame {
 		JOptionPane.showMessageDialog(this, "El usuario ha sido modificado con éxito", "Modificar Usuario", JOptionPane.INFORMATION_MESSAGE);
 		limpiarFormulario();
 		setVisible(false);
+		}
+		}
 	}
 	
 	public void iniciarlizarComboBoxes() {
@@ -242,6 +248,32 @@ public class ModificarUsuario extends JInternalFrame {
 		limpiarFormulario();
         setVisible(false);
 	}
+	
+	private boolean checkFormularioProfesor() {
+		String nombre = this.textFieldNombre.getText();
+		String apellido = this.textFieldApellido.getText();
+		String descripcion = this.textFieldDescripcion.getText();
+		String biografia =  this.textFieldBiografia.getText();
+		String sitioWeb = this.textFieldSitioWeb.getText();
+		String institucion = this.comboBoxInstitucion.getSelectedItem().toString();
+        if (descripcion.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || biografia.isEmpty() || sitioWeb.isEmpty() || institucion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Alta Actividad",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+	
+	private boolean checkFormularioSocio() {
+		String nombre = this.textFieldNombre.getText();
+		String apellido = this.textFieldApellido.getText();
+        if (nombre.isEmpty() || apellido.isEmpty() ) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Alta Actividad",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
 	
 	private void limpiarFormulario() {
         textFieldNombre.setText("");
