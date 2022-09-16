@@ -95,8 +95,9 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 		for(InstitucionDeportiva i:instituciones){
 			Act=i.getActDeportivas();
 			for(ActividadDeportiva j:Act) {
-				if(j.existeClase(nombreClase)) {
-					return j.getNombre();
+				Clase clase = j.existeClase(nombreClase);
+				if(clase != null) {
+					return clase.getNombre();
 				}
 			}
 		}
@@ -114,7 +115,8 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 		for(InstitucionDeportiva i:instituciones){
 			Act=i.getActDeportivas();
 			for(ActividadDeportiva j:Act) {
-				if(j.existeClase(nombreClase)) {
+				Clase clase = j.existeClase(nombreClase);
+				if(clase != null) {
 					return j.obtenerDt();
 				}
 			}

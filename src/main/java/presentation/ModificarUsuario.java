@@ -20,6 +20,7 @@ import datatypes.DtUsuario;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class ModificarUsuario extends JInternalFrame {
 
@@ -39,6 +40,8 @@ public class ModificarUsuario extends JInternalFrame {
 	private JLabel lblDescripcion;
 	private JLabel lblSitioWeb;
 	private JTextField textFieldSitioWeb;
+	private JLabel lblContrasenia;
+	private JTextField textFieldContrasenia;
 
 	/**
 	 * Create the frame.
@@ -55,7 +58,7 @@ public class ModificarUsuario extends JInternalFrame {
 		getContentPane().setLayout(null);
 		
 		comboBoxInstitucion = new JComboBox<String>();
-		comboBoxInstitucion.setBounds(103, 152, 120, 24);
+		comboBoxInstitucion.setBounds(100, 185, 120, 24);
 		getContentPane().add(comboBoxInstitucion);
 		
 		JLabel lblNickname = new JLabel("Nickname");
@@ -79,7 +82,7 @@ public class ModificarUsuario extends JInternalFrame {
 		getContentPane().add(lblFechaNac);
 		
 		lblInstitucion = new JLabel("Institucion");
-		lblInstitucion.setBounds(12, 153, 78, 15);
+		lblInstitucion.setBounds(12, 190, 78, 15);
 		getContentPane().add(lblInstitucion);
 		
 		JButton btnConfirmarNickname = new JButton("Confirmar Nickname");
@@ -92,17 +95,17 @@ public class ModificarUsuario extends JInternalFrame {
 		getContentPane().add(btnConfirmarNickname);
 		
 		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(103, 44, 114, 19);
+		textFieldNombre.setBounds(103, 40, 120, 19);
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
 		textFieldApellido = new JTextField();
-		textFieldApellido.setBounds(103, 71, 114, 19);
+		textFieldApellido.setBounds(103, 66, 120, 20);
 		getContentPane().add(textFieldApellido);
 		textFieldApellido.setColumns(10);
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(103, 99, 114, 19);
+		textFieldEmail.setBounds(103, 96, 120, 19);
 		getContentPane().add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
@@ -134,7 +137,7 @@ public class ModificarUsuario extends JInternalFrame {
 				aceptarButtonActionPerformed(e);
 			}
 		});
-		btnAceptar.setBounds(87, 215, 117, 25);
+		btnAceptar.setBounds(87, 234, 117, 25);
 		getContentPane().add(btnAceptar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -143,7 +146,7 @@ public class ModificarUsuario extends JInternalFrame {
 				modificarUsuarioCancelarActionPerformed(e);
 			}
 		});
-		btnCancelar.setBounds(245, 215, 117, 25);
+		btnCancelar.setBounds(235, 234, 117, 25);
 		getContentPane().add(btnCancelar);
 		
 		comboBoxUsuarios = new JComboBox<String>();
@@ -155,7 +158,7 @@ public class ModificarUsuario extends JInternalFrame {
 		getContentPane().add(lblSitioWeb);
 		
 		textFieldSitioWeb = new JTextField();
-		textFieldSitioWeb.setBounds(235, 184, 193, 19);
+		textFieldSitioWeb.setBounds(235, 187, 193, 19);
 		getContentPane().add(textFieldSitioWeb);
 		textFieldSitioWeb.setColumns(10);
 		
@@ -168,6 +171,16 @@ public class ModificarUsuario extends JInternalFrame {
 		this.lblSitioWeb.setVisible(false);
 		this.textFieldSitioWeb.setVisible(false);
 		this.textFieldEmail.setEnabled(false);
+		
+		lblContrasenia = new JLabel("Contraseña");
+		lblContrasenia.setHorizontalAlignment(SwingConstants.LEFT);
+		lblContrasenia.setBounds(12, 161, 70, 14);
+		getContentPane().add(lblContrasenia);
+		
+		textFieldContrasenia = new JTextField();
+		textFieldContrasenia.setBounds(103, 156, 120, 19);
+		getContentPane().add(textFieldContrasenia);
+		textFieldContrasenia.setColumns(10);
 
 	}
 	
@@ -177,6 +190,7 @@ public class ModificarUsuario extends JInternalFrame {
 		this.textFieldNombre.setText(userDt.getNombre());
 		this.textFieldApellido.setText(userDt.getApellido());
 		this.textFieldEmail.setText(userDt.getEmail());
+		this.textFieldContrasenia.setText(userDt.getPassword());
 		if (userDt instanceof DtSocio) {
 			this.comboBoxInstitucion.setVisible(false);
 			this.textFieldBiografia.setVisible(false);
@@ -186,6 +200,7 @@ public class ModificarUsuario extends JInternalFrame {
 			this.lblDescripcion.setVisible(false);
 			this.lblSitioWeb.setVisible(false);
 			this.textFieldSitioWeb.setVisible(false);
+			
 		}
 		else if (userDt instanceof DtProfesor) {
 			this.comboBoxInstitucion.setVisible(true);
@@ -204,38 +219,61 @@ public class ModificarUsuario extends JInternalFrame {
 	}
 	
 	public void aceptarButtonActionPerformed(ActionEvent e){
-		if(checkFormularioSocio()) {
-		String nick = this.comboBoxUsuarios.getSelectedItem().toString();
-		String nombre = this.textFieldNombre.getText();
-		String apellido = this.textFieldApellido.getText();
-		String email = this.textFieldEmail.getText();
-		Calendar fechaNac = this.dateChooser.getCalendar();
-		if(fechaNac==null) {
-			String user = this.comboBoxUsuarios.getSelectedItem().toString();
-			DtUsuario userDt = iconMU.obtenerUserDt(user);
-			fechaNac = userDt.getFechaNac();
+
+		DtUsuario actualizado = null;
+		if(this.lblDescripcion.isVisible() == false) {
+			if(checkFormularioSocio()) {
+				String nick = this.comboBoxUsuarios.getSelectedItem().toString();
+				String nombre = this.textFieldNombre.getText();
+				String apellido = this.textFieldApellido.getText();
+				String email = this.textFieldEmail.getText();
+				Calendar fechaNac = this.dateChooser.getCalendar();
+				String contrasenia = this.textFieldContrasenia.getText();
+				if(fechaNac==null) {
+					String user = this.comboBoxUsuarios.getSelectedItem().toString();
+					DtUsuario userDt = iconMU.obtenerUserDt(user);
+					fechaNac = userDt.getFechaNac();
+				}
+			
+			actualizado = new DtSocio(nick, nombre, apellido, email, fechaNac, contrasenia);
+			this.iconMU.modificarUsuario(actualizado);
+			JOptionPane.showMessageDialog(this, "El usuario ha sido modificado con éxito", "Modificar Usuario", JOptionPane.INFORMATION_MESSAGE);
+			limpiarFormulario();
+			setVisible(false);
+		
+		}
+		}else if(this.lblDescripcion.isVisible() == true) {
+			if(checkFormularioProfesor()) {
+				String nick = this.comboBoxUsuarios.getSelectedItem().toString();
+				String nombre = this.textFieldNombre.getText();
+				String apellido = this.textFieldApellido.getText();
+				String email = this.textFieldEmail.getText();
+				Calendar fechaNac = this.dateChooser.getCalendar();
+				String contrasenia = this.textFieldContrasenia.getText();
+				
+				if(fechaNac==null) {
+					String user = this.comboBoxUsuarios.getSelectedItem().toString();
+					DtUsuario userDt = iconMU.obtenerUserDt(user);
+					fechaNac = userDt.getFechaNac();
+				}
+				String descripcion = this.textFieldDescripcion.getText();
+				String biografia =  this.textFieldBiografia.getText();
+				String sitioWeb = this.textFieldSitioWeb.getText();
+				String institucion = this.comboBoxInstitucion.getSelectedItem().toString();
+				actualizado = new DtProfesor(nick, nombre, apellido, email, fechaNac, contrasenia, descripcion, biografia, sitioWeb, institucion);
+				
+				this.iconMU.modificarUsuario(actualizado);
+				JOptionPane.showMessageDialog(this, "El usuario ha sido modificado con éxito", "Modificar Usuario", JOptionPane.INFORMATION_MESSAGE);
+				limpiarFormulario();
+				setVisible(false);
 		}
 		
-		if(checkFormularioProfesor()) {
-		DtUsuario actualizado;
-		if(this.lblDescripcion.isVisible() == true) {
-			String descripcion = this.textFieldDescripcion.getText();
-			String biografia =  this.textFieldBiografia.getText();
-			String sitioWeb = this.textFieldSitioWeb.getText();
-			String institucion = this.comboBoxInstitucion.getSelectedItem().toString();
-			actualizado = new DtProfesor(nick, nombre, apellido, email, fechaNac, descripcion, biografia, sitioWeb, institucion);
-			
-		}
-		else {
-			actualizado = new DtSocio(nick, nombre, apellido, email, fechaNac);
-		}
-		this.iconMU.modificarUsuario(actualizado);
-		JOptionPane.showMessageDialog(this, "El usuario ha sido modificado con éxito", "Modificar Usuario", JOptionPane.INFORMATION_MESSAGE);
-		limpiarFormulario();
-		setVisible(false);
-		}
-		}
+		
 	}
+		
+	 }
+		
+		
 	
 	public void iniciarlizarComboBoxes() {
 		DefaultComboBoxModel<String> modelinstituciones = new DefaultComboBoxModel<String>(iconMU.listarInstituciones());
@@ -252,11 +290,10 @@ public class ModificarUsuario extends JInternalFrame {
 	private boolean checkFormularioProfesor() {
 		String nombre = this.textFieldNombre.getText();
 		String apellido = this.textFieldApellido.getText();
+		String contrasenia = this.textFieldContrasenia.getText();
 		String descripcion = this.textFieldDescripcion.getText();
-		String biografia =  this.textFieldBiografia.getText();
-		String sitioWeb = this.textFieldSitioWeb.getText();
 		String institucion = this.comboBoxInstitucion.getSelectedItem().toString();
-        if (descripcion.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || biografia.isEmpty() || sitioWeb.isEmpty() || institucion.isEmpty()) {
+        if (nombre.isEmpty() || apellido.isEmpty() || contrasenia.isEmpty() || descripcion.isEmpty() || institucion.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Alta Actividad",
                     JOptionPane.ERROR_MESSAGE);
             return false;
@@ -267,7 +304,8 @@ public class ModificarUsuario extends JInternalFrame {
 	private boolean checkFormularioSocio() {
 		String nombre = this.textFieldNombre.getText();
 		String apellido = this.textFieldApellido.getText();
-        if (nombre.isEmpty() || apellido.isEmpty() ) {
+		String contrasenia = this.textFieldContrasenia.getText();
+        if (nombre.isEmpty() || apellido.isEmpty() || contrasenia.isEmpty() ) {
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Alta Actividad",
                     JOptionPane.ERROR_MESSAGE);
             return false;
@@ -282,6 +320,7 @@ public class ModificarUsuario extends JInternalFrame {
         textFieldSitioWeb.setText("");
         textFieldBiografia.setText("");
         textFieldDescripcion.setText("");
+        textFieldContrasenia.setText("");
         this.comboBoxInstitucion.setVisible(false);
 		this.textFieldBiografia.setVisible(false);
 		this.textFieldDescripcion.setVisible(false);

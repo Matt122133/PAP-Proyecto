@@ -4,8 +4,6 @@ package presentation;
 import javax.swing.JInternalFrame;
 
 import interfaces.IControladorAltaUsuario;
-
-
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
@@ -16,13 +14,27 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import com.toedter.calendar.JDateChooser;
+
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.SystemColor;
+import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class AltaUsuario extends JInternalFrame {
 	/**
@@ -48,6 +60,12 @@ public class AltaUsuario extends JInternalFrame {
 	private JLabel lblSitioWeb;
 	private JLabel lblOpcionales;
 	private JLabel lblDescripcion;
+	private JTextField textFieldContrasenia;
+	private JTextField textFieldConfirmContrasenia;
+	private JLabel lblImagen;
+	private JButton btnInsertImagen;
+	private FileInputStream fis;
+    private int longitudBytes;
 	
 
 	/**
@@ -63,7 +81,7 @@ public class AltaUsuario extends JInternalFrame {
         setClosable(true);
         setTitle("Alta Usuario");
 		
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 718, 431);
 		getContentPane().setLayout(null);
 		
 		dateChooser = new JDateChooser();
@@ -114,23 +132,23 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(rdbtnProfesor);
 		
 		JLabel lblNickname = new JLabel("Nickname:");
-		lblNickname.setBounds(12, 54, 83, 15);
+		lblNickname.setBounds(16, 53, 63, 15);
 		getContentPane().add(lblNickname);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(12, 81, 70, 15);
+		lblNombre.setBounds(16, 80, 53, 15);
 		getContentPane().add(lblNombre);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
-		lblApellido.setBounds(12, 108, 70, 15);
+		lblApellido.setBounds(16, 107, 53, 15);
 		getContentPane().add(lblApellido);
 		
 		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setBounds(12, 135, 70, 15);
+		lblEmail.setBounds(16, 134, 42, 15);
 		getContentPane().add(lblEmail);
 		
 		JLabel lblFechaNac = new JLabel("Fecha Nac.:");
-		lblFechaNac.setBounds(12, 162, 83, 15);
+		lblFechaNac.setBounds(16, 161, 70, 15);
 		getContentPane().add(lblFechaNac);
 		
 		JLabel lblDatosBasicos = new JLabel("Datos Basicos:");
@@ -162,32 +180,32 @@ public class AltaUsuario extends JInternalFrame {
 		textFieldEmail.setColumns(10);
 		
 		lblInstitucion = new JLabel("Institucion:");
-		lblInstitucion.setBounds(12, 189, 83, 15);
+		lblInstitucion.setBounds(220, 190, 63, 15);
 		getContentPane().add(lblInstitucion);
 		
 		comboBoxInstitucion = new JComboBox<String>();
-		comboBoxInstitucion.setBounds(96, 184, 114, 24);
+		comboBoxInstitucion.setBounds(293, 185, 114, 24);
 		getContentPane().add(comboBoxInstitucion);
 		
 		lblOpcionales = new JLabel("Opcionales:");
-		lblOpcionales.setBounds(222, 86, 104, 15);
+		lblOpcionales.setBounds(220, 80, 70, 15);
 		getContentPane().add(lblOpcionales);
 		
 		lblBiografia = new JLabel("Biografia:");
-		lblBiografia.setBounds(222, 140, 70, 15);
+		lblBiografia.setBounds(220, 134, 70, 15);
 		getContentPane().add(lblBiografia);
 		
 		lblSitioWeb = new JLabel("Sitio Web:");
-		lblSitioWeb.setBounds(222, 113, 83, 15);
+		lblSitioWeb.setBounds(220, 107, 63, 15);
 		getContentPane().add(lblSitioWeb);
 		
 		textFieldSitioWeb = new JTextField();
-		textFieldSitioWeb.setBounds(297, 111, 131, 19);
+		textFieldSitioWeb.setBounds(280, 104, 136, 19);
 		getContentPane().add(textFieldSitioWeb);
 		textFieldSitioWeb.setColumns(10);
 		
 		lblDescripcion = new JLabel("Descripcion:");
-		lblDescripcion.setBounds(222, 27, 104, 15);
+		lblDescripcion.setBounds(220, 27, 79, 15);
 		getContentPane().add(lblDescripcion);
 		
 		JButton btnAceptar = new JButton("Aceptar");
@@ -196,7 +214,7 @@ public class AltaUsuario extends JInternalFrame {
 				altaUsuarioAceptarActionPerformed(e);
 			}
 		});
-		btnAceptar.setBounds(68, 231, 117, 25);
+		btnAceptar.setBounds(115, 283, 117, 25);
 		getContentPane().add(btnAceptar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -205,21 +223,88 @@ public class AltaUsuario extends JInternalFrame {
 				altaUsuarioCancelarActionPerformed(e);
 			}
 		});
-		btnCancelar.setBounds(253, 231, 117, 25);
+		btnCancelar.setBounds(251, 283, 117, 25);
 		getContentPane().add(btnCancelar);
 		
 		textFieldDescripcion = new JTextField();
-		textFieldDescripcion.setBounds(222, 52, 206, 19);
+		textFieldDescripcion.setBounds(220, 50, 206, 19);
 		getContentPane().add(textFieldDescripcion);
 		textFieldDescripcion.setColumns(10);
 		
 		textFieldBiografia = new JTextField();
-		textFieldBiografia.setBounds(222, 158, 206, 19);
+		textFieldBiografia.setBounds(220, 158, 206, 19);
 		getContentPane().add(textFieldBiografia);
 		textFieldBiografia.setColumns(10);
 		
+		JLabel lblContrasenia = new JLabel("Contraseña:");
+		lblContrasenia.setBounds(16, 190, 79, 14);
+		getContentPane().add(lblContrasenia);
+		
+		textFieldContrasenia = new JTextField();
+		textFieldContrasenia.setBounds(96, 188, 114, 19);
+		getContentPane().add(textFieldContrasenia);
+		textFieldContrasenia.setColumns(10);
+		
+		JLabel lblConfirmContra = new JLabel("Confirmar contraseña:");
+		lblConfirmContra.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblConfirmContra.setHorizontalAlignment(SwingConstants.LEFT);
+		lblConfirmContra.setVerticalAlignment(SwingConstants.TOP);
+		lblConfirmContra.setBounds(16, 221, 151, 19);
+		getContentPane().add(lblConfirmContra);
+		
+		textFieldConfirmContrasenia = new JTextField();
+		textFieldConfirmContrasenia.setBounds(36, 240, 114, 19);
+		getContentPane().add(textFieldConfirmContrasenia);
+		textFieldConfirmContrasenia.setColumns(10);
+		
+		lblImagen = new JLabel("Imagen");
+		lblImagen.setBackground(SystemColor.activeCaption);
+		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
+		lblImagen.setFont(new Font("Arial", lblImagen.getFont().getStyle(), lblImagen.getFont().getSize()));
+		lblImagen.setBounds(457, 27, 222, 227);
+		lblImagen.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		getContentPane().add(lblImagen);
+		
+		btnInsertImagen = new JButton("Insertar Imagen");
+		btnInsertImagen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AbrirImagen(e);
+			}
+		});
+		btnInsertImagen.setBounds(500, 284, 136, 23);
+		getContentPane().add(btnInsertImagen);
+		
 		
 	}
+	
+	private void AbrirImagen(ActionEvent e) {
+			lblImagen.setIcon(null);
+	        JFileChooser j=new JFileChooser();
+	        j.setFileSelectionMode(JFileChooser.FILES_ONLY);//solo archivos y no carpetas
+	        int estado=j.showOpenDialog(null);
+	        if(estado== JFileChooser.APPROVE_OPTION){
+	            try{
+	                fis=new FileInputStream(j.getSelectedFile());
+	                //System.out.println(""+j.getSelectedFile());
+	                //necesitamos saber la cantidad de bytes
+	                this.longitudBytes=(int)j.getSelectedFile().length();
+	                System.out.println(""+j.getSelectedFile().length());
+	                try {
+	                    Image icono=ImageIO.read(j.getSelectedFile()).getScaledInstance
+	                            (lblImagen.getWidth(),lblImagen.getHeight(),Image.SCALE_DEFAULT);
+	                    lblImagen.setIcon(new ImageIcon(icono));
+	                    lblImagen.updateUI();
+
+	                } catch (IOException ex) {
+	                    JOptionPane.showMessageDialog(rootPane, " Imagen: " + ex);
+	                }
+	            }catch(FileNotFoundException ex){
+	                ex.printStackTrace();
+	            }
+	        }        
+}
+	        
+	        
 
 	public void inicializarComboBoxes() {
 		DefaultComboBoxModel<String> modelinstituciones = new DefaultComboBoxModel<String>(iconAU.listarInstituciones());
@@ -232,15 +317,18 @@ public class AltaUsuario extends JInternalFrame {
 	}
 	
 	protected void altaUsuarioAceptarActionPerformed(ActionEvent e) {
-		if(checkFormulario()) {
+		
+		if(checkFormulario() && checkCamposContrasenia()) {
 		String nombre = this.textFieldNombre.getText();
 		String nickname = this.textFieldNick.getText();
 		String apellido = this.textFieldApellido.getText();
 		String email = this.textFieldEmail.getText();
 		Calendar fecha = this.dateChooser.getCalendar();
+		String contrasenia = this.textFieldContrasenia.getText();
+				
 		DtUsuario nuevoUsuario = null;
 		if(rdbtnSocio.isSelected()) {
-			nuevoUsuario = new DtSocio(nickname, nombre, apellido, email, fecha);
+			nuevoUsuario = new DtSocio(nickname, nombre, apellido, email, fecha, contrasenia);
 		}
 		else if(rdbtnProfesor.isSelected()) {
 			if(checkFormularioProfesor()) {
@@ -248,7 +336,7 @@ public class AltaUsuario extends JInternalFrame {
 			String sitioWeb = this.textFieldSitioWeb.getText();
 			String biografia = this.textFieldBiografia.getText();
 			String descripcion = this.textFieldDescripcion.getText();
-			nuevoUsuario = new DtProfesor(nickname, nombre, apellido, email, fecha, descripcion, biografia, sitioWeb, institucion);
+			nuevoUsuario = new DtProfesor(nickname, nombre, apellido, email, fecha, contrasenia, descripcion, biografia, sitioWeb, institucion);
 			}
 		}
 		try {
@@ -269,7 +357,9 @@ public class AltaUsuario extends JInternalFrame {
 		String apellido = this.textFieldApellido.getText();
 		String email = this.textFieldEmail.getText();
 		Calendar fecha = this.dateChooser.getCalendar();
-        if (nombre.isEmpty() || nickname.isEmpty() || apellido.isEmpty() || email.isEmpty() || fecha == null) {
+		String contrasenia = this.textFieldContrasenia.getText();
+		String confirmContrasenia = this.textFieldConfirmContrasenia.getText();
+        if (nombre.isEmpty() || nickname.isEmpty() || apellido.isEmpty() || email.isEmpty() || fecha == null || contrasenia.isEmpty() || confirmContrasenia.isEmpty() ) {
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Alta Usuario",
                     JOptionPane.ERROR_MESSAGE);
             return false;
@@ -290,6 +380,22 @@ public class AltaUsuario extends JInternalFrame {
 		return true;
 	}
 	
+	private boolean checkCamposContrasenia(){
+		String contrasenia = this.textFieldContrasenia.getText();
+		String confirmContrasenia = this.textFieldConfirmContrasenia.getText();
+		
+		if(contrasenia.equals(confirmContrasenia)){
+			JOptionPane.showMessageDialog(this, "Contraseñas confirmadas", "Alta Usuario",
+					JOptionPane.INFORMATION_MESSAGE);
+	        return true;
+		}else {
+			JOptionPane.showMessageDialog(this, "Contraseñas incorrectas", "Alta Usuario",
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+	}
+	
 	private void limpiarFormulario() {
         textFieldNombre.setText("");
         textFieldNick.setText("");
@@ -298,5 +404,7 @@ public class AltaUsuario extends JInternalFrame {
         textFieldSitioWeb.setText("");
         textFieldBiografia.setText("");
         textFieldDescripcion.setText("");
+        textFieldContrasenia.setText("");
+        textFieldConfirmContrasenia.setText("");
  }
 }

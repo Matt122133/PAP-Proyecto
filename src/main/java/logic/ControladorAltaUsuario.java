@@ -23,11 +23,11 @@ public class ControladorAltaUsuario implements IControladorAltaUsuario {
 			throw new UsuarioRepetidoException("El usuario con nickname " + usuario.getNickname() +  " o con el email " + usuario.getEmail() + " ya esta registrado.");
 			
 		if (usuario instanceof DtSocio)
-			nuevoUsuario = new Socio(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac());
+			nuevoUsuario = new Socio(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), usuario.getPassword()/*, usuario.getImagen()*/);
 		
 		if (usuario instanceof DtProfesor) {
 			InstitucionDeportiva instDep = mI.buscarInstitucion(((DtProfesor) usuario).getInstDep());
-			nuevoUsuario = new Profesor(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), ((DtProfesor) usuario).getDescripcion(), ((DtProfesor) usuario).getBiografia(), ((DtProfesor) usuario).getSitioWeb(), instDep);
+			nuevoUsuario = new Profesor(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), usuario.getPassword()/*, usuario.getImagen()*/ , ((DtProfesor) usuario).getDescripcion(), ((DtProfesor) usuario).getBiografia(), ((DtProfesor) usuario).getSitioWeb(), instDep);
 		}
 		mU.agregarUsuario(nuevoUsuario);
 	}
@@ -44,4 +44,5 @@ public class ControladorAltaUsuario implements IControladorAltaUsuario {
         }
         return instituciones_ret;
 	}
+	
 }

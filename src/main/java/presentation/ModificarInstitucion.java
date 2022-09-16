@@ -98,14 +98,14 @@ public class ModificarInstitucion extends JInternalFrame {
 	
 	public void modificarInstitucionAceptarButtonActionPerformed(ActionEvent e){
 		if(checkFormulario()) {
-		String nombre = this.comboBoxInstitucion.getSelectedItem().toString();
-		String url = this.textFieldURL.getText();
-		String descripcion = this.textFieldDescripcion.getText();
-		DtInstitucion actualizada = new DtInstitucion(nombre,url,descripcion);
-		this.iconMI.modificarInstDep(actualizada);
-		JOptionPane.showMessageDialog(this, "La institucion ha sido modificada con éxito", "Modificar Institucion", JOptionPane.INFORMATION_MESSAGE);
-		this.setVisible(false);
-		limpiarFormulario();
+			String nombre = this.comboBoxInstitucion.getSelectedItem().toString();
+			String url = this.textFieldURL.getText();
+			String descripcion = this.textFieldDescripcion.getText();
+			DtInstitucion actualizada = new DtInstitucion(nombre,url,descripcion);
+			this.iconMI.modificarInstDep(actualizada);
+			JOptionPane.showMessageDialog(this, "La institucion ha sido modificada con éxito", "Modificar Institucion", JOptionPane.INFORMATION_MESSAGE);
+			this.setVisible(false);
+			limpiarFormulario();
 		}
 		
 	}
@@ -125,15 +125,13 @@ public class ModificarInstitucion extends JInternalFrame {
 	private void limpiarFormulario() {
         textFieldURL.setText("");
         textFieldDescripcion.setText("");
- 
 	}
 	
 	private boolean checkFormulario() {
         String descripcion = this.textFieldDescripcion.getText();
         String url = this.textFieldURL.getText();
         if (descripcion.isEmpty() || url.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Alta Actividad",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Alta Actividad", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;

@@ -16,6 +16,7 @@ import interfaces.IControladorAltaUsuario;
 import interfaces.IControladorConsultaAct;
 import interfaces.IControladorConsultaClase;
 import interfaces.IControladorConsultaUsuario;
+import interfaces.IControladorEliminarRegistro;
 import interfaces.IControladorModificarActividad;
 import interfaces.IControladorModificarInstitucion;
 import interfaces.IControladorModificarUsuario;
@@ -43,6 +44,7 @@ public class Principal {
 	private RankingClases rankingClasesInternalFrame;
 	private RankingActividades rankingActividadesInternalFrame;
 	private ModificarActividad modificarActividadInternalFrame;
+	private EliminarRegistro eliminarRegistroInternalFrame;
 	/**
 	 * Launch the application.
 	 */
@@ -78,6 +80,7 @@ public class Principal {
 		IControladorRankingClases iconRankingC = fabrica.getIControladorRankingC();
 		IControladorRankingActividadDeportiva iconRA = fabrica.getIControladorRA();
 		IControladorModificarActividad iconMA = fabrica.getIControladorMA();
+		IControladorEliminarRegistro iconER = fabrica.getIControladorER();
 		
 		Dimension desktopSize = frame.getSize();
 		Dimension jInternalFrameSize;
@@ -180,6 +183,12 @@ public class Principal {
 		frame.getContentPane().add(rankingActividadesInternalFrame);
 		rankingActividadesInternalFrame.setVisible(false);
 		
+		eliminarRegistroInternalFrame = new EliminarRegistro(iconER);
+		jInternalFrameSize = eliminarRegistroInternalFrame.getSize();
+		eliminarRegistroInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
+		frame.getContentPane().add(eliminarRegistroInternalFrame);
+		eliminarRegistroInternalFrame.setVisible(false);
 		
 	}
 
@@ -315,13 +324,28 @@ public class Principal {
 		});
 		mnRanking.add(mntmClaseRanking);
 		
-		JMenuItem mntmRegistro = new JMenuItem("Registro");
+		JMenu mnRegistro = new JMenu("Registro");
+		menuBar.add(mnRegistro);
+		
+		JMenuItem mntmRegistro = new JMenuItem("Agregar Registro");
+		mnRegistro.add(mntmRegistro);
+		
+		JMenuItem mntmEliminarRegistro = new JMenuItem("Eliminar Registro");
+		mntmEliminarRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eliminarRegistroInternalFrame.iniciarlizarComboBoxes();
+				eliminarRegistroInternalFrame.setVisible(true);
+			}
+		});
+		mnRegistro.add(mntmEliminarRegistro);
+		
 		mntmRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				registroRCInternalFrame.iniciarlizarComboBoxes();
 				registroRCInternalFrame.setVisible(true);
+				
+				
 			}
 		});
-		menuBar.add(mntmRegistro);
 	}
 }

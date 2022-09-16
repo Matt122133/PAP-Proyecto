@@ -7,6 +7,7 @@ import logic.ControladorAltaUsuario;
 import logic.ControladorConsultaAct;
 import logic.ControladorConsultaClase;
 import logic.ControladorConsultaUsuario;
+import logic.ControladorEliminarRegistro;
 import logic.ControladorModificarActividad;
 import logic.ControladorModificarInstitucion;
 import logic.ControladorModificarUsuario;
@@ -73,9 +74,12 @@ public class Fabrica {
 		return new ControladorRankingActividadDeportiva();
 	}
 	
-	public IControladorModificarActividad getIControladorMA() {
+	public IControladorModificarActividad getIControladorMA(){
 		return new ControladorModificarActividad();
 	}
 	
+	public IControladorEliminarRegistro getIControladorER() {
+		return new ControladorEliminarRegistro();
+	}
 
 }

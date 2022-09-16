@@ -25,9 +25,10 @@ public class ControladorAltaDictadoDeClase implements IControladorAltaDictadoDeC
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
 		InstitucionDeportiva inst = mI.buscarInstitucion(nombreInst);
 		ActividadDeportiva actDep = inst.buscarActividadDeportiva(nombreAct);
+		Clase clase = actDep.existeClase(nombre);
 		
-		if(actDep.existeClase(nombre))
-			throw new ClaseRepetidaException("Ya existe una clase con ese nombre.");
+		if(clase != null)
+			throw new ClaseRepetidaException(" Ya existe una clase de nombre: " + nombre );
 		
 		Clase nuevaClase = new Clase(nombre, fecha, horaIni, url, fechaReg);
 		actDep.agregarClase(nuevaClase);

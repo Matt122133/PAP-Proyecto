@@ -5,10 +5,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 
 import datatypes.DtActividadDeportiva;
+import persistencia.Conexion;
 
 @Entity
 public class InstitucionDeportiva {
@@ -64,12 +67,20 @@ public class InstitucionDeportiva {
 		return retorno;
 	}
 	
-	public boolean tengoActDep(String nombre) {
+	@SuppressWarnings("unchecked")
+	public ActividadDeportiva tengoActDep(String nombre) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		Query query = eM.createQuery("select a from ActividadDeportiva a");
+		List<ActividadDeportiva> actDeportivas = (List<ActividadDeportiva>) query.getResultList();
+		
+		ActividadDeportiva actDep = null;
 		for(ActividadDeportiva i: actDeportivas) {
 			if(i.getNombre().equals(nombre))
-			return true;
+			actDep = i;
 		}
-		return false;
+		return actDep;
 	}
 	
 	public ArrayList<String> listarActividadesDeportivas() {

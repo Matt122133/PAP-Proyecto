@@ -80,5 +80,41 @@ public class Clase {
 		registros.add(registro);
 	}
 	
+	public boolean socioEstaRegistrado(String socio) {
+		int i = 0;
+		Registro registro;
+		boolean encontre=false;
+		while ((i < registros.size()) && (!encontre)) {
+			registro=registros.get(i);
+		    if (registro.getNicknameSocio().equals(socio)) {
+		    	encontre=true;
+		    }	
+		    i++;
+		}
+		return encontre;
+	}
+	
+	public void borrarRegistroClase(Socio socio){
+		System.out.println(registros.size());
+		int i = 0;
+		Registro registro;
+		boolean encontre=false;
+		while ((i < registros.size()) && (!encontre)) {
+			registro=registros.get(i);
+		    if (registro.getSocio().equals(socio)) {
+		    	registros.remove(i);
+		    	encontre=true;
+		    }	
+		    i++;
+		}
+		
+		System.out.println(registros.size());
+		System.out.println(socio.getRegistros().size());
+		socio.borrarRegistroSocio(this);
+		System.out.println(socio.getRegistros().size());
+	}
+	
+	
+	
 	
 }

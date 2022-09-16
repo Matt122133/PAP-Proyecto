@@ -38,8 +38,8 @@ public class RegistroSocioClase extends JInternalFrame {
 	private JLabel lblNombre;
 	private JLabel lblFecha;
 	private JLabel lblHoraDeInicio;
-	private JLabel lblUrl;
-	private JLabel lblFechareg;
+	private JLabel lblURL;
+	private JLabel lblFechaReg;
 	
 	/**
 	 * Create the frame.
@@ -121,8 +121,8 @@ public class RegistroSocioClase extends JInternalFrame {
 				lblNombre.setVisible(true);
 				lblFecha.setVisible(true);
 				lblHoraDeInicio.setVisible(true);
-				lblUrl.setVisible(true);
-				lblFechareg.setVisible(true);
+				lblURL.setVisible(true);
+				lblFechaReg.setVisible(true);
 				lblSocio.setVisible(true);
 				
 				comboBoxSocio.setVisible(true);
@@ -145,13 +145,13 @@ public class RegistroSocioClase extends JInternalFrame {
 		lblHoraDeInicio.setBounds(307, 108, 107, 15);
 		getContentPane().add(lblHoraDeInicio);
 		
-		lblUrl = new JLabel("URL");
-		lblUrl.setBounds(54, 166, 36, 15);
-		getContentPane().add(lblUrl);
+		lblURL = new JLabel("URL");
+		lblURL.setBounds(54, 166, 36, 15);
+		getContentPane().add(lblURL);
 		
-		lblFechareg = new JLabel("FechaReg");
-		lblFechareg.setBounds(322, 166, 70, 15);
-		getContentPane().add(lblFechareg);
+		lblFechaReg = new JLabel("FechaReg");
+		lblFechaReg.setBounds(322, 166, 70, 15);
+		getContentPane().add(lblFechaReg);
 		
 		textFieldNombre = new JTextField();
 		textFieldNombre.setBounds(24, 135, 114, 19);
@@ -224,8 +224,8 @@ public class RegistroSocioClase extends JInternalFrame {
 		lblNombre.setVisible(false);
 		lblFecha.setVisible(false);
 		lblHoraDeInicio.setVisible(false);
-		lblUrl.setVisible(false);
-		lblFechareg.setVisible(false);
+		lblURL.setVisible(false);
+		lblFechaReg.setVisible(false);
 		lblSocio.setVisible(false);
 		
 		comboBoxSocio.setVisible(false);
@@ -318,6 +318,31 @@ public class RegistroSocioClase extends JInternalFrame {
 		textFieldHoraInicio.setText("");
 		textFieldURL.setText("");
 		textFieldFechaReg.setText("");
+		
+		textFieldNombre.setVisible(false);
+		textFieldFecha.setVisible(false);
+		textFieldHoraInicio.setVisible(false);
+		textFieldURL.setVisible(false);
+		textFieldFechaReg.setVisible(false);
+		
+		lblNombre.setVisible(false);
+		lblFecha.setVisible(false);
+		lblHoraDeInicio.setVisible(false);
+		lblURL.setVisible(false);
+		lblFechaReg.setVisible(false);
+		lblSocio.setVisible(false);
+		
+		comboBoxSocio.setVisible(false);
+		
+		btnCancelar.setVisible(false);
+		btnAceptar.setVisible(false);
+		btnElegirClase.setEnabled(false);
+		btnElegirAct.setEnabled(false);
+		
+		comboBoxClase.setEnabled(false);
+		comboBoxActividad.setEnabled(false);
+		
+		
 	}
 
 }

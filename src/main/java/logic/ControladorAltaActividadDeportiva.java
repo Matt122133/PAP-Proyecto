@@ -1,3 +1,4 @@
+
 package logic;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ public class ControladorAltaActividadDeportiva implements IControladorAltaActivi
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
 		InstitucionDeportiva instDep = mI.buscarInstitucion(nombreInst);
 		ActividadDeportiva actDep = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg);
-		if (instDep.tengoActDep(nombre))
+		ActividadDeportiva actvDeportiva = instDep.tengoActDep(nombre);
+		if (actvDeportiva != null)
 			throw new ActividadRepetidaException("La actividad "+ nombre +" ya existe.");		
 		instDep.agregarActividadDeportiva(actDep);
 		

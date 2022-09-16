@@ -6,10 +6,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 
 import datatypes.DtActividadDeportiva;
+import persistencia.Conexion;
 
 @Entity
 public class ActividadDeportiva {
@@ -70,13 +73,20 @@ public class ActividadDeportiva {
 		super();
 	}
 	
-	public boolean existeClase(String nombreClase) {
-		boolean retorno = false;
+	@SuppressWarnings("unchecked")
+	public Clase existeClase(String nombreClase) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		Query query = eM.createQuery("select c from Clase c");
+		List<Clase> clases = (List<Clase>) query.getResultList();
+		
+		Clase clase = null;
 		for(Clase i: clases) {
 			if(i.getNombre().equals(nombreClase))
-				retorno = true;
+				clase = i;
 		}
-		return retorno;
+		return clase;
 	}
 	
 	public void agregarClase(Clase clase) {

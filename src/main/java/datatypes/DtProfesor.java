@@ -12,9 +12,9 @@ public class DtProfesor extends DtUsuario{
 	private String sitioWeb;
 	private String instDep;
 	private List<Clase> clases = new ArrayList<Clase>();
-	
-	public DtProfesor(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String descripcion, String biografia, String sitioWeb, String instDep) {
-		super(nickname, nombre, apellido, email, fechaNac);
+
+	public DtProfesor(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password/*,  byte[] imagen*/, String descripcion, String biografia, String sitioWeb, String instDep) {
+		super(nickname, nombre, apellido, email, fechaNac, password/*, imagen*/);
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.sitioWeb = sitioWeb;
