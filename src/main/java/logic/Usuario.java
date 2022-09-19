@@ -6,7 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Lob;
+
+import org.hibernate.annotations.Type;
 
 import datatypes.DtUsuario;
 
@@ -20,8 +21,8 @@ public abstract class Usuario {
 	private String email;
 	private Calendar fechaNac;
 	private String password;
-	/*@Lob
-	private byte[] imagen;*/
+	@Type(type="org.hibernate.type.BinaryType")
+	private byte[] imagen;
 	
 	public String getNickname() {
 		return nickname;
@@ -71,16 +72,16 @@ public abstract class Usuario {
 		this.password = password;
 	}
 
-	/*public byte[] getImagen() {
+	public byte[] getImagen() {
 		return imagen;
 	}
 
 	public void setImagen(byte[] imagen) {
-		this.imagen = imagen;
-	}*/
+		  this.imagen = imagen;
+	}
 
 	
-	public Usuario(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password /*,byte[] imagen*/) {
+	public Usuario(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password ,byte[] imagen) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;
@@ -88,7 +89,7 @@ public abstract class Usuario {
 		this.email = email;
 		this.fechaNac = fechaNac;
 		this.password = password;
-		//this.imagen = imagen;
+		this.imagen = imagen;
 	}
 	
 	public Usuario() {

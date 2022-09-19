@@ -17,6 +17,7 @@ import interfaces.IControladorConsultaAct;
 import interfaces.IControladorConsultaClase;
 import interfaces.IControladorConsultaUsuario;
 import interfaces.IControladorEliminarRegistro;
+import interfaces.IControladorImagenes;
 import interfaces.IControladorModificarActividad;
 import interfaces.IControladorModificarInstitucion;
 import interfaces.IControladorModificarUsuario;
@@ -67,6 +68,7 @@ public class Principal {
 	public Principal() {
 		initialize();
 		Fabrica fabrica = Fabrica.getInstancia();
+		IControladorImagenes iconIM = fabrica.getIControladorIM();
 		IControladorAltaUsuario iconAU = fabrica.getIControladorAU();
 		IControladorAltaInstitucionDeportiva iconAI = fabrica.getIControladorAI();
 		IControladorAltaActividadDeportiva iconAD = fabrica.getIControladorAD();
@@ -85,7 +87,7 @@ public class Principal {
 		Dimension desktopSize = frame.getSize();
 		Dimension jInternalFrameSize;
 		
-		altaUsuarioInternalFrame = new AltaUsuario(iconAU);
+		altaUsuarioInternalFrame = new AltaUsuario(iconAU,iconIM);
 		jInternalFrameSize = altaUsuarioInternalFrame.getSize();
 		altaUsuarioInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
 			    (desktopSize.height- jInternalFrameSize.height)/2);
@@ -99,14 +101,14 @@ public class Principal {
 		frame.getContentPane().add(altaInstitucionInternalFrame);
 		altaInstitucionInternalFrame.setVisible(false);
 		
-		altaActividadInternalFrame = new AltaActividad(iconAD);
+		altaActividadInternalFrame = new AltaActividad(iconAD, iconIM);
 		jInternalFrameSize = altaActividadInternalFrame.getSize();
 		altaActividadInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
 			    (desktopSize.height- jInternalFrameSize.height)/2);
 		frame.getContentPane().add(altaActividadInternalFrame);
 		altaActividadInternalFrame.setVisible(false);
 		
-		altaClaseInternalFrame = new AltaClase(iconAC);
+		altaClaseInternalFrame = new AltaClase(iconAC, iconIM);
 		jInternalFrameSize = altaClaseInternalFrame.getSize();
 		altaClaseInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
 			    (desktopSize.height- jInternalFrameSize.height)/2);
@@ -141,7 +143,7 @@ public class Principal {
 		frame.getContentPane().add(consultaUsuarioInternalFrame);
 		consultaUsuarioInternalFrame.setVisible(false);
 		
-		modificarUsuarioInternalFrame = new ModificarUsuario(iconMU);
+		modificarUsuarioInternalFrame = new ModificarUsuario(iconMU,iconIM);
 		jInternalFrameSize = modificarUsuarioInternalFrame.getSize();
 		modificarUsuarioInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
 			    (desktopSize.height- jInternalFrameSize.height)/2);
@@ -162,7 +164,7 @@ public class Principal {
 		frame.getContentPane().add(rankingClasesInternalFrame);
 		rankingClasesInternalFrame.setVisible(false);
 		
-		modificarActividadInternalFrame = new ModificarActividad(iconMA);
+		modificarActividadInternalFrame = new ModificarActividad(iconMA, iconIM);
 		jInternalFrameSize = modificarActividadInternalFrame.getSize();
 		modificarActividadInternalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
 			    (desktopSize.height- jInternalFrameSize.height)/2);

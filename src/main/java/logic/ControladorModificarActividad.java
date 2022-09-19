@@ -63,6 +63,7 @@ public class ControladorModificarActividad implements IControladorModificarActiv
 				actActualizar.setDescripcion(actualizado.getDescripcion());
 				actActualizar.setCosto(actualizado.getCosto());
 				actActualizar.setDuracion(actualizado.getDuracion());
+				actActualizar.setImagenAct(actualizado.getImagenAct());
 				
 				Conexion conexion = Conexion.getInstancia();
 				EntityManager eM= conexion.getEntityManager();

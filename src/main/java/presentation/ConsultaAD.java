@@ -70,7 +70,7 @@ public class ConsultaAD extends JInternalFrame {
 	public ConsultaAD(IControladorConsultaAct iconCA) {
 		this.iconCA=iconCA;
 		
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 664, 463);
 		getContentPane().setLayout(null);
 		
 		setResizable(true);

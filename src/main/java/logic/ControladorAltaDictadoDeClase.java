@@ -18,7 +18,7 @@ public class ControladorAltaDictadoDeClase implements IControladorAltaDictadoDeC
 		super();
 	}
 	
-	public void altaDictadoClase(String nombreInst, String nombreAct, String nicknameProf, String nombre, Calendar fecha, int horaIni, String url, Calendar fechaReg) throws ClaseRepetidaException {
+	public void altaDictadoClase(String nombreInst, String nombreAct, String nicknameProf, String nombre, Calendar fecha, int horaIni, String url, Calendar fechaReg, byte[] imagenClase) throws ClaseRepetidaException {
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		Usuario prof = mU.buscarUsuario(nicknameProf);
 
@@ -30,7 +30,7 @@ public class ControladorAltaDictadoDeClase implements IControladorAltaDictadoDeC
 		if(clase != null)
 			throw new ClaseRepetidaException(" Ya existe una clase de nombre: " + nombre );
 		
-		Clase nuevaClase = new Clase(nombre, fecha, horaIni, url, fechaReg);
+		Clase nuevaClase = new Clase(nombre, fecha, horaIni, url, fechaReg, imagenClase);
 		actDep.agregarClase(nuevaClase);
 		
 		Conexion conexion = Conexion.getInstancia();

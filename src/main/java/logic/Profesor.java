@@ -64,17 +64,17 @@ public class Profesor extends Usuario{
 		this.clases = clases;
 	}
 	
-	public Profesor(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password, /*byte[] imagen,*/ String descripcion,
+	public Profesor(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password, byte[] imagen, String descripcion,
 		String biografia, String sitioWeb, InstitucionDeportiva instDep) {
-		super(nickname, nombre, apellido, email, fechaNac, password/*, imagen*/);
+		super(nickname, nombre, apellido, email, fechaNac, password, imagen);
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.sitioWeb = sitioWeb;
 		this.instDep = instDep;
 	}
 	
-	public Profesor(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password/*, byte[] imagen*/) {
-		super(nickname, nombre, apellido, email, fechaNac, password /*, imagen*/);
+	public Profesor(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password, byte[] imagen) {
+		super(nickname, nombre, apellido, email, fechaNac, password , imagen);
 	}
 	
 	public Profesor() { 
@@ -110,6 +110,7 @@ public class Profesor extends Usuario{
 			this.setFechaNac(actualizado.getFechaNac());
 			this.setNickname(actualizado.getNickname());
 			this.setPassword(actualizado.getPassword());
+			this.setImagen(actualizado.getImagen());
 			ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
 			InstitucionDeportiva instDeportiva = mI.buscarInstitucion(((DtProfesor) actualizado).getInstDep());
 			this.setInstDep(instDeportiva);
@@ -121,7 +122,7 @@ public class Profesor extends Usuario{
 	
 	@Override
 	public DtUsuario getDtUsuario() {
-		return new DtProfesor(this.getNickname(), this.getNombre(),this.getApellido(), this.getEmail(), this.getFechaNac(), this.getPassword(), /*this.getImagen(),*/ this.getDescripcion(), this.getBiografia(), this.getSitioWeb() ,this.getInstDep().getNombre());
+		return new DtProfesor(this.getNickname(), this.getNombre(),this.getApellido(), this.getEmail(), this.getFechaNac(), this.getPassword(), this.getImagen(), this.getDescripcion(), this.getBiografia(), this.getSitioWeb() ,this.getInstDep().getNombre());
 	}
 	
 }

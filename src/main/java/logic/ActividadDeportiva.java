@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Query;
 
+import org.hibernate.annotations.Type;
+
 import datatypes.DtActividadDeportiva;
 import persistencia.Conexion;
 
@@ -22,6 +24,10 @@ public class ActividadDeportiva {
 	private Integer duracion;
 	private Float costo;
 	private Calendar fechaReg;
+	
+	@Type(type="org.hibernate.type.BinaryType")
+	private byte[] imagenAct;
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Clase> clases = new ArrayList<Clase>();
 	
@@ -34,41 +40,61 @@ public class ActividadDeportiva {
 	public String getDescripcion() {
 		return descripcion;
 	}
+	
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
 	public Integer getDuracion() {
 		return duracion;
 	}
+	
 	public void setDuracion(Integer duracion) {
 		this.duracion = duracion;
 	}
+	
 	public Float getCosto() {
 		return costo;
 	}
+	
 	public void setCosto(Float costo) {
 		this.costo = costo;
 	}
+	
 	public Calendar getFechaReg() {
 		return fechaReg;
 	}
+	
 	public void setFechaReg(Calendar fechaReg) {
 		this.fechaReg = fechaReg;
+	}
+	
+	public byte[] getImagenAct() {
+		return imagenAct;
+	}
+	public void setImagenAct(byte[] imagenAct) {
+		this.imagenAct = imagenAct;
 	}
 	public List<Clase> getClases() {
 		return clases;
 	}
+	
 	public void setClases(List<Clase> clases) {
 		this.clases = clases;
 	}
-	public ActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, Calendar fechaReg) {
+	
+	
+	
+	public ActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, Calendar fechaReg, byte[] imagenAct) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.duracion = duracion;
 		this.costo = costo;
 		this.fechaReg = fechaReg;
+		this.imagenAct = imagenAct;
 	}
+	
 	public ActividadDeportiva() {
 		super();
 	}
@@ -94,7 +120,7 @@ public class ActividadDeportiva {
 	}
 	
 	public DtActividadDeportiva obtenerDt() {
-		return new DtActividadDeportiva(this.getNombre(),this.getDescripcion(), this.getDuracion(), this.getCosto(), this.getFechaReg());
+		return new DtActividadDeportiva(this.getNombre(),this.getDescripcion(), this.getDuracion(), this.getCosto(), this.getFechaReg(), this.getImagenAct());
 	}
 	
 	

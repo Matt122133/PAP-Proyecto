@@ -75,7 +75,7 @@ public class ConsultaUsuario extends JInternalFrame {
 	public ConsultaUsuario(IControladorConsultaUsuario iconCU) {
 		this.iconCU=iconCU;
 		
-		setBounds(100, 100, 618, 403);
+		setBounds(100, 100, 551, 378);
 		getContentPane().setLayout(null);
 		
 		setResizable(true);
@@ -90,7 +90,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		internalFrameClase.setIconifiable(true);
         internalFrameClase.setMaximizable(true);
         internalFrameClase.setClosable(true);
-		internalFrameClase.setBounds(0, 12, 440, 244);
+		internalFrameClase.setBounds(0, 0, 440, 244);
 		getContentPane().add(internalFrameClase);
 		internalFrameClase.getContentPane().setLayout(null);
 		

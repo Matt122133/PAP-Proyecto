@@ -42,7 +42,7 @@ public class ConsultaC extends JInternalFrame {
 	public ConsultaC(IControladorConsultaClase iconCC) {
 		this.iconCC=iconCC;
 		
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 601, 399);
 		getContentPane().setLayout(null);
 		
 		setResizable(true);

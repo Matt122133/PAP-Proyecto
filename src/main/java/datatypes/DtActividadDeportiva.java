@@ -8,16 +8,19 @@ public class DtActividadDeportiva {
 	private Integer duracion;
 	private Float costo;
 	private Calendar fechaReg;
+	private byte[] imagenAct;
 	
-	public DtActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, Calendar fechaReg) {
+	
+	
+	public DtActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, Calendar fechaReg, byte[] imagenAct) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.duracion = duracion;
 		this.costo = costo;
 		this.fechaReg = fechaReg;
+		this.imagenAct = imagenAct;
 	}
-
 
 	public String getNombre() {
 		return nombre;
@@ -37,6 +40,10 @@ public class DtActividadDeportiva {
 
 	public Calendar getFechaReg() {
 		return fechaReg;
+	}
+
+	public byte[] getImagenAct() {
+		return imagenAct;
 	}
 
 	@Override

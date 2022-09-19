@@ -4,17 +4,31 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 import interfaces.IControladorAltaDictadoDeClase;
+import interfaces.IControladorImagenes;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 
 import exceptions.ClaseRepetidaException;
@@ -22,7 +36,10 @@ import exceptions.ClaseRepetidaException;
 public class AltaClase extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
+	
 	private IControladorAltaDictadoDeClase iconAC;
+	private IControladorImagenes iconIM;
+	
 	private JTextField textFieldNombre;
 	private JTextField textFieldURL;
 	private JTextField textFieldHoraInicio;
@@ -30,13 +47,16 @@ public class AltaClase extends JInternalFrame {
 	private JComboBox<String> comboBoxActividad;
 	private JComboBox<String> comboBoxProfesor;
 	private JDateChooser dateChooser;
+	private JButton btnBuscarImagen;
+	private JLabel lblImagen;
 	
 	/**
 	 * Create the frame.
 	 */
-	public AltaClase(IControladorAltaDictadoDeClase iconAC) {
+	public AltaClase(IControladorAltaDictadoDeClase iconAC, IControladorImagenes iconIM) {
 		
-		this.iconAC=iconAC;
+		this.iconAC = iconAC;
+		this.iconIM = iconIM;
 		
 		setResizable(true);
         setIconifiable(true);
@@ -44,48 +64,48 @@ public class AltaClase extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Alta Clase");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 738, 344);
 		getContentPane().setLayout(null);
 		
 		JLabel lblInstitucion = new JLabel("Institucion:");
-		lblInstitucion.setBounds(16, 30, 80, 15);
+		lblInstitucion.setBounds(10, 30, 80, 15);
 		getContentPane().add(lblInstitucion);
 		
 		comboBoxInstitucion = new JComboBox<String>();
-		comboBoxInstitucion.setBounds(107, 25, 104, 24);
+		comboBoxInstitucion.setBounds(100, 25, 104, 24);
 		getContentPane().add(comboBoxInstitucion);
 		
 		JLabel lblActividad = new JLabel("Actividad:");
-		lblActividad.setBounds(16, 64, 70, 15);
+		lblActividad.setBounds(10, 65, 70, 15);
 		getContentPane().add(lblActividad);
 		
 		comboBoxActividad = new JComboBox<String>();
-		comboBoxActividad.setBounds(107, 59, 104, 24);
+		comboBoxActividad.setBounds(101, 60, 104, 24);
 		getContentPane().add(comboBoxActividad);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(16, 146, 60, 15);
+		lblNombre.setBounds(10, 170, 60, 15);
 		getContentPane().add(lblNombre);
 		
 		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(107, 146, 114, 19);
+		textFieldNombre.setBounds(101, 170, 114, 19);
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
 		JLabel lblFechaDeInicio = new JLabel("Fecha Inicio:");
-		lblFechaDeInicio.setBounds(16, 177, 94, 15);
+		lblFechaDeInicio.setBounds(10, 201, 94, 15);
 		getContentPane().add(lblFechaDeInicio);
 		
 		JLabel lblHoraDeInicio = new JLabel("Hora Inicio: ");
-		lblHoraDeInicio.setBounds(230, 177, 84, 15);
+		lblHoraDeInicio.setBounds(224, 201, 84, 15);
 		getContentPane().add(lblHoraDeInicio);
 		
 		JLabel lblProfesor = new JLabel("Profesor:");
-		lblProfesor.setBounds(16, 103, 70, 15);
+		lblProfesor.setBounds(10, 104, 70, 15);
 		getContentPane().add(lblProfesor);
 		
 		JLabel lblUrl = new JLabel("URL:");
-		lblUrl.setBounds(279, 146, 32, 15);
+		lblUrl.setBounds(273, 170, 32, 15);
 		getContentPane().add(lblUrl);
 		
 		JButton btnAceptar = new JButton("Aceptar");
@@ -94,7 +114,7 @@ public class AltaClase extends JInternalFrame {
 				altaClaseAceptarActionPerformed(e);
 			}
 		});
-		btnAceptar.setBounds(67, 231, 117, 25);
+		btnAceptar.setBounds(137, 279, 117, 25);
 		getContentPane().add(btnAceptar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -103,20 +123,20 @@ public class AltaClase extends JInternalFrame {
 				altaClaseCancelarActionPerformed(e);
 			}
 		});
-		btnCancelar.setBounds(252, 231, 117, 25);
+		btnCancelar.setBounds(322, 279, 117, 25);
 		getContentPane().add(btnCancelar);
 		
 		textFieldURL = new JTextField();
-		textFieldURL.setBounds(314, 146, 114, 19);
+		textFieldURL.setBounds(308, 170, 114, 19);
 		getContentPane().add(textFieldURL);
 		textFieldURL.setColumns(10);
 		
 		comboBoxProfesor = new JComboBox<String>();
-		comboBoxProfesor.setBounds(107, 95, 104, 24);
+		comboBoxProfesor.setBounds(101, 96, 104, 24);
 		getContentPane().add(comboBoxProfesor);
 		
 		textFieldHoraInicio = new JTextField();
-		textFieldHoraInicio.setBounds(314, 175, 114, 19);
+		textFieldHoraInicio.setBounds(308, 199, 114, 19);
 		getContentPane().add(textFieldHoraInicio);
 		textFieldHoraInicio.setColumns(10);
 		
@@ -126,11 +146,11 @@ public class AltaClase extends JInternalFrame {
 				llenarComboBoxActionPerformed(e);
 			}
 		});
-		btnElegirInsti.setBounds(223, 25, 114, 25);
+		btnElegirInsti.setBounds(230, 25, 114, 25);
 		getContentPane().add(btnElegirInsti);
 		
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(107, 175, 114, 19);
+		dateChooser.setBounds(101, 199, 114, 19);
 		getContentPane().add(dateChooser);
 		
 		comboBoxActividad.setEnabled(false);
@@ -140,8 +160,64 @@ public class AltaClase extends JInternalFrame {
 		textFieldURL.setEnabled(false);
 		textFieldHoraInicio.setEnabled(false);
 		dateChooser.setEnabled(false);
+		
+		JLabel lblEtiquetaClase = new JLabel("Datos de la clase:");
+		lblEtiquetaClase.setBounds(10, 142, 128, 14);
+		getContentPane().add(lblEtiquetaClase);
+		
+		JLabel lblEtiquetaImagen = new JLabel("Imagen:");
+		lblEtiquetaImagen.setBounds(548, 11, 70, 15);
+		getContentPane().add(lblEtiquetaImagen);
+		
+		lblImagen = new JLabel("");
+		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
+		lblImagen.setFont(new Font("Arial", lblImagen.getFont().getStyle(), lblImagen.getFont().getSize()));
+		lblImagen.setBounds(472, 30, 222, 227);
+		lblImagen.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		getContentPane().add(lblImagen);
+		
+		btnBuscarImagen = new JButton("Buscar Imagen");
+		btnBuscarImagen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					AbrirImagen(e);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnBuscarImagen.setBounds(516, 280, 135, 23);
+		getContentPane().add(btnBuscarImagen);
 
 	}
+	
+	private void AbrirImagen(ActionEvent e) throws IOException {
+        JFileChooser j = new JFileChooser();
+        j.setDialogTitle("Buscar Imagen");
+        j.setFileSelectionMode(JFileChooser.FILES_ONLY);//solo archivos y no carpetas
+        int estado = j.showOpenDialog(null);
+        if(estado == 0){
+            try{
+            	String rutArchivo = j.getSelectedFile().getAbsolutePath();
+            	File f = new File(rutArchivo);
+            	BufferedImage src = ImageIO.read(f);
+            	BufferedImage dest = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_RGB);
+            	Graphics2D g = dest.createGraphics();
+            	AffineTransform at = AffineTransform.getScaleInstance(src.getWidth()/src.getWidth(), src.getHeight()/src.getHeight());
+            	g.drawRenderedImage(src, at);
+            	ImageIcon icon = new ImageIcon(rutArchivo);
+            	icon = new ImageIcon(dest);
+            	lblImagen.setText("");
+            	lblImagen.setIcon(new ImageIcon( new ImageIcon(dest).getImage().getScaledInstance(lblImagen.getWidth(),
+            					 lblImagen.getHeight(), Image.SCALE_DEFAULT)));
+            	icon.getIconHeight();
+            	
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(rootPane, " Error de imagen: " + ex.getMessage());
+                }
+           
+        }        
+}
 	
 	public void altaClaseCancelarActionPerformed(ActionEvent e){
 		limpiarFormulario();
@@ -152,6 +228,7 @@ public class AltaClase extends JInternalFrame {
 		textFieldNombre.setText("");
 		textFieldURL.setText("");
 		textFieldHoraInicio.setText("");
+		lblImagen.setIcon(null);
 	}
 	public void iniciarlizarComboBoxes() {
 		DefaultComboBoxModel<String> modelinstituciones = new DefaultComboBoxModel<String>(iconAC.listarInstituciones());
@@ -179,6 +256,7 @@ public class AltaClase extends JInternalFrame {
 	
 	public void altaClaseAceptarActionPerformed(ActionEvent e) {
 		if(checkFormulario()) {
+			
 			String nombre = this.textFieldNombre.getText();
 			String url = this.textFieldURL.getText();
 			String horaInicio = this.textFieldHoraInicio.getText();
@@ -188,8 +266,11 @@ public class AltaClase extends JInternalFrame {
 			Calendar fecha = this.dateChooser.getCalendar();
 			Calendar fechaReg = Calendar.getInstance();
 			int horaIni = Integer.parseInt(horaInicio);
+			byte[] fotoByte = null;
+			byte[] fotoByte1 = this.resultImagen(fotoByte);
+			
 			try {
-				this.iconAC.altaDictadoClase(nombreInst, nombreAct, nombreProf, nombre, fecha, horaIni, url, fechaReg);
+				this.iconAC.altaDictadoClase(nombreInst, nombreAct, nombreProf, nombre, fecha, horaIni, url, fechaReg, fotoByte1);
 				JOptionPane.showMessageDialog(this, "La clase ha sido dado de alta con éxito", "Alta Clase", JOptionPane.INFORMATION_MESSAGE);
 			}catch (ClaseRepetidaException p) {
 				JOptionPane.showMessageDialog(this, p.getMessage(), "Alta Clase", JOptionPane.ERROR_MESSAGE);
@@ -222,4 +303,14 @@ public class AltaClase extends JInternalFrame {
         return true;
     }
 	
+	private byte[] resultImagen(byte[] fotoByte) {
+		if(lblImagen.getIcon() == null) {
+			fotoByte = null;
+		}else if(lblImagen.getIcon() != null) {
+			Image image = iconIM.iconToImage(lblImagen.getIcon());
+			fotoByte = iconIM.imageToByte(image);
+			
+		}
+		return fotoByte;
+	}
 }

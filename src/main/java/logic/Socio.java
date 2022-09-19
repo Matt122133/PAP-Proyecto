@@ -17,8 +17,8 @@ public class Socio extends Usuario{
 	@OneToMany(mappedBy = "socio",cascade = CascadeType.ALL,orphanRemoval=true)
 	private List<Registro> registros = new ArrayList<Registro>();
 	
-	public Socio(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password /*,byte[] imagen*/) {
-		super(nickname, nombre, apellido, email, fechaNac, password/*, imagen*/);
+	public Socio(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password ,byte[] imagen) {
+		super(nickname, nombre, apellido, email, fechaNac, password, imagen);
 	}
 	
 	public Socio() {
@@ -64,12 +64,13 @@ public class Socio extends Usuario{
 			this.setFechaNac(actualizado.getFechaNac());
 			this.setNickname(actualizado.getNickname());
 			this.setPassword(actualizado.getPassword());
+			this.setImagen(actualizado.getImagen());
 		}
 	}
 	
 	@Override
 	public DtUsuario getDtUsuario() {
-		return new DtSocio(this.getNickname(), this.getNombre(),this.getApellido(),this.getEmail(),this.getFechaNac(), this.getPassword()/*, this.getImagen()*/);
+		return new DtSocio(this.getNickname(), this.getNombre(),this.getApellido(),this.getEmail(),this.getFechaNac(), this.getPassword(), this.getImagen());
 	}
 	
 	public Clase buscarPorNombre(String nombre) {
