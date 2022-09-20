@@ -14,7 +14,6 @@ public class ControladorAltaUsuario implements IControladorAltaUsuario {
 		super();
 	}
 	
-	@SuppressWarnings("null")
 	public void altaUsuario(DtUsuario usuario) throws UsuarioRepetidoException {
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
@@ -24,11 +23,11 @@ public class ControladorAltaUsuario implements IControladorAltaUsuario {
 			throw new UsuarioRepetidoException("El usuario con nickname " + usuario.getNickname() +  " o con el email " + usuario.getEmail() + " ya esta registrado.");
 			
 		if (usuario instanceof DtSocio)
-			nuevoUsuario = new Socio(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), usuario.getPassword(), usuario.getImagen());
+			nuevoUsuario = new Socio(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), usuario.getPassword(), usuario.getImagenURL());
 		
 		if (usuario instanceof DtProfesor) {
 			InstitucionDeportiva instDep = mI.buscarInstitucion(((DtProfesor) usuario).getInstDep());
-			nuevoUsuario = new Profesor(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), usuario.getPassword(), usuario.getImagen() , ((DtProfesor) usuario).getDescripcion(), ((DtProfesor) usuario).getBiografia(), ((DtProfesor) usuario).getSitioWeb(), instDep);
+			nuevoUsuario = new Profesor(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), usuario.getPassword(), usuario.getImagenURL() , ((DtProfesor) usuario).getDescripcion(), ((DtProfesor) usuario).getBiografia(), ((DtProfesor) usuario).getSitioWeb(), instDep);
 		}
 		mU.agregarUsuario(nuevoUsuario);
 	}

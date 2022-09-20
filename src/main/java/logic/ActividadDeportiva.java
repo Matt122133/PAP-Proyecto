@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Query;
 
-import org.hibernate.annotations.Type;
-
 import datatypes.DtActividadDeportiva;
 import persistencia.Conexion;
 
@@ -24,9 +22,7 @@ public class ActividadDeportiva {
 	private Integer duracion;
 	private Float costo;
 	private Calendar fechaReg;
-	
-	@Type(type="org.hibernate.type.BinaryType")
-	private byte[] imagenAct;
+	private String imagenActURL;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Clase> clases = new ArrayList<Clase>();
@@ -69,11 +65,11 @@ public class ActividadDeportiva {
 		this.fechaReg = fechaReg;
 	}
 	
-	public byte[] getImagenAct() {
-		return imagenAct;
+	public String getImagenActURL() {
+		return imagenActURL;
 	}
-	public void setImagenAct(byte[] imagenAct) {
-		this.imagenAct = imagenAct;
+	public void setImagenActURL(String imagenActURL) {
+		this.imagenActURL = imagenActURL;
 	}
 	public List<Clase> getClases() {
 		return clases;
@@ -85,14 +81,14 @@ public class ActividadDeportiva {
 	
 	
 	
-	public ActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, Calendar fechaReg, byte[] imagenAct) {
+	public ActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, Calendar fechaReg, String imagenActURL) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.duracion = duracion;
 		this.costo = costo;
 		this.fechaReg = fechaReg;
-		this.imagenAct = imagenAct;
+		this.imagenActURL = imagenActURL;
 	}
 	
 	public ActividadDeportiva() {
@@ -120,7 +116,7 @@ public class ActividadDeportiva {
 	}
 	
 	public DtActividadDeportiva obtenerDt() {
-		return new DtActividadDeportiva(this.getNombre(),this.getDescripcion(), this.getDuracion(), this.getCosto(), this.getFechaReg(), this.getImagenAct());
+		return new DtActividadDeportiva(this.getNombre(),this.getDescripcion(), this.getDuracion(), this.getCosto(), this.getFechaReg(), this.getImagenActURL());
 	}
 	
 	

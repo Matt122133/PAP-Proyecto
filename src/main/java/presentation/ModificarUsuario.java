@@ -1,14 +1,10 @@
 package presentation;
 
-import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 
-import interfaces.IControladorImagenes;
 import interfaces.IControladorModificarUsuario;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,22 +18,14 @@ import datatypes.DtSocio;
 import datatypes.DtUsuario;
 
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Calendar;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
+
 
 public class ModificarUsuario extends JInternalFrame {
 
 	private IControladorModificarUsuario iconMU;
-	private IControladorImagenes iconIM;
 	
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> comboBoxInstitucion;
@@ -55,15 +43,13 @@ public class ModificarUsuario extends JInternalFrame {
 	private JTextField textFieldSitioWeb;
 	private JLabel lblContrasenia;
 	private JTextField textFieldContrasenia;
-	private JLabel lblImagen;
-	private JButton btnModifImagen;
+	private JTextField textFieldImagenURL;
 
 	/**
 	 * Create the frame.
 	 */
-	public ModificarUsuario(IControladorModificarUsuario iconMU, IControladorImagenes iconIM) {
+	public ModificarUsuario(IControladorModificarUsuario iconMU) {
 		this.iconMU = iconMU;
-		this.iconIM = iconIM;
 		
 		setResizable(true);
         setIconifiable(true);
@@ -71,11 +57,11 @@ public class ModificarUsuario extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
         setTitle("Modificar Usuario");
-		setBounds(100, 100, 788, 340);
+		setBounds(100, 100, 552, 340);
 		getContentPane().setLayout(null);
 		
 		comboBoxInstitucion = new JComboBox<String>();
-		comboBoxInstitucion.setBounds(100, 140, 120, 24);
+		comboBoxInstitucion.setBounds(100, 173, 120, 24);
 		getContentPane().add(comboBoxInstitucion);
 		
 		JLabel lblNickname = new JLabel("Nickname");
@@ -83,7 +69,7 @@ public class ModificarUsuario extends JInternalFrame {
 		getContentPane().add(lblNickname);
 		
 		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(34, 52, 56, 15);
+		lblNombre.setBounds(26, 52, 56, 15);
 		getContentPane().add(lblNombre);
 		
 		JLabel lblApellido = new JLabel("Apellido");
@@ -91,7 +77,7 @@ public class ModificarUsuario extends JInternalFrame {
 		getContentPane().add(lblApellido);
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(34, 83, 56, 15);
+		lblEmail.setBounds(26, 83, 56, 15);
 		getContentPane().add(lblEmail);
 		
 		JLabel lblFechaNac = new JLabel("Fecha Nac");
@@ -99,7 +85,7 @@ public class ModificarUsuario extends JInternalFrame {
 		getContentPane().add(lblFechaNac);
 		
 		lblInstitucion = new JLabel("Institucion");
-		lblInstitucion.setBounds(33, 145, 78, 15);
+		lblInstitucion.setBounds(12, 178, 70, 15);
 		getContentPane().add(lblInstitucion);
 		
 		JButton btnConfirmarNickname = new JButton("Confirmar Nickname");
@@ -131,7 +117,7 @@ public class ModificarUsuario extends JInternalFrame {
 		getContentPane().add(dateChooser);
 		
 		textFieldBiografia = new JTextField();
-		textFieldBiografia.setBounds(166, 171, 193, 42);
+		textFieldBiografia.setBounds(318, 173, 193, 24);
 		getContentPane().add(textFieldBiografia);
 		textFieldBiografia.setColumns(10);
 		
@@ -141,7 +127,7 @@ public class ModificarUsuario extends JInternalFrame {
 		textFieldDescripcion.setColumns(10);
 		
 		lblBiografia = new JLabel("Biografia");
-		lblBiografia.setBounds(110, 180, 62, 24);
+		lblBiografia.setBounds(245, 173, 62, 24);
 		getContentPane().add(lblBiografia);
 		
 		lblDescripcion = new JLabel("Descripcion");
@@ -191,7 +177,7 @@ public class ModificarUsuario extends JInternalFrame {
 		
 		lblContrasenia = new JLabel("Contraseña");
 		lblContrasenia.setHorizontalAlignment(SwingConstants.LEFT);
-		lblContrasenia.setBounds(20, 113, 70, 14);
+		lblContrasenia.setBounds(12, 113, 70, 14);
 		getContentPane().add(lblContrasenia);
 		
 		textFieldContrasenia = new JTextField();
@@ -199,59 +185,16 @@ public class ModificarUsuario extends JInternalFrame {
 		getContentPane().add(textFieldContrasenia);
 		textFieldContrasenia.setColumns(10);
 		
-		JLabel lblEtiquetaFoto = new JLabel("Imagen");
-		lblEtiquetaFoto.setBounds(608, 8, 48, 14);
+		JLabel lblEtiquetaFoto = new JLabel("Imagen URL");
+		lblEtiquetaFoto.setBounds(12, 145, 70, 14);
 		getContentPane().add(lblEtiquetaFoto);
 		
-		lblImagen = new JLabel("");
-		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImagen.setFont(new Font("Arial", lblImagen.getFont().getStyle(), lblImagen.getFont().getSize()));
-		lblImagen.setBounds(521, 24, 222, 227);
-		lblImagen.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		getContentPane().add(lblImagen);
-		
-		btnModifImagen = new JButton("Modificar Imagen");
-		btnModifImagen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					AbrirImagen(e);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnModifImagen.setBounds(553, 276, 158, 23);
-		getContentPane().add(btnModifImagen);
+		textFieldImagenURL = new JTextField();
+		textFieldImagenURL.setBounds(100, 142, 120, 20);
+		getContentPane().add(textFieldImagenURL);
+		textFieldImagenURL.setColumns(10);
 
 	}
-	
-	private void AbrirImagen(ActionEvent e) throws IOException {
-        JFileChooser j = new JFileChooser();
-        j.setDialogTitle("Buscar Imagen");
-        j.setFileSelectionMode(JFileChooser.FILES_ONLY);//solo archivos y no carpetas
-        int estado = j.showOpenDialog(null);
-        if(estado == 0){
-            try{
-            	String rutArchivo = j.getSelectedFile().getAbsolutePath();
-            	File f = new File(rutArchivo);
-            	BufferedImage src = ImageIO.read(f);
-            	BufferedImage dest = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_RGB);
-            	Graphics2D g = dest.createGraphics();
-            	AffineTransform at = AffineTransform.getScaleInstance(src.getWidth()/src.getWidth(), src.getHeight()/src.getHeight());
-            	g.drawRenderedImage(src, at);
-            	ImageIcon icon = new ImageIcon(rutArchivo);
-            	icon = new ImageIcon(dest);
-            	lblImagen.setText("");
-            	lblImagen.setIcon(new ImageIcon( new ImageIcon(dest).getImage().getScaledInstance(lblImagen.getWidth(),
-            					 lblImagen.getHeight(), Image.SCALE_DEFAULT)));
-            	icon.getIconHeight();
-            	
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(rootPane, " Error de imagen: " + ex.getMessage());
-                }
-           
-        }        
-}
 	
 	public void confirmarNicknameActionButtonPerformed(ActionEvent e) {
 		String user = this.comboBoxUsuarios.getSelectedItem().toString();
@@ -260,15 +203,7 @@ public class ModificarUsuario extends JInternalFrame {
 		this.textFieldApellido.setText(userDt.getApellido());
 		this.textFieldEmail.setText(userDt.getEmail());
 		this.textFieldContrasenia.setText(userDt.getPassword());
-		
-		if(userDt.getImagen() != null) {
-			if(!userDt.getImagen().equals(null)) {
-				this.lblImagen.setText("");
-				this.lblImagen.setIcon(new ImageIcon(new ImageIcon(userDt.getImagen()).getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_DEFAULT )));
-			}
-		}else{
-			lblImagen.setIcon(null);
-		}
+		this.textFieldImagenURL.setText(userDt.getImagenURL());
 		
 		
 		if (userDt instanceof DtSocio) {
@@ -309,15 +244,14 @@ public class ModificarUsuario extends JInternalFrame {
 				String email = this.textFieldEmail.getText();
 				Calendar fechaNac = this.dateChooser.getCalendar();
 				String contrasenia = this.textFieldContrasenia.getText();
-				byte[] fotoByte = null;
-				byte[] fotoUsuarioModificado = this.resultImagen(fotoByte);
+				String imagenURL = this.textFieldImagenURL.getText();
 				if(fechaNac==null) {
 					String user = this.comboBoxUsuarios.getSelectedItem().toString();
 					DtUsuario userDt = iconMU.obtenerUserDt(user);
 					fechaNac = userDt.getFechaNac();
 				}
 			
-			actualizado = new DtSocio(nick, nombre, apellido, email, fechaNac, contrasenia, fotoUsuarioModificado);
+			actualizado = new DtSocio(nick, nombre, apellido, email, fechaNac, contrasenia, imagenURL);
 			this.iconMU.modificarUsuario(actualizado);
 			JOptionPane.showMessageDialog(this, "El usuario ha sido modificado con éxito", "Modificar Usuario", JOptionPane.INFORMATION_MESSAGE);
 			limpiarFormulario();
@@ -332,8 +266,7 @@ public class ModificarUsuario extends JInternalFrame {
 				String email = this.textFieldEmail.getText();
 				Calendar fechaNac = this.dateChooser.getCalendar();
 				String contrasenia = this.textFieldContrasenia.getText();
-				byte[] fotoByte = null;
-				byte[] fotoUsuarioModificado = this.resultImagen(fotoByte);
+				String imagenURL = this.textFieldImagenURL.getText();
 				
 				if(fechaNac==null) {
 					String user = this.comboBoxUsuarios.getSelectedItem().toString();
@@ -344,7 +277,7 @@ public class ModificarUsuario extends JInternalFrame {
 				String biografia =  this.textFieldBiografia.getText();
 				String sitioWeb = this.textFieldSitioWeb.getText();
 				String institucion = this.comboBoxInstitucion.getSelectedItem().toString();
-				actualizado = new DtProfesor(nick, nombre, apellido, email, fechaNac, contrasenia, fotoUsuarioModificado, descripcion, biografia, sitioWeb, institucion);
+				actualizado = new DtProfesor(nick, nombre, apellido, email, fechaNac, contrasenia, imagenURL, descripcion, biografia, sitioWeb, institucion);
 				
 				this.iconMU.modificarUsuario(actualizado);
 				JOptionPane.showMessageDialog(this, "El usuario ha sido modificado con éxito", "Modificar Usuario", JOptionPane.INFORMATION_MESSAGE);
@@ -356,19 +289,6 @@ public class ModificarUsuario extends JInternalFrame {
 	}
 		
 	 }
-	
-	private byte[] resultImagen(byte[] fotoByte) {
-		if(lblImagen.getIcon() == null) {
-			fotoByte = null;
-		}else if(lblImagen.getIcon() != null) {
-			Image image = iconIM.iconToImage(lblImagen.getIcon());
-			fotoByte = iconIM.imageToByte(image);
-			
-		}
-		return fotoByte;
-	}
-		
-		
 	
 	public void iniciarlizarComboBoxes() {
 		DefaultComboBoxModel<String> modelinstituciones = new DefaultComboBoxModel<String>(iconMU.listarInstituciones());
@@ -416,6 +336,7 @@ public class ModificarUsuario extends JInternalFrame {
         textFieldBiografia.setText("");
         textFieldDescripcion.setText("");
         textFieldContrasenia.setText("");
+        this.textFieldImagenURL.setText("");
         
         this.comboBoxInstitucion.setVisible(false);
 		this.textFieldBiografia.setVisible(false);
@@ -426,6 +347,5 @@ public class ModificarUsuario extends JInternalFrame {
 		this.lblSitioWeb.setVisible(false);
 		this.textFieldSitioWeb.setVisible(false);
 		
-		lblImagen.setIcon(null);
  }
 }

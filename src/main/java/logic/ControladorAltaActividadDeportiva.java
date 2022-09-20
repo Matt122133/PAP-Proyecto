@@ -12,10 +12,10 @@ import persistencia.Conexion;
 
 public class ControladorAltaActividadDeportiva implements IControladorAltaActividadDeportiva{
 	
-	public void altaActividadDeportiva(String nombreInst, String nombre, String descripcion, Integer duracion, float costo, Calendar fechaReg, byte[] imagenAct) throws ActividadRepetidaException {
+	public void altaActividadDeportiva(String nombreInst, String nombre, String descripcion, Integer duracion, float costo, Calendar fechaReg, String imagenActURL) throws ActividadRepetidaException {
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
 		InstitucionDeportiva instDep = mI.buscarInstitucion(nombreInst);
-		ActividadDeportiva actDep = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg, imagenAct);
+		ActividadDeportiva actDep = new ActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg, imagenActURL);
 		ActividadDeportiva actvDeportiva = instDep.tengoActDep(nombre);
 		if (actvDeportiva != null)
 			throw new ActividadRepetidaException("La actividad "+ nombre +" ya existe.");		

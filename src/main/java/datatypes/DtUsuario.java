@@ -9,9 +9,9 @@ public class DtUsuario {
 	private String email;
 	private Calendar fechaNac;
 	private String password;
-	private byte[] imagen;
+	private String imagenURL;
 	
-	public DtUsuario(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password, byte[] imagen) {
+	public DtUsuario(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password, String imagenURL) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;
@@ -19,7 +19,7 @@ public class DtUsuario {
 		this.email = email;
 		this.fechaNac = fechaNac;
 		this.password = password;
-		this.imagen = imagen;
+		this.imagenURL = imagenURL;
 	}
 	
 	public DtUsuario() {
@@ -50,7 +50,8 @@ public class DtUsuario {
 		return password;
 	}
 
-	public byte[] getImagen() {
-		return imagen;
+	public String getImagenURL() {
+		return imagenURL;
 	}
+
 }

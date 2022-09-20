@@ -4,7 +4,6 @@ package presentation;
 import javax.swing.JInternalFrame;
 
 import interfaces.IControladorAltaUsuario;
-import interfaces.IControladorImagenes;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
@@ -15,28 +14,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import com.toedter.calendar.JDateChooser;
 
 
-import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.SystemColor;
-import javax.swing.border.TitledBorder;
 
 public class AltaUsuario extends JInternalFrame {
 	/**
@@ -45,7 +33,6 @@ public class AltaUsuario extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 
 	private IControladorAltaUsuario iconAU;
-	private IControladorImagenes iconIM;
 	
 	private JTextField textFieldNick;
 	private JTextField textFieldNombre;
@@ -65,13 +52,11 @@ public class AltaUsuario extends JInternalFrame {
 	private JLabel lblDescripcion;
 	private JTextField textFieldContrasenia;
 	private JTextField textFieldConfirmContrasenia;
-	private JLabel lblImagen;
-	private JButton btnInsertImagen;
+	private JTextField textFieldImagenURL;
 	
-	public AltaUsuario(IControladorAltaUsuario iconAU, IControladorImagenes iconIM) {
+	public AltaUsuario(IControladorAltaUsuario iconAU) {
 		
 		this.iconAU = iconAU;
-		this.iconIM = iconIM;
 		
 		setResizable(true);
         setIconifiable(true);
@@ -80,7 +65,7 @@ public class AltaUsuario extends JInternalFrame {
         setClosable(true);
         setTitle("Alta Usuario");
 		
-		setBounds(100, 100, 718, 431);
+		setBounds(100, 100, 528, 348);
 		getContentPane().setLayout(null);
 		
 		dateChooser = new JDateChooser();
@@ -256,60 +241,18 @@ public class AltaUsuario extends JInternalFrame {
 		getContentPane().add(textFieldConfirmContrasenia);
 		textFieldConfirmContrasenia.setColumns(10);
 		
-		lblImagen = new JLabel("Imagen");
-		lblImagen.setBackground(SystemColor.activeCaption);
-		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImagen.setFont(new Font("Arial", lblImagen.getFont().getStyle(), lblImagen.getFont().getSize()));
-		lblImagen.setBounds(457, 27, 222, 227);
-		lblImagen.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		getContentPane().add(lblImagen);
+		JLabel lblImagenURL = new JLabel("URL Imagen");
+		lblImagenURL.setBounds(220, 222, 84, 14);
+		getContentPane().add(lblImagenURL);
 		
-		btnInsertImagen = new JButton("Insertar Imagen");
-		btnInsertImagen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					AbrirImagen(e);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnInsertImagen.setBounds(500, 284, 136, 23);
-		getContentPane().add(btnInsertImagen);
+		textFieldImagenURL = new JTextField();
+		textFieldImagenURL.setBounds(303, 219, 140, 20);
+		getContentPane().add(textFieldImagenURL);
+		textFieldImagenURL.setColumns(10);
 		
 		
 	}
-	
-	private void AbrirImagen(ActionEvent e) throws IOException {
-	        JFileChooser j = new JFileChooser();
-	        j.setDialogTitle("Buscar Imagen");
-	        j.setFileSelectionMode(JFileChooser.FILES_ONLY);//solo archivos y no carpetas
-	        int estado = j.showOpenDialog(null);
-	        if(estado == 0){
-	            try{
-	            	String rutArchivo = j.getSelectedFile().getAbsolutePath();
-	            	File f = new File(rutArchivo);
-	            	BufferedImage src = ImageIO.read(f);
-	            	BufferedImage dest = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_RGB);
-	            	Graphics2D g = dest.createGraphics();
-	            	AffineTransform at = AffineTransform.getScaleInstance(src.getWidth()/src.getWidth(), src.getHeight()/src.getHeight());
-	            	g.drawRenderedImage(src, at);
-	            	ImageIcon icon = new ImageIcon(rutArchivo);
-	            	icon = new ImageIcon(dest);
-	            	lblImagen.setText("");
-	            	lblImagen.setIcon(new ImageIcon( new ImageIcon(dest).getImage().getScaledInstance(lblImagen.getWidth(),
-	            					 lblImagen.getHeight(), Image.SCALE_DEFAULT)));
-	            	icon.getIconHeight();
-	            	
-	                } catch (IOException ex) {
-	                    JOptionPane.showMessageDialog(rootPane, " Error de imagen: " + ex.getMessage());
-	                }
-	           
-	        }        
-	}
 	        
-	        
-
 	public void inicializarComboBoxes() {
 		DefaultComboBoxModel<String> modelinstituciones = new DefaultComboBoxModel<String>(iconAU.listarInstituciones());
 		comboBoxInstitucion.setModel(modelinstituciones);
@@ -330,11 +273,10 @@ public class AltaUsuario extends JInternalFrame {
 		String email = this.textFieldEmail.getText();
 		Calendar fecha = this.dateChooser.getCalendar();
 		String contrasenia = this.textFieldContrasenia.getText();
-		byte[] fotoByte = null;
-		byte[] fotoUsuario = this.resultImagen(fotoByte);
+		String imagenURL = this.textFieldImagenURL.getText();
 		
 		if(rdbtnSocio.isSelected()) {
-			nuevoUsuario = new DtSocio(nickname, nombre, apellido, email, fecha, contrasenia, fotoUsuario);
+			nuevoUsuario = new DtSocio(nickname, nombre, apellido, email, fecha, contrasenia, imagenURL);
 		}
 		else if(rdbtnProfesor.isSelected()) {
 			if(checkFormularioProfesor()) {
@@ -342,7 +284,7 @@ public class AltaUsuario extends JInternalFrame {
 			String sitioWeb = this.textFieldSitioWeb.getText();
 			String biografia = this.textFieldBiografia.getText();
 			String descripcion = this.textFieldDescripcion.getText();
-			nuevoUsuario = new DtProfesor(nickname, nombre, apellido, email, fecha, contrasenia, fotoByte, descripcion, biografia, sitioWeb, institucion);
+			nuevoUsuario = new DtProfesor(nickname, nombre, apellido, email, fecha, contrasenia, imagenURL, descripcion, biografia, sitioWeb, institucion);
 			}
 		}
 		try {
@@ -403,16 +345,6 @@ public class AltaUsuario extends JInternalFrame {
 		
 	}
 	
-	private byte[] resultImagen(byte[] fotoByte) {
-		if(lblImagen.getIcon() == null) {
-			fotoByte = null;
-		}else if(lblImagen.getIcon() != null) {
-			Image image = iconIM.iconToImage(lblImagen.getIcon());
-			fotoByte = iconIM.imageToByte(image);
-			
-		}
-		return fotoByte;
-	}
 	
 	private void limpiarFormulario() {
         textFieldNombre.setText("");
@@ -424,5 +356,6 @@ public class AltaUsuario extends JInternalFrame {
         textFieldDescripcion.setText("");
         textFieldContrasenia.setText("");
         textFieldConfirmContrasenia.setText("");
+        textFieldImagenURL.setText("");
  }
 }

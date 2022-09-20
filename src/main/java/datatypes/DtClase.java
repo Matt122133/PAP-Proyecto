@@ -8,7 +8,7 @@ public class DtClase {
 	private Integer horaInicio;
 	private String url;
 	private Calendar fechaReg;
-	private byte[] imagenClase;
+	private String imagenClaseURL;
 	
 	public String getNombre() {
 		return nombre;
@@ -30,21 +30,18 @@ public class DtClase {
 		return fechaReg;
 	}
 	
-	public byte[] getImagenClase() {
-		return imagenClase;
+	public String getImagenClaseURL() {
+		return imagenClaseURL;
 	}
 
-	
-	
-	public DtClase(String nombre, Calendar fecha, Integer horaInicio, String url, Calendar fechaReg,
-			byte[] imagenClase) {
+	public DtClase(String nombre, Calendar fecha, Integer horaInicio, String url, Calendar fechaReg, String imagenClaseURL) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
 		this.horaInicio = horaInicio;
 		this.url = url;
 		this.fechaReg = fechaReg;
-		this.imagenClase = imagenClase;
+		this.imagenClaseURL = imagenClaseURL;
 	}
 
 	public DtClase() {}

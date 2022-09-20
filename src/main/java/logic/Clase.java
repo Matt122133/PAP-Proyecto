@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Type;
-
 import datatypes.DtClase;
 
 @Entity
@@ -22,8 +20,7 @@ public class Clase {
 	private Integer horaInicio;
 	private String url;
 	private Calendar fechaReg;
-	@Type(type="org.hibernate.type.BinaryType")
-	private byte[] imagenClase;
+	private String imagenClaseURL;
 	
 	@OneToMany(mappedBy = "clase",cascade = CascadeType.ALL,orphanRemoval=true)
 	private List<Registro> registros = new ArrayList<Registro>();
@@ -67,13 +64,13 @@ public class Clase {
 	public void setFechaReg(Calendar fechaReg) {
 		this.fechaReg = fechaReg;
 	}
-	
-	public byte[] getImagenClase() {
-		return imagenClase;
+
+	public String getImagenClaseURL() {
+		return imagenClaseURL;
 	}
 
-	public void setImagenClase(byte[] imagenClase) {
-		this.imagenClase = imagenClase;
+	public void setImagenClaseURL(String imagenClaseURL) {
+		this.imagenClaseURL = imagenClaseURL;
 	}
 
 	public List<Registro> getRegistros() {
@@ -86,14 +83,14 @@ public class Clase {
 	
 	
 	
-	public Clase(String nombre, Calendar fecha, Integer horaInicio, String url, Calendar fechaReg, byte[] imagenClase) {
+	public Clase(String nombre, Calendar fecha, Integer horaInicio, String url, Calendar fechaReg, String imagenClaseURL) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
 		this.horaInicio = horaInicio;
 		this.url = url;
 		this.fechaReg = fechaReg;
-		this.imagenClase = imagenClase;
+		this.imagenClaseURL = imagenClaseURL;
 	}
 
 	public Clase() {
@@ -101,7 +98,7 @@ public class Clase {
 	}
 
 	public DtClase getDtClase() {
-		return new DtClase(this.getNombre(), this.getFecha(), this.getHoraInicio(), this.getUrl(), this.getFechaReg(), this.getImagenClase());
+		return new DtClase(this.getNombre(), this.getFecha(), this.getHoraInicio(), this.getUrl(), this.getFechaReg(), this.getImagenClaseURL());
 	}
 	
 	public void agregarRegistro(Registro registro) {

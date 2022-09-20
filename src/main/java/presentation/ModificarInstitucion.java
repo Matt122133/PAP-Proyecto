@@ -101,7 +101,7 @@ public class ModificarInstitucion extends JInternalFrame {
 			String nombre = this.comboBoxInstitucion.getSelectedItem().toString();
 			String url = this.textFieldURL.getText();
 			String descripcion = this.textFieldDescripcion.getText();
-			DtInstitucion actualizada = new DtInstitucion(nombre,url,descripcion);
+			DtInstitucion actualizada = new DtInstitucion(nombre,descripcion,url);
 			this.iconMI.modificarInstDep(actualizada);
 			JOptionPane.showMessageDialog(this, "La institucion ha sido modificada con éxito", "Modificar Institucion", JOptionPane.INFORMATION_MESSAGE);
 			this.setVisible(false);

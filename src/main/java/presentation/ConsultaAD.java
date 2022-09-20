@@ -48,25 +48,12 @@ public class ConsultaAD extends JInternalFrame {
 	private JLabel lblHoraDeInicioClase;
 	private JLabel lblURLClase;
 	private JLabel lblClase_1;
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ConsultaAD frame = new ConsultaAD();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JLabel lblImagenURLClase;
+	private JTextField textFieldImagenActividad;
+	private JTextField textFieldImagenClase;
+	private JLabel lblDatosClase;
+	private JLabel lbImagenActURL;
 
-	/**
-	 * Create the frame.
-	 */
 	public ConsultaAD(IControladorConsultaAct iconCA) {
 		this.iconCA=iconCA;
 		
@@ -91,15 +78,15 @@ public class ConsultaAD extends JInternalFrame {
 		getContentPane().add(comboBoxInstitucion);
 		
 		lblActividad = new JLabel("Actividad");
-		lblActividad.setBounds(12, 60, 70, 15);
+		lblActividad.setBounds(12, 53, 70, 15);
 		getContentPane().add(lblActividad);
 		
 		comboBoxActividad = new JComboBox<String>();
-		comboBoxActividad.setBounds(90, 60, 114, 24);
+		comboBoxActividad.setBounds(90, 48, 114, 24);
 		getContentPane().add(comboBoxActividad);
 		
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(43, 102, 70, 15);
+		lblNombre.setBounds(53, 112, 70, 15);
 		getContentPane().add(lblNombre);
 		
 		textFieldNombre = new JTextField();
@@ -117,7 +104,7 @@ public class ConsultaAD extends JInternalFrame {
 		textFieldDescripcion.setColumns(10);
 		
 		lblDuracion = new JLabel("Duracion");
-		lblDuracion.setBounds(175, 101, 70, 15);
+		lblDuracion.setBounds(180, 112, 70, 15);
 		getContentPane().add(lblDuracion);
 		
 		textFieldDuracion = new JTextField();
@@ -126,7 +113,7 @@ public class ConsultaAD extends JInternalFrame {
 		textFieldDuracion.setColumns(10);
 		
 		lblCosto = new JLabel("Costo");
-		lblCosto.setBounds(231, 188, 51, 15);
+		lblCosto.setBounds(332, 160, 51, 15);
 		getContentPane().add(lblCosto);
 		
 		textFieldCosto = new JTextField();
@@ -135,7 +122,7 @@ public class ConsultaAD extends JInternalFrame {
 		textFieldCosto.setColumns(10);
 		
 		lblFechaReg = new JLabel("FechaReg");
-		lblFechaReg.setBounds(312, 101, 70, 15);
+		lblFechaReg.setBounds(320, 112, 70, 15);
 		getContentPane().add(lblFechaReg);
 		
 		textFieldFechaReg = new JTextField();
@@ -144,11 +131,11 @@ public class ConsultaAD extends JInternalFrame {
 		textFieldFechaReg.setColumns(10);
 		
 		lblClase_1 = new JLabel("Clase");
-		lblClase_1.setBounds(75, 237, 51, 15);
+		lblClase_1.setBounds(53, 233, 51, 15);
 		getContentPane().add(lblClase_1);
 		
 		comboBoxClase = new JComboBox<String>();
-		comboBoxClase.setBounds(144, 232, 135, 24);
+		comboBoxClase.setBounds(122, 228, 135, 24);
 		getContentPane().add(comboBoxClase);
 		
 		JButton btnElegirInsti = new JButton("Elegir Insti");
@@ -169,13 +156,14 @@ public class ConsultaAD extends JInternalFrame {
 				textFieldDuracion.setEnabled(false);
 				textFieldCosto.setEnabled(false);
 				textFieldFechaReg.setEnabled(false);
+				textFieldImagenActividad.setEnabled(false);
 				
 				lblClase_1.setVisible(true);
 				comboBoxClase.setVisible(true);
 				btnElegirClase.setVisible(true);
 			}
 		});
-		btnElegirAct.setBounds(244, 55, 117, 25);
+		btnElegirAct.setBounds(244, 48, 117, 25);
 		getContentPane().add(btnElegirAct);
 		
 		btnElegirClase = new JButton("Elegir Clase");
@@ -187,14 +175,15 @@ public class ConsultaAD extends JInternalFrame {
 				textFieldFechaRegClase.setEnabled(false);
 				textFieldHoraInicioClase.setEnabled(false);
 				textFieldURLClase.setEnabled(false);
+				textFieldImagenClase.setEnabled(false);
 			}
 		});
-		btnElegirClase.setBounds(295, 232, 117, 25);	
+		btnElegirClase.setBounds(273, 228, 117, 25);	
 		getContentPane().add(btnElegirClase);
 			
 			
 		lblNombreClase = new JLabel("Nombre");
-		lblNombreClase.setBounds(43, 102, 70, 15);
+		lblNombreClase.setBounds(53, 112, 70, 15);
 		getContentPane().add(lblNombreClase);
 		
 		textFieldNombreClase = new JTextField();
@@ -203,7 +192,7 @@ public class ConsultaAD extends JInternalFrame {
 		textFieldNombreClase.setColumns(10);
 		
 		lblFechaCLase = new JLabel("Fecha");
-		lblFechaCLase.setBounds(199, 102, 51, 15);
+		lblFechaCLase.setBounds(180, 112, 51, 15);
 		getContentPane().add(lblFechaCLase);
 		
 		textFieldFechaClase = new JTextField();
@@ -212,7 +201,7 @@ public class ConsultaAD extends JInternalFrame {
 		getContentPane().add(textFieldFechaClase);
 		
 		lblFechaRegClase = new JLabel("FechaReg");
-		lblFechaRegClase.setBounds(312, 102, 70, 15);
+		lblFechaRegClase.setBounds(313, 112, 70, 15);
 		getContentPane().add(lblFechaRegClase);
 		
 		textFieldFechaRegClase = new JTextField();
@@ -230,7 +219,7 @@ public class ConsultaAD extends JInternalFrame {
 		getContentPane().add(textFieldHoraInicioClase);
 		
 		lblURLClase = new JLabel("URL");
-		lblURLClase.setBounds(240, 188, 36, 15);
+		lblURLClase.setBounds(331, 160, 36, 15);
 		getContentPane().add(lblURLClase);
 		
 		textFieldURLClase = new JTextField();
@@ -240,6 +229,28 @@ public class ConsultaAD extends JInternalFrame {
 		
 		comboBoxActividad.setEnabled(false);
 		btnElegirAct.setEnabled(false);
+		
+		lblImagenURLClase = new JLabel("Imagen URL");
+		lblImagenURLClase.setBounds(187, 160, 70, 14);
+		getContentPane().add(lblImagenURLClase);
+		
+		textFieldImagenActividad = new JTextField();
+		textFieldImagenActividad.setBounds(162, 185, 114, 20);
+		getContentPane().add(textFieldImagenActividad);
+		textFieldImagenActividad.setColumns(10);
+		
+		textFieldImagenClase = new JTextField();
+		textFieldImagenClase.setBounds(162, 186, 114, 20);
+		getContentPane().add(textFieldImagenClase);
+		textFieldImagenClase.setColumns(10);
+		
+		lblDatosClase = new JLabel("Datos de la clase:");
+		lblDatosClase.setBounds(12, 87, 126, 14);
+		getContentPane().add(lblDatosClase);
+		
+		lbImagenActURL = new JLabel("Imagen URL");
+		lbImagenActURL.setBounds(183, 160, 67, 14);
+		getContentPane().add(lbImagenActURL);
 		
 		lblClase_1.setVisible(false);
 		comboBoxClase.setVisible(false);
@@ -284,6 +295,7 @@ public class ConsultaAD extends JInternalFrame {
 		Integer month = dtActDep.getFechaReg().get(Calendar.MONTH)+1;
 		Integer year = dtActDep.getFechaReg().get(Calendar.YEAR);
 		this.textFieldFechaReg.setText(day.toString()+ "/"+ month.toString()+"/"+ year.toString());
+		this.textFieldImagenActividad.setText(dtActDep.getImagenActURL());
 		
 		DefaultComboBoxModel<String> modelactividades = new DefaultComboBoxModel<String>(iconCA.listarClases(nombreInsti, nombreAct));
 		comboBoxClase.setModel(modelactividades);
@@ -308,6 +320,7 @@ public class ConsultaAD extends JInternalFrame {
 		Integer month = dtClase.getFechaReg().get(Calendar.MONTH)+1;
 		Integer year = dtClase.getFechaReg().get(Calendar.YEAR);
 		this.textFieldFechaRegClase.setText(day.toString()+ "/"+ month.toString()+"/"+ year.toString());
+		this.textFieldImagenClase.setText(dtClase.getImagenClaseURL());
 		
 	}
 	
@@ -317,11 +330,14 @@ public class ConsultaAD extends JInternalFrame {
 		lblDuracion.setVisible(visible);
 		lblCosto.setVisible(visible);
 		lblFechaReg.setVisible(visible);
+		lbImagenActURL.setVisible(visible);
+		
 		textFieldNombre.setVisible(visible);
 		textFieldDescripcion.setVisible(visible);
 		textFieldDuracion.setVisible(visible);
 		textFieldCosto.setVisible(visible);
 		textFieldFechaReg.setVisible(visible);
+		textFieldImagenActividad.setVisible(visible);
 	}
 	
 	public void visibleClase(boolean visible) {
@@ -330,10 +346,15 @@ public class ConsultaAD extends JInternalFrame {
 		lblFechaRegClase.setVisible(visible);
 		lblHoraDeInicioClase.setVisible(visible);
 		lblURLClase.setVisible(visible);
+		lblDatosClase.setVisible(visible);
+		lblImagenURLClase.setVisible(visible);
+		
 		textFieldNombreClase.setVisible(visible);
 		textFieldFechaClase.setVisible(visible);
 		textFieldFechaRegClase.setVisible(visible);
 		textFieldHoraInicioClase.setVisible(visible);
 		textFieldURLClase.setVisible(visible);
+		textFieldImagenClase.setVisible(visible);
+		
 	}
 }

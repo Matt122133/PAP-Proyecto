@@ -35,6 +35,8 @@ public class ConsultaC extends JInternalFrame {
 	private JLabel lblHoraDeInicio;
 	private JLabel lblUrl;
 	private JLabel lblFechareg;
+	private JLabel lblImagenClase;
+	private JTextField textFieldImagenURL;
 
 	/**
 	 * Create the frame.
@@ -105,19 +107,21 @@ public class ConsultaC extends JInternalFrame {
 				textFieldHoraInicio.setEnabled(false);
 				textFieldURL.setEnabled(false);
 				textFieldFechaReg.setEnabled(false);
+				textFieldImagenURL.setEnabled(false);
 				
 				textFieldNombre.setVisible(true);
 				textFieldFecha.setVisible(true);
 				textFieldHoraInicio.setVisible(true);
 				textFieldURL.setVisible(true);
 				textFieldFechaReg.setVisible(true);
-				
+				textFieldImagenURL.setVisible(true);
 
 				lblNombre.setVisible(true);
 				lblFecha.setVisible(true);
 				lblHoraDeInicio.setVisible(true);
 				lblUrl.setVisible(true);
 				lblFechareg.setVisible(true);
+				lblImagenClase.setVisible(true);
 			}
 		});
 		btnElegirClase.setBounds(251, 76, 117, 25);
@@ -127,44 +131,44 @@ public class ConsultaC extends JInternalFrame {
 		lblNombre.setBounds(55, 133, 61, 15);
 		getContentPane().add(lblNombre);
 		
-		lblFecha = new JLabel("Fecha");
-		lblFecha.setBounds(199, 133, 51, 15);
+		lblFecha = new JLabel("Fecha Inicio");
+		lblFecha.setBounds(181, 133, 76, 15);
 		getContentPane().add(lblFecha);
 		
 		lblHoraDeInicio = new JLabel("Hora de Inicio");
-		lblHoraDeInicio.setBounds(305, 133, 107, 15);
+		lblHoraDeInicio.setBounds(317, 133, 83, 15);
 		getContentPane().add(lblHoraDeInicio);
 		
 		lblUrl = new JLabel("URL");
-		lblUrl.setBounds(112, 207, 36, 15);
+		lblUrl.setBounds(66, 190, 36, 15);
 		getContentPane().add(lblUrl);
 		
-		lblFechareg = new JLabel("FechaReg");
-		lblFechareg.setBounds(278, 207, 70, 15);
+		lblFechareg = new JLabel("Fecha Registro");
+		lblFechareg.setBounds(174, 190, 90, 15);
 		getContentPane().add(lblFechareg);
 		
 		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(24, 160, 114, 19);
+		textFieldNombre.setBounds(24, 159, 114, 19);
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
 		textFieldFecha = new JTextField();
-		textFieldFecha.setBounds(162, 160, 114, 19);
+		textFieldFecha.setBounds(162, 159, 114, 19);
 		getContentPane().add(textFieldFecha);
 		textFieldFecha.setColumns(10);
 		
 		textFieldHoraInicio = new JTextField();
-		textFieldHoraInicio.setBounds(300, 160, 114, 19);
+		textFieldHoraInicio.setBounds(301, 159, 114, 19);
 		getContentPane().add(textFieldHoraInicio);
 		textFieldHoraInicio.setColumns(10);
 		
 		textFieldURL = new JTextField();
-		textFieldURL.setBounds(70, 234, 114, 19);
+		textFieldURL.setBounds(24, 217, 114, 19);
 		getContentPane().add(textFieldURL);
 		textFieldURL.setColumns(10);
 		
 		textFieldFechaReg = new JTextField();
-		textFieldFechaReg.setBounds(254, 234, 114, 19);
+		textFieldFechaReg.setBounds(162, 217, 114, 19);
 		getContentPane().add(textFieldFechaReg);
 		textFieldFechaReg.setColumns(10);
 		
@@ -173,18 +177,28 @@ public class ConsultaC extends JInternalFrame {
 		comboBoxClase.setEnabled(false);
 		btnElegirClase.setEnabled(false);
 		
+		lblImagenClase = new JLabel("Imagen URL");
+		lblImagenClase.setBounds(317, 190, 83, 14);
+		getContentPane().add(lblImagenClase);
+		
+		textFieldImagenURL = new JTextField();
+		textFieldImagenURL.setBounds(301, 216, 114, 20);
+		getContentPane().add(textFieldImagenURL);
+		textFieldImagenURL.setColumns(10);
+		
 		textFieldNombre.setVisible(false);
 		textFieldFecha.setVisible(false);
 		textFieldHoraInicio.setVisible(false);
 		textFieldURL.setVisible(false);
 		textFieldFechaReg.setVisible(false);
+		textFieldImagenURL.setVisible(false);
 		
 		lblNombre.setVisible(false);
 		lblFecha.setVisible(false);
 		lblHoraDeInicio.setVisible(false);
 		lblUrl.setVisible(false);
 		lblFechareg.setVisible(false);
-		
+		lblImagenClase.setVisible(false);
 
 	}
 	
@@ -231,5 +245,6 @@ public class ConsultaC extends JInternalFrame {
 		Integer month = dtClase.getFechaReg().get(Calendar.MONTH)+1;
 		Integer year = dtClase.getFechaReg().get(Calendar.YEAR);
 		this.textFieldFechaReg.setText(day.toString()+ "/"+ month.toString()+"/"+ year.toString());
+		this.textFieldImagenURL.setText(dtClase.getImagenClaseURL());
 	}
 }

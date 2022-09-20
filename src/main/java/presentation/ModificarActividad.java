@@ -1,31 +1,19 @@
 package presentation;
 
 import javax.swing.JInternalFrame;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import interfaces.IControladorImagenes;
+
 import interfaces.IControladorModificarActividad;
 
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Calendar;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
 
 import datatypes.DtActividadDeportiva;
 
@@ -36,7 +24,6 @@ public class ModificarActividad extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private IControladorModificarActividad iconMA;
-	private IControladorImagenes iconIM;
 	
 	private JTextField textFieldNombre;
 	private JTextField textFieldDescripcion;
@@ -47,14 +34,12 @@ public class ModificarActividad extends JInternalFrame {
 	private JButton btnCancelar;
 	private JButton btnModificar;
 	private JComboBox<String> comboBoxAD;
-	private JLabel lblEtiquetaFoto;
-	private JLabel lblImagen;
-	private JButton btnModifImagen;
+	private JLabel lblImagenURL;
+	private JTextField textFieldImagenURL;
 
-	public ModificarActividad(IControladorModificarActividad iconMA, IControladorImagenes iconIM) {
+	public ModificarActividad(IControladorModificarActividad iconMA) {
 		
 		this.iconMA = iconMA;
-		this.iconIM = iconIM;
 		
 		setResizable(true);
         setIconifiable(true);
@@ -62,7 +47,7 @@ public class ModificarActividad extends JInternalFrame {
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
 		setTitle("Modificar Actividad");
-		setBounds(100, 100, 676, 365);
+		setBounds(100, 100, 443, 231);
 		getContentPane().setLayout(null);
 		
 		JLabel lblActividades = new JLabel("Actividades Deportivas");
@@ -70,13 +55,13 @@ public class ModificarActividad extends JInternalFrame {
 		getContentPane().add(lblActividades);
 		
 		JLabel lblNombreAct = new JLabel("Nombre");
-		lblNombreAct.setBounds(10, 63, 48, 14);
+		lblNombreAct.setBounds(10, 63, 58, 14);
 		getContentPane().add(lblNombreAct);
 		
 		textFieldNombre = new JTextField();
 		textFieldNombre.setEnabled(false);
 		textFieldNombre.setEditable(false);
-		textFieldNombre.setBounds(56, 60, 106, 20);
+		textFieldNombre.setBounds(68, 57, 106, 20);
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
@@ -85,16 +70,16 @@ public class ModificarActividad extends JInternalFrame {
 		getContentPane().add(lblDescripcion);
 		
 		textFieldDescripcion = new JTextField();
-		textFieldDescripcion.setBounds(271, 91, 106, 20);
+		textFieldDescripcion.setBounds(286, 91, 106, 20);
 		getContentPane().add(textFieldDescripcion);
 		textFieldDescripcion.setColumns(10);
 		
 		JLabel lblDuracion = new JLabel("Duracion");
-		lblDuracion.setBounds(10, 94, 48, 14);
+		lblDuracion.setBounds(10, 94, 58, 14);
 		getContentPane().add(lblDuracion);
 		
 		textFieldDuracion = new JTextField();
-		textFieldDuracion.setBounds(56, 91, 106, 20);
+		textFieldDuracion.setBounds(68, 88, 106, 20);
 		getContentPane().add(textFieldDuracion);
 		textFieldDuracion.setColumns(10);
 		
@@ -103,18 +88,18 @@ public class ModificarActividad extends JInternalFrame {
 		getContentPane().add(lblCosto);
 		
 		textFieldCosto = new JTextField();
-		textFieldCosto.setBounds(56, 122, 106, 20);
+		textFieldCosto.setBounds(68, 119, 106, 20);
 		getContentPane().add(textFieldCosto);
 		textFieldCosto.setColumns(10);
 		
 		JLabel lblFechaRegistro = new JLabel("Fecha Registro");
-		lblFechaRegistro.setBounds(194, 63, 79, 14);
+		lblFechaRegistro.setBounds(194, 63, 95, 14);
 		getContentPane().add(lblFechaRegistro);
 		
 		textFieldFechaReg = new JTextField();
 		textFieldFechaReg.setEnabled(false);
 		textFieldFechaReg.setEditable(false);
-		textFieldFechaReg.setBounds(271, 60, 106, 20);
+		textFieldFechaReg.setBounds(286, 60, 106, 20);
 		getContentPane().add(textFieldFechaReg);
 		textFieldFechaReg.setColumns(10);
 		
@@ -134,7 +119,7 @@ public class ModificarActividad extends JInternalFrame {
 				setVisible(false);
 			}
 		});
-		btnCancelar.setBounds(215, 278, 89, 23);
+		btnCancelar.setBounds(215, 166, 89, 23);
 		getContentPane().add(btnCancelar);
 		
 		btnModificar = new JButton("Modificar");
@@ -143,66 +128,24 @@ public class ModificarActividad extends JInternalFrame {
 				modificarActividadActionButton(e);
 			}
 		});
-		btnModificar.setBounds(99, 278, 89, 23);
+		btnModificar.setBounds(89, 166, 89, 23);
 		getContentPane().add(btnModificar);
 		
 		comboBoxAD = new JComboBox<String>();
 		comboBoxAD.setBounds(152, 17, 121, 24);
 		getContentPane().add(comboBoxAD);
 		
-		lblEtiquetaFoto = new JLabel("Imagen");
-		lblEtiquetaFoto.setBounds(496, 15, 48, 14);
-		getContentPane().add(lblEtiquetaFoto);
+		lblImagenURL = new JLabel("Imagen URL");
+		lblImagenURL.setBounds(194, 125, 79, 14);
+		getContentPane().add(lblImagenURL);
 		
-		lblImagen = new JLabel("");
-		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImagen.setFont(new Font("Arial", lblImagen.getFont().getStyle(), lblImagen.getFont().getSize()));
-		lblImagen.setBounds(409, 40, 222, 227);
-		lblImagen.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		getContentPane().add(lblImagen);
-		
-		btnModifImagen = new JButton("Modificar Imagen");
-		btnModifImagen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					AbrirImagen(e);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnModifImagen.setBounds(449, 278, 143, 23);
-		getContentPane().add(btnModifImagen);
+		textFieldImagenURL = new JTextField();
+		textFieldImagenURL.setBounds(286, 122, 106, 20);
+		getContentPane().add(textFieldImagenURL);
+		textFieldImagenURL.setColumns(10);
 
 	}
 	
-	private void AbrirImagen(ActionEvent e) throws IOException {
-        JFileChooser j = new JFileChooser();
-        j.setDialogTitle("Buscar Imagen");
-        j.setFileSelectionMode(JFileChooser.FILES_ONLY);//solo archivos y no carpetas
-        int estado = j.showOpenDialog(null);
-        if(estado == 0){
-            try{
-            	String rutArchivo = j.getSelectedFile().getAbsolutePath();
-            	File f = new File(rutArchivo);
-            	BufferedImage src = ImageIO.read(f);
-            	BufferedImage dest = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_RGB);
-            	Graphics2D g = dest.createGraphics();
-            	AffineTransform at = AffineTransform.getScaleInstance(src.getWidth()/src.getWidth(), src.getHeight()/src.getHeight());
-            	g.drawRenderedImage(src, at);
-            	ImageIcon icon = new ImageIcon(rutArchivo);
-            	icon = new ImageIcon(dest);
-            	lblImagen.setText("");
-            	lblImagen.setIcon(new ImageIcon( new ImageIcon(dest).getImage().getScaledInstance(lblImagen.getWidth(),
-            					 lblImagen.getHeight(), Image.SCALE_DEFAULT)));
-            	icon.getIconHeight();
-            	
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(rootPane, " Error de imagen: " + ex.getMessage());
-                }
-           
-        }        
-}
 	
 	public void llenarActividad(ActionEvent e) {
 		String nombre = this.comboBoxAD.getSelectedItem().toString();
@@ -215,15 +158,7 @@ public class ModificarActividad extends JInternalFrame {
 		Integer month = dtAct.getFechaReg().get(Calendar.MONTH)+1;
 		Integer year = dtAct.getFechaReg().get(Calendar.YEAR);
 		this.textFieldFechaReg.setText(day.toString()+ "/"+ month.toString()+"/"+ year.toString());
-		
-		if(dtAct.getImagenAct() != null) {
-			if(!dtAct.getImagenAct().equals(null)) {
-				this.lblImagen.setText("");
-				this.lblImagen.setIcon(new ImageIcon(new ImageIcon(dtAct.getImagenAct()).getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_DEFAULT )));
-			}
-		}else{
-			lblImagen.setIcon(null);
-		}
+		this.textFieldImagenURL.setText(dtAct.getImagenActURL());
 	}
 	
 	public void modificarActividadActionButton(ActionEvent e){
@@ -237,10 +172,9 @@ public class ModificarActividad extends JInternalFrame {
 			String costoString = this.textFieldCosto.getText();
 			float costo = Float.parseFloat(costoString);
 			Calendar fechaReg = Calendar.getInstance();
-			byte[] fotoByte = null;
-			byte[] fotoActivModificada = this.resultImagen(fotoByte);
+			String imagenURL = this.textFieldImagenURL.getText();
 			
-			DtActividadDeportiva actualizada = new DtActividadDeportiva(nombre,desc,duracion,costo,fechaReg, fotoActivModificada);
+			DtActividadDeportiva actualizada = new DtActividadDeportiva(nombre,desc,duracion,costo,fechaReg, imagenURL);
 		
 			this.iconMA.modificarActDep(actualizada);
 			JOptionPane.showMessageDialog(this, "La actividad ha sido modificada con éxito", "Modificar Actividad", JOptionPane.INFORMATION_MESSAGE);
@@ -250,16 +184,7 @@ public class ModificarActividad extends JInternalFrame {
 		
 	}
 	
-	private byte[] resultImagen(byte[] fotoByte) {
-		if(lblImagen.getIcon() == null) {
-			fotoByte = null;
-		}else if(lblImagen.getIcon() != null) {
-			Image image = iconIM.iconToImage(lblImagen.getIcon());
-			fotoByte = iconIM.imageToByte(image);
-			
-		}
-		return fotoByte;
-	}
+
 	
 	public void inicializarComboBoxes() {
 		DefaultComboBoxModel<String> rankingAD = new DefaultComboBoxModel<String>(iconMA.listarActividades());
@@ -272,7 +197,7 @@ public class ModificarActividad extends JInternalFrame {
 		textFieldDescripcion.setText("");
 		textFieldDuracion.setText("");
 		textFieldCosto.setText("");
-		lblImagen.setIcon(null);
+		textFieldImagenURL.setText("");
 	}
 	
 	private boolean checkFormulario() {

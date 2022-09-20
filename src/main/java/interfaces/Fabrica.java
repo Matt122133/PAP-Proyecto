@@ -8,7 +8,6 @@ import logic.ControladorConsultaAct;
 import logic.ControladorConsultaClase;
 import logic.ControladorConsultaUsuario;
 import logic.ControladorEliminarRegistro;
-import logic.ControladorImagenes;
 import logic.ControladorModificarActividad;
 import logic.ControladorModificarInstitucion;
 import logic.ControladorModificarUsuario;
@@ -83,8 +82,4 @@ public class Fabrica {
 		return new ControladorEliminarRegistro();
 	}
 	
-	public IControladorImagenes getIControladorIM() {
-		return new ControladorImagenes();
-	}
-
 }

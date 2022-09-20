@@ -97,7 +97,7 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 			for(ActividadDeportiva j:Act) {
 				Clase clase = j.existeClase(nombreClase);
 				if(clase != null) {
-					return clase.getNombre();
+					return j.getNombre();				
 				}
 			}
 		}

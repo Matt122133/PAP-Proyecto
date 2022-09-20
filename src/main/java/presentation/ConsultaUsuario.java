@@ -68,6 +68,12 @@ public class ConsultaUsuario extends JInternalFrame {
 	private JTextField textFieldFechaRegAct;
 	private JButton btnVerInfoClases;
 	private JLabel lblClases;
+	private JLabel lblImagenURL;
+	private JTextField textFieldImagenUsuario;
+	private JLabel lblFotoClaseEtiqueta;
+	private JTextField textFieldImagenClase;
+	private JLabel lblFotoActividad;
+	private JTextField textFieldImagenActividad;
 
 	/**
 	 * Create the frame.
@@ -90,12 +96,12 @@ public class ConsultaUsuario extends JInternalFrame {
 		internalFrameClase.setIconifiable(true);
         internalFrameClase.setMaximizable(true);
         internalFrameClase.setClosable(true);
-		internalFrameClase.setBounds(0, 0, 440, 244);
+		internalFrameClase.setBounds(0, 0, 434, 270);
 		getContentPane().add(internalFrameClase);
 		internalFrameClase.getContentPane().setLayout(null);
 		
 		textFieldActDep = new JTextField();
-		textFieldActDep.setBounds(106, 105, 114, 19);
+		textFieldActDep.setBounds(130, 106, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldActDep);
 		textFieldActDep.setColumns(10);
 		
@@ -131,20 +137,20 @@ public class ConsultaUsuario extends JInternalFrame {
 		internalFrameClase.getContentPane().add(lblFechaInicio);
 		
 		JLabel lblHorainicio = new JLabel("HoraInicio");
-		lblHorainicio.setBounds(76, 56, 85, 15);
+		lblHorainicio.setBounds(10, 60, 85, 15);
 		internalFrameClase.getContentPane().add(lblHorainicio);
 		
 		textFieldHoraInicioClase = new JTextField();
-		textFieldHoraInicioClase.setBounds(76, 72, 114, 19);
+		textFieldHoraInicioClase.setBounds(10, 75, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldHoraInicioClase);
 		textFieldHoraInicioClase.setColumns(10);
 		
 		JLabel lblUrl = new JLabel("URL");
-		lblUrl.setBounds(266, 56, 28, 15);
+		lblUrl.setBounds(144, 60, 28, 15);
 		internalFrameClase.getContentPane().add(lblUrl);
 		
 		textFieldURLClase = new JTextField();
-		textFieldURLClase.setBounds(223, 72, 114, 19);
+		textFieldURLClase.setBounds(144, 75, 114, 19);
 		internalFrameClase.getContentPane().add(textFieldURLClase);
 		textFieldURLClase.setColumns(10);
 		
@@ -157,67 +163,88 @@ public class ConsultaUsuario extends JInternalFrame {
 				lblCosto.setVisible(true);
 				lblDescActiv.setVisible(true);
 				lblFechaRegisAct.setVisible(true);
+				lblFotoActividad.setVisible(true);
 				
 				textFieldNomAct.setVisible(true);
 				textFieldCostoAct.setVisible(true);
 				textFieldDescAct.setVisible(true);
 				textFieldDurAct.setVisible(true);
 				textFieldFechaRegAct.setVisible(true);
+				textFieldImagenActividad.setVisible(true);
 				
 				textFieldNomAct.setEnabled(false);
 				textFieldCostoAct.setEnabled(false);
 				textFieldDescAct.setEnabled(false);
 				textFieldDurAct.setEnabled(false);
 				textFieldFechaRegAct.setEnabled(false);
+				textFieldImagenActividad.setEnabled(false);
 			}
 		});
-		btnVerInfoActividad.setBounds(233, 103, 157, 25);
+		btnVerInfoActividad.setBounds(251, 103, 157, 25);
 		internalFrameClase.getContentPane().add(btnVerInfoActividad);
 		
 		lblNombreAct = new JLabel("Nombre");
-		lblNombreAct.setBounds(10, 137, 79, 15);
+		lblNombreAct.setBounds(10, 144, 79, 15);
 		internalFrameClase.getContentPane().add(lblNombreAct);
 		
 		lblDuracionAct = new JLabel("Duracion");
-		lblDuracionAct.setBounds(10, 186, 79, 15);
+		lblDuracionAct.setBounds(10, 200, 79, 15);
 		internalFrameClase.getContentPane().add(lblDuracionAct);
 		
 		lblCosto = new JLabel("Costo");
-		lblCosto.setBounds(257, 142, 41, 15);
+		lblCosto.setBounds(265, 144, 41, 15);
 		internalFrameClase.getContentPane().add(lblCosto);
 		
 		lblDescActiv = new JLabel("Descripcion");
-		lblDescActiv.setBounds(10, 161, 114, 15);
+		lblDescActiv.setBounds(10, 172, 114, 15);
 		internalFrameClase.getContentPane().add(lblDescActiv);
 		
 		textFieldDescAct = new JTextField();
-		textFieldDescAct.setBounds(94, 159, 96, 20);
+		textFieldDescAct.setBounds(94, 169, 96, 20);
 		internalFrameClase.getContentPane().add(textFieldDescAct);
 		textFieldDescAct.setColumns(10);
 		
 		textFieldNomAct = new JTextField();
-		textFieldNomAct.setBounds(94, 136, 96, 20);
+		textFieldNomAct.setBounds(94, 141, 96, 20);
 		internalFrameClase.getContentPane().add(textFieldNomAct);
 		textFieldNomAct.setColumns(10);
 		
 		textFieldDurAct = new JTextField();
-		textFieldDurAct.setBounds(94, 184, 96, 20);
+		textFieldDurAct.setBounds(94, 197, 96, 20);
 		internalFrameClase.getContentPane().add(textFieldDurAct);
 		textFieldDurAct.setColumns(10);
 		
 		textFieldCostoAct = new JTextField();
-		textFieldCostoAct.setBounds(316, 140, 96, 20);
+		textFieldCostoAct.setBounds(302, 141, 96, 20);
 		internalFrameClase.getContentPane().add(textFieldCostoAct);
 		textFieldCostoAct.setColumns(10);
 		
 		lblFechaRegisAct = new JLabel("Fecha Registro ");
-		lblFechaRegisAct.setBounds(193, 168, 120, 14);
+		lblFechaRegisAct.setBounds(210, 172, 96, 14);
 		internalFrameClase.getContentPane().add(lblFechaRegisAct);
 		
 		textFieldFechaRegAct = new JTextField();
-		textFieldFechaRegAct.setBounds(316, 166, 96, 20);
+		textFieldFechaRegAct.setBounds(302, 169, 96, 20);
 		internalFrameClase.getContentPane().add(textFieldFechaRegAct);
 		textFieldFechaRegAct.setColumns(10);
+		
+		lblFotoClaseEtiqueta = new JLabel("Imagen URL");
+		lblFotoClaseEtiqueta.setBounds(279, 60, 96, 14);
+		internalFrameClase.getContentPane().add(lblFotoClaseEtiqueta);
+		
+		textFieldImagenClase = new JTextField();
+		textFieldImagenClase.setBounds(279, 75, 114, 19);
+		internalFrameClase.getContentPane().add(textFieldImagenClase);
+		textFieldImagenClase.setColumns(10);
+		
+		lblFotoActividad = new JLabel("Imagen URL ");
+		lblFotoActividad.setBounds(221, 200, 85, 14);
+		internalFrameClase.getContentPane().add(lblFotoActividad);
+		
+		textFieldImagenActividad = new JTextField();
+		textFieldImagenActividad.setBounds(302, 197, 96, 20);
+		internalFrameClase.getContentPane().add(textFieldImagenActividad);
+		textFieldImagenActividad.setColumns(10);
 		internalFrameClase.setVisible(true);
 		
 		internalFrameClase.setVisible(false);
@@ -239,6 +266,8 @@ public class ConsultaUsuario extends JInternalFrame {
 				textFieldApellido.setEnabled(false);
 				textFieldEmail.setEnabled(false);
 				textFieldFechaNac.setEnabled(false);
+				textFieldImagenUsuario.setEnabled(false);
+				
 				
 				comboBoxClases.setVisible(true);
 				btnVerInfoClases.setVisible(true);
@@ -277,21 +306,21 @@ public class ConsultaUsuario extends JInternalFrame {
 		textFieldApellido.setColumns(10);
 		
 		lblEmail = new JLabel("Email");
-		lblEmail.setBounds(93, 94, 71, 15);
+		lblEmail.setBounds(24, 94, 71, 15);
 		getContentPane().add(lblEmail);
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(93, 109, 114, 19);
+		textFieldEmail.setBounds(24, 109, 113, 19);
 		getContentPane().add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
 		textFieldFechaNac = new JTextField();
-		textFieldFechaNac.setBounds(216, 109, 114, 19);
+		textFieldFechaNac.setBounds(147, 109, 114, 19);
 		getContentPane().add(textFieldFechaNac);
 		textFieldFechaNac.setColumns(10);
 		
 		lblFechanac = new JLabel("Fecha Nacimiento");
-		lblFechanac.setBounds(216, 94, 139, 15);
+		lblFechanac.setBounds(147, 94, 114, 15);
 		getContentPane().add(lblFechanac);
 		
 		lblClases = new JLabel("Clases");
@@ -311,13 +340,14 @@ public class ConsultaUsuario extends JInternalFrame {
 				lblCosto.setVisible(false);
 				lblDescActiv.setVisible(false);
 				lblFechaRegisAct.setVisible(false);
-				
+				lblFotoActividad.setVisible(false);
 				
 				textFieldNomAct.setVisible(false);
 				textFieldCostoAct.setVisible(false);
 				textFieldDescAct.setVisible(false);
 				textFieldDurAct.setVisible(false);
 				textFieldFechaRegAct.setVisible(false);
+				textFieldImagenActividad.setVisible(false);
 				
 				textFieldActDep.setEnabled(false);
 				textFieldNombreClase.setEnabled(false);
@@ -325,6 +355,7 @@ public class ConsultaUsuario extends JInternalFrame {
 				textFieldFechaClase.setEnabled(false);
 				textFieldHoraInicioClase.setEnabled(false);
 				textFieldURLClase.setEnabled(false);
+				textFieldImagenClase.setEnabled(false);
 				
 			}
 		});
@@ -357,6 +388,15 @@ public class ConsultaUsuario extends JInternalFrame {
 		textFieldSitioWeb.setBounds(285, 153, 117, 45);
 		getContentPane().add(textFieldSitioWeb);
 		textFieldSitioWeb.setColumns(10);
+		
+		lblImagenURL = new JLabel("Imagen URL");
+		lblImagenURL.setBounds(271, 94, 84, 14);
+		getContentPane().add(lblImagenURL);
+		
+		textFieldImagenUsuario = new JTextField();
+		textFieldImagenUsuario.setBounds(271, 109, 114, 20);
+		getContentPane().add(textFieldImagenUsuario);
+		textFieldImagenUsuario.setColumns(10);
 		
 		btnVerInfoClases.setVisible(false);
 		
@@ -396,6 +436,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		this.textFieldNombre.setText(usuario_ret.getNombre());
 		this.textFieldApellido.setText(usuario_ret.getApellido());
 		this.textFieldEmail.setText(usuario_ret.getEmail());
+		this.textFieldImagenUsuario.setText(usuario_ret.getImagenURL());
 		Integer day = usuario_ret.getFechaNac().get(Calendar.DAY_OF_MONTH);
 		Integer month = usuario_ret.getFechaNac().get(Calendar.MONTH)+1;
 		Integer year = usuario_ret.getFechaNac().get(Calendar.YEAR);
@@ -453,7 +494,9 @@ public class ConsultaUsuario extends JInternalFrame {
 			this.textFieldFechaClase.setText(day1.toString()+ "/"+ month1.toString()+"/"+ year1.toString());
 			this.textFieldHoraInicioClase.setText(clase.getHoraInicio().toString());
 			this.textFieldURLClase.setText(clase.getUrl());
+			this.textFieldImagenClase.setText(clase.getImagenClaseURL());
 			this.textFieldActDep.setText(iconCU.ActDepDeClase(nombreClase));
+			
 			
 		}else if(usuario_ret instanceof Socio) {
 			
@@ -470,6 +513,7 @@ public class ConsultaUsuario extends JInternalFrame {
 			this.textFieldFechaClase.setText(day1.toString()+ "/"+ month1.toString()+"/"+ year1.toString());
 			this.textFieldHoraInicioClase.setText(clase.getHoraInicio().toString());
 			this.textFieldURLClase.setText(clase.getUrl());
+			this.textFieldImagenClase.setText(clase.getImagenClaseURL());
 			this.textFieldActDep.setText(iconCU.ActDepDeClase(nombreClase));
 		}
 				
@@ -487,6 +531,7 @@ public class ConsultaUsuario extends JInternalFrame {
 		Integer month = actDep.getFechaReg().get(Calendar.MONTH)+1;
 		Integer year = actDep.getFechaReg().get(Calendar.YEAR);
 		this.textFieldFechaRegAct.setText(day.toString()+ "/"+ month.toString()+"/"+ year.toString());
+		this.textFieldImagenClase.setText(actDep.getImagenActURL());
 		
 		
 	}
