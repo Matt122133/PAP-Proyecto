@@ -98,7 +98,7 @@ public class Clase {
 	}
 
 	public DtClase getDtClase() {
-		return new DtClase(this.getNombre(), this.getFecha(), this.getHoraInicio(), this.getUrl(), this.getFechaReg(), this.getImagenClaseURL());
+		return new DtClase(this.getNombre(), this.getFecha(), this.getHoraInicio(), this.getUrl(), this.getFechaReg(), this.getImagenClaseURL(), this.getRegistros());
 	}
 	
 	public void agregarRegistro(Registro registro) {

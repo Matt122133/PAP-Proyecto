@@ -86,6 +86,7 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 		return dtClase;
 	}
 	
+	
 	public String ActDepDeClase(String nombreClase) {
 		ArrayList<InstitucionDeportiva> instituciones;
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
@@ -103,6 +104,29 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 		}
 		return null;
 		
+	}
+	
+	public DtActividadDeportiva dtActDeClase(String nomClase) {
+		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
+		ArrayList<InstitucionDeportiva> instituciones = mI.obtenerInstis();
+		List<ActividadDeportiva> acts = new ArrayList<ActividadDeportiva>();
+		List<ActividadDeportiva> actividades = new ArrayList<ActividadDeportiva>();
+		for(InstitucionDeportiva i:instituciones){
+			acts = i.listarAct();
+			for(ActividadDeportiva u: acts) {
+				actividades.add(u);
+				for(ActividadDeportiva e: actividades) {
+					ArrayList<DtClase> clases = e.obtenerDtClase();
+					for(DtClase w: clases) {
+						if(w.getNombre().equals(nomClase)) {
+							return e.obtenerDt();
+						}
+						
+					}
+				}	
+			}
+		}
+		return null;
 	}
 	
 

@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import datatypes.DtClase;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
 
@@ -52,6 +53,14 @@ public class Socio extends Usuario{
 		ArrayList<String> arrayRetorno = new ArrayList<String>();
 		for(Registro i: registros) {
 			arrayRetorno.add(i.getClase().getNombre());
+		}
+		return arrayRetorno;
+	}
+	
+	public ArrayList<DtClase> obtenerDtClase(){
+		ArrayList<DtClase> arrayRetorno = new ArrayList<DtClase>();
+		for(Registro i: registros) {
+			arrayRetorno.add(i.getClase().getDtClase());
 		}
 		return arrayRetorno;
 	}

@@ -91,6 +91,22 @@ public class InstitucionDeportiva {
 		return retorno;
 	}
 	
+	public ArrayList<ActividadDeportiva> listarAct(){
+		ArrayList<ActividadDeportiva> retorno = new ArrayList<ActividadDeportiva>();
+		for(ActividadDeportiva i: actDeportivas) {
+			retorno.add(i);
+	}
+		return retorno;
+	}
+	
+	public ArrayList<DtActividadDeportiva> listarDtActDeportiva(){
+		ArrayList<DtActividadDeportiva> retorno = new ArrayList<DtActividadDeportiva>();
+		for(ActividadDeportiva i: actDeportivas) {
+			retorno.add(i.obtenerDt());
+		}
+		return retorno;
+	}
+	
 	public DtActividadDeportiva obtenerDtActDep(String actividad) {
 		ActividadDeportiva encontrada = buscarActividadDeportiva(actividad);
 		return encontrada.obtenerDt();

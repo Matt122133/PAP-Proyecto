@@ -17,10 +17,10 @@ public class ControladorAltaUsuario implements IControladorAltaUsuario {
 	public void altaUsuario(DtUsuario usuario) throws UsuarioRepetidoException {
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
-		Usuario nuevoUsuario = mU.existeUsuario(usuario.getNickname(),usuario.getEmail());
+		Usuario nuevoUsuario = mU.existeUsuario(usuario.getNickname()/*,usuario.getEmail()*/);
 		
 		if (nuevoUsuario != null) 
-			throw new UsuarioRepetidoException("El usuario con nickname " + usuario.getNickname() +  " o con el email " + usuario.getEmail() + " ya esta registrado.");
+			throw new UsuarioRepetidoException("El usuario con nickname " + usuario.getNickname() + " ya esta registrado.");
 			
 		if (usuario instanceof DtSocio)
 			nuevoUsuario = new Socio(usuario.getNickname(), usuario.getNombre(), usuario.getApellido(), usuario.getEmail(), usuario.getFechaNac(), usuario.getPassword(), usuario.getImagenURL());

@@ -1,6 +1,10 @@
 package datatypes;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import logic.Registro;
 
 public class DtClase {
 	private String nombre;
@@ -9,6 +13,8 @@ public class DtClase {
 	private String url;
 	private Calendar fechaReg;
 	private String imagenClaseURL;
+	
+	private List<Registro> registros = new ArrayList<Registro>();
 	
 	public String getNombre() {
 		return nombre;
@@ -34,7 +40,12 @@ public class DtClase {
 		return imagenClaseURL;
 	}
 
-	public DtClase(String nombre, Calendar fecha, Integer horaInicio, String url, Calendar fechaReg, String imagenClaseURL) {
+	public List<Registro> getRegistros() {
+		return registros;
+	}
+	
+	
+	public DtClase(String nombre, Calendar fecha, Integer horaInicio, String url, Calendar fechaReg, String imagenClaseURL, List<Registro> registros) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
@@ -42,6 +53,7 @@ public class DtClase {
 		this.url = url;
 		this.fechaReg = fechaReg;
 		this.imagenClaseURL = imagenClaseURL;
+		this.registros = registros;
 	}
 
 	public DtClase() {}

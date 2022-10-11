@@ -27,7 +27,7 @@ public class ManejadorUsuario {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Usuario existeUsuario(String nickname,String email ) {
+	public Usuario existeUsuario(String nickname/*,String email*/ ) {
 		Conexion conexion = Conexion.getInstancia();
 		EntityManager eM= conexion.getEntityManager();
 		
@@ -36,7 +36,7 @@ public class ManejadorUsuario {
 		
 		Usuario usuario = null;
 		for(Usuario u: usuarios) {
-			if(u.getNickname().equals(nickname) || u.getEmail().equals(email))
+			if(u.getNickname().equals(nickname) /*|| u.getEmail().equals(email)*/)
 				usuario = u;
 		}
 		return usuario;
@@ -103,6 +103,22 @@ public class ManejadorUsuario {
 		
 		Usuario usuario = eM.find(Usuario.class, nickname);
 		return usuario.getDtUsuario();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Usuario validarUsuario(String nickname, String password) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		
+		Query query = eM.createQuery("select u from Usuario u");
+		List<Usuario> usuarios = (List<Usuario>) query.getResultList();
+		
+		Usuario usuario = null;
+		for(Usuario u: usuarios) {
+			if(u.getNickname().equals(nickname) || u.getPassword().equals(password))
+				usuario = u;
+		}
+		return usuario;
 	}
 	
 }

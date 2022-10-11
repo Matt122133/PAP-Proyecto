@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Query;
 
 import datatypes.DtActividadDeportiva;
+import datatypes.DtClase;
 import persistencia.Conexion;
 
 @Entity
@@ -116,14 +117,21 @@ public class ActividadDeportiva {
 	}
 	
 	public DtActividadDeportiva obtenerDt() {
-		return new DtActividadDeportiva(this.getNombre(),this.getDescripcion(), this.getDuracion(), this.getCosto(), this.getFechaReg(), this.getImagenActURL());
+		return new DtActividadDeportiva(this.getNombre(),this.getDescripcion(), this.getDuracion(), this.getCosto(), this.getFechaReg(), this.getImagenActURL(),this.getClases());
 	}
-	
 	
 	public ArrayList<String> listarClases() {
 		ArrayList<String> retorno = new ArrayList<String>();
 		for(Clase i: clases) {
 			retorno.add(i.getNombre());
+		}
+		return retorno;
+	}
+	
+	public ArrayList<DtClase> obtenerDtClase(){
+		ArrayList<DtClase> retorno = new ArrayList<DtClase>();
+		for(Clase i: clases) {
+			retorno.add(i.getDtClase());
 		}
 		return retorno;
 	}

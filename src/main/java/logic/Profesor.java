@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import datatypes.DtClase;
 import datatypes.DtProfesor;
 import datatypes.DtUsuario;
 
@@ -102,6 +103,16 @@ public class Profesor extends Usuario{
 		}
 		return arrayClase_ret;
 	}
+	
+	public ArrayList<DtClase> obtenerDtClases(){
+		ArrayList<DtClase> arrayClase_ret = new ArrayList<DtClase>();
+		for(Clase i: clases) {
+			arrayClase_ret.add(i.getDtClase());
+		}
+		return arrayClase_ret;
+	}
+	
+	
 	public void actualizarProfe(DtUsuario actualizado) {
 		if (actualizado instanceof DtProfesor) {
 			this.setNombre(actualizado.getNombre());

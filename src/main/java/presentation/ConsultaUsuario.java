@@ -81,7 +81,7 @@ public class ConsultaUsuario extends JInternalFrame {
 	public ConsultaUsuario(IControladorConsultaUsuario iconCU) {
 		this.iconCU=iconCU;
 		
-		setBounds(100, 100, 551, 378);
+		setBounds(100, 100, 529, 341);
 		getContentPane().setLayout(null);
 		
 		setResizable(true);
@@ -324,11 +324,11 @@ public class ConsultaUsuario extends JInternalFrame {
 		getContentPane().add(lblFechanac);
 		
 		lblClases = new JLabel("Clases");
-		lblClases.setBounds(39, 225, 59, 15);
+		lblClases.setBounds(57, 224, 59, 15);
 		getContentPane().add(lblClases);
 		
 		comboBoxClases = new JComboBox<String>();
-		comboBoxClases.setBounds(102, 220, 137, 24);
+		comboBoxClases.setBounds(114, 219, 137, 24);
 		getContentPane().add(comboBoxClases);
 		
 		btnVerInfoClases = new JButton("Ver Info");
@@ -359,7 +359,7 @@ public class ConsultaUsuario extends JInternalFrame {
 				
 			}
 		});
-		btnVerInfoClases.setBounds(247, 220, 117, 25);
+		btnVerInfoClases.setBounds(259, 219, 117, 25);
 		getContentPane().add(btnVerInfoClases);
 		
 		lblDescripcion = new JLabel("Descripción");

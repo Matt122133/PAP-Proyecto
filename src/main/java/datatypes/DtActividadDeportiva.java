@@ -1,6 +1,10 @@
 package datatypes;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import logic.Clase;
 
 public class DtActividadDeportiva {
 	private String nombre;
@@ -10,9 +14,11 @@ public class DtActividadDeportiva {
 	private Calendar fechaReg;
 	private String imagenActURL;
 	
+	private List<Clase> clases = new ArrayList<Clase>();
 	
 	
-	public DtActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, Calendar fechaReg, String imagenActURL) {
+	public DtActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, Calendar fechaReg,
+			String imagenActURL, List<Clase> clases) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -20,6 +26,7 @@ public class DtActividadDeportiva {
 		this.costo = costo;
 		this.fechaReg = fechaReg;
 		this.imagenActURL = imagenActURL;
+		this.clases = clases;
 	}
 
 	public String getNombre() {
@@ -44,6 +51,10 @@ public class DtActividadDeportiva {
 
 	public String getImagenActURL() {
 		return imagenActURL;
+	}
+	
+	public List<Clase> getClases() {
+		return clases;
 	}
 
 	@Override

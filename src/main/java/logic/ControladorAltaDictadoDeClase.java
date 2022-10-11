@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 import javax.persistence.EntityManager;
 
+import datatypes.DtActividadDeportiva;
 import exceptions.ClaseRepetidaException;
 import interfaces.IControladorAltaDictadoDeClase;
 import persistencia.Conexion;
@@ -73,6 +74,18 @@ public class ControladorAltaDictadoDeClase implements IControladorAltaDictadoDeC
         	a++;
         }
         return actdep_ret;
+	}
+	
+	public ArrayList<DtActividadDeportiva> obtenerDtAct(String nomInsti){
+		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
+		InstitucionDeportiva insti = mI.buscarInstitucion(nomInsti);
+		ArrayList<DtActividadDeportiva> acts = insti.listarDtActDeportiva();
+		ArrayList<DtActividadDeportiva> act_ret = new ArrayList<DtActividadDeportiva>(acts.size());
+		for(DtActividadDeportiva i: acts) {
+			act_ret.add(i);
+		}
+		
+		return act_ret;
 	}
 	
 	public String[] obtenerProfesor(String nombreInsti) {

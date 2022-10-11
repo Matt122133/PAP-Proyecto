@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import datatypes.DtActividadDeportiva;
 import interfaces.IControladorRankingActividadDeportiva;
 
 public class ControladorRankingActividadDeportiva implements IControladorRankingActividadDeportiva {
@@ -11,7 +12,7 @@ public class ControladorRankingActividadDeportiva implements IControladorRanking
 	
 	
 	
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("removal")
 	public String[] listarActividades() {
 		ArrayList<InstitucionDeportiva> instituciones;
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
@@ -38,5 +39,46 @@ public class ControladorRankingActividadDeportiva implements IControladorRanking
 		return act_ret;
 		
 	}
+	
+	public List<DtActividadDeportiva> obtenerDtActividad(){
+		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
+		ArrayList<InstitucionDeportiva> instis = mI.obtenerInstis();
+		List<DtActividadDeportiva> act = new ArrayList<DtActividadDeportiva>();
+		List<DtActividadDeportiva> acts = new ArrayList<DtActividadDeportiva>();
+		for(InstitucionDeportiva i: instis) {
+			act = i.listarDtActDeportiva();
+			for(DtActividadDeportiva s: act) {
+				acts.add(s);
+			}
+		}
+		
+		return acts;
+		
+	}
+	
+	@SuppressWarnings("removal")
+	public List<DtActividadDeportiva> actOrdenadas(){
+		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
+		ArrayList<InstitucionDeportiva> instis = mI.obtenerInstis();
+		List<DtActividadDeportiva> act = new ArrayList<DtActividadDeportiva>();
+		List<DtActividadDeportiva> acts = new ArrayList<DtActividadDeportiva>();
+		for(InstitucionDeportiva i: instis) {
+			act = i.listarDtActDeportiva();
+			for(DtActividadDeportiva s: act) {
+				acts.add(s);
+			}
+		}
+		
+		Collections.sort(acts, (a1,a2) -> new Integer (a2.getClases().size()).compareTo(new Integer(a1.getClases().size())));  
+		List<DtActividadDeportiva> act_ret = new ArrayList<DtActividadDeportiva>(acts.size());
+		for(DtActividadDeportiva o: acts) {
+			act_ret.add(o);
+		}
+		
+		return act_ret;
+		
+	}
+	
+	
 	
 }

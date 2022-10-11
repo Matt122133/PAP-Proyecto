@@ -9,9 +9,11 @@ import javax.swing.JOptionPane;
 
 
 import interfaces.IControladorModificarActividad;
+import logic.Clase;
 
 import java.awt.event.ActionListener;
 import java.util.Calendar;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -164,7 +166,6 @@ public class ModificarActividad extends JInternalFrame {
 	public void modificarActividadActionButton(ActionEvent e){
 		
 		if(checkFormulario()){
-			
 			String nombre = this.comboBoxAD.getSelectedItem().toString();
 			String desc = this.textFieldDescripcion.getText();
 			String duracionString = this.textFieldDuracion.getText();
@@ -174,7 +175,10 @@ public class ModificarActividad extends JInternalFrame {
 			Calendar fechaReg = Calendar.getInstance();
 			String imagenURL = this.textFieldImagenURL.getText();
 			
-			DtActividadDeportiva actualizada = new DtActividadDeportiva(nombre,desc,duracion,costo,fechaReg, imagenURL);
+			DtActividadDeportiva dtAct = this.iconMA.obtenerDtActividad(nombre);
+			List<Clase> clases = dtAct.getClases();
+			
+			DtActividadDeportiva actualizada = new DtActividadDeportiva(nombre,desc,duracion,costo,fechaReg, imagenURL,clases);
 		
 			this.iconMA.modificarActDep(actualizada);
 			JOptionPane.showMessageDialog(this, "La actividad ha sido modificada con éxito", "Modificar Actividad", JOptionPane.INFORMATION_MESSAGE);
