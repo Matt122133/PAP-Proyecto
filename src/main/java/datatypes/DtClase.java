@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 import logic.Registro;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtClase {
 	private String nombre;
 	private Calendar fecha;

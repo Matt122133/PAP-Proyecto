@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 import logic.Registro;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtSocio extends DtUsuario{
 	private List<Registro> registros = new ArrayList<Registro>();
 	

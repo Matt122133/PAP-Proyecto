@@ -51,6 +51,25 @@ public class ControladorConsultaClase implements IControladorConsultaClase{
 		return arrayClases_ret;
 	}
 	
+	public DtClase[] listarDtClasePorProfe(String nickname) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario user = mU.buscarUsuario(nickname);
+		ArrayList<DtClase> clases = new ArrayList<DtClase>();
+		if(user instanceof Profesor){
+			clases = ((Profesor)user).obtenerDtClases();
+			System.out.println("Soy la tarea 1");
+			System.out.println(clases);
+			DtClase[] ret  = new DtClase[clases.size()];
+			int i = 0;
+			for(DtClase s : clases) {
+				ret[i]=s;
+				i++;
+			}
+			return ret;
+			
+		}
+		return null;
+	}
 	
 	public DtClase obtenerDtClase(String nombreInsti, String nombreActividad, String nombreClase) {
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
@@ -60,5 +79,26 @@ public class ControladorConsultaClase implements IControladorConsultaClase{
 		DtClase dtClase = clase.getDtClase();
 		return dtClase;
 	}
-
+	
+	public DtClase obtenerDtClasePorNomClase(String nombreClase) {
+		DtClase clase = null;
+		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
+		ArrayList<InstitucionDeportiva> instis = mI.obtenerInstis();
+		ArrayList<DtClase> dtClases = new ArrayList<DtClase>();
+		for(InstitucionDeportiva i: instis) {
+			ArrayList<ActividadDeportiva> acts = i.listarAct();
+			for(ActividadDeportiva o: acts) {
+				ArrayList<DtClase> clases = o.obtenerDtClase();
+				for(DtClase u: clases) {
+					dtClases.add(u);
+					for(DtClase e: dtClases) {
+						if(e.getNombre().equals(nombreClase)) {
+							clase = e;
+						}
+					}
+				}
+			}
+		}
+		return clase;
+	}
 }

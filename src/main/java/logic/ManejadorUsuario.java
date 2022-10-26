@@ -50,6 +50,7 @@ public class ManejadorUsuario {
 		return usuario;
 	}
 	
+	
 	@SuppressWarnings("unchecked")
 	public ArrayList<String> obtenerUsuarios(){
 		Conexion conexion = Conexion.getInstancia();

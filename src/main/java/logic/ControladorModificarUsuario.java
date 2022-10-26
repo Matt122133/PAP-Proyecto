@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 
+import datatypes.DtProfesor;
+import datatypes.DtSocio;
 import datatypes.DtUsuario;
 import interfaces.IControladorModificarUsuario;
 import persistencia.Conexion;
@@ -25,6 +27,52 @@ public class ControladorModificarUsuario implements IControladorModificarUsuario
 		eM.getTransaction().begin();
 		eM.persist(aModificar);
 		eM.getTransaction().commit();
+	}
+	
+	public void modificarProfesor(DtProfesor profeModificado) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario aModificar = mU.buscarUsuario(profeModificado.getNickname());
+		if(aModificar instanceof Profesor) {
+			((Profesor) aModificar).actualizarProfe(profeModificado);
+		}
+		
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		eM.getTransaction().begin();
+		eM.persist(aModificar);
+		eM.getTransaction().commit();
+	}
+	
+	public void modificarSocio(DtSocio socioModificado) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario aModificar = mU.buscarUsuario(socioModificado.getNickname());
+		if(aModificar instanceof Socio) {
+			((Socio) aModificar).actualizarSocioWeb(socioModificado);
+		}
+		
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM= conexion.getEntityManager();
+		eM.getTransaction().begin();
+		eM.persist(aModificar);
+		eM.getTransaction().commit();
+	}
+	
+	public DtSocio obtenerSocio(String nickname) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario user = mU.buscarUsuario(nickname);
+		if(user instanceof Socio) {
+			return ((Socio) user).getDtSocio();
+		}
+		return null;
+	}
+	
+	public DtProfesor obtenerProfesor(String nickname) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario user = mU.buscarUsuario(nickname);
+		if(user instanceof Profesor) {
+			return ((Profesor) user).getDtProfesor();
+		}
+		return null;
 	}
 	
 	
@@ -58,6 +106,26 @@ public class ControladorModificarUsuario implements IControladorModificarUsuario
 	public DtUsuario obtenerUserDt(String user) {
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		return mU.getDtUser(user);
+	}
+	
+	public boolean validarProfe(String nickname) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario user = mU.buscarUsuario(nickname);
+		if(user instanceof Profesor) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public boolean validarSocio(String nickname) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario user = mU.buscarUsuario(nickname);
+		if(user instanceof Socio) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 

@@ -5,6 +5,8 @@ import java.util.List;
 
 import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
+import datatypes.DtProfesor;
+import datatypes.DtSocio;
 import datatypes.DtUsuario;
 import interfaces.IControladorConsultaUsuario;
 
@@ -28,6 +30,63 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		Usuario usuario_ret = mU.buscarUsuario(nickname);
 		return usuario_ret;
+	}
+	
+	public DtProfesor obtenerDtProfesor(String nickname) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario user = mU.buscarUsuario(nickname);
+		DtProfesor dtProf = null;
+		if(user instanceof Profesor) {
+			dtProf = ((Profesor) user).getDtProfesor();
+		}
+		return dtProf;
+	}
+	
+	public DtSocio obtenerDtSocio(String nickname){
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario user = mU.buscarUsuario(nickname);
+		DtSocio dtSocio = null;
+		if(user instanceof Socio) {
+			dtSocio = ((Socio) user).getDtSocio();
+		}
+		return dtSocio;
+	}
+	 
+	public boolean validarProfe(String nickname) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario user = mU.buscarUsuario(nickname);
+		if(user instanceof Profesor) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public boolean validarSocio(String nickname) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario user = mU.buscarUsuario(nickname);
+		if(user instanceof Socio) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public DtClase[] buscarClasesProfe(String nickname) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario user = mU.buscarUsuario(nickname);	
+		ArrayList<DtClase> listaClases = new ArrayList<DtClase>();
+		DtClase[] clases_ret = new DtClase[0];
+		if(user instanceof Profesor) {
+			listaClases = ((Profesor) user).obtenerDtClases();
+			clases_ret = new DtClase[listaClases.size()];
+			int a = 0;
+			for(DtClase i: listaClases) {
+				clases_ret[a] = i;
+				a++;
+			}
+		}
+		return clases_ret;
 	}
 	
 	

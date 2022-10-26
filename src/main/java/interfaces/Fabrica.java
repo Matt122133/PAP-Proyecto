@@ -8,6 +8,7 @@ import logic.ControladorConsultaAct;
 import logic.ControladorConsultaClase;
 import logic.ControladorConsultaUsuario;
 import logic.ControladorEliminarRegistro;
+import logic.ControladorLogin;
 import logic.ControladorModificarActividad;
 import logic.ControladorModificarInstitucion;
 import logic.ControladorModificarUsuario;
@@ -80,6 +81,10 @@ public class Fabrica {
 	
 	public IControladorEliminarRegistro getIControladorER() {
 		return new ControladorEliminarRegistro();
+	}
+	
+	public IControladorLogin getIControladorLG() {
+		return new ControladorLogin();
 	}
 	
 }

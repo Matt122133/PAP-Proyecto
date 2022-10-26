@@ -136,4 +136,7 @@ public class Profesor extends Usuario{
 		return new DtProfesor(this.getNickname(), this.getNombre(),this.getApellido(), this.getEmail(), this.getFechaNac(), this.getPassword(), this.getImagenURL(), this.getDescripcion(), this.getBiografia(), this.getSitioWeb() ,this.getInstDep().getNombre());
 	}
 	
+	public DtProfesor getDtProfesor(){
+		return new DtProfesor(this.getNickname(), this.getNombre(),this.getApellido(), this.getEmail(), this.getFechaNac(), this.getPassword(), this.getImagenURL(), this.getDescripcion(), this.getBiografia(), this.getSitioWeb() ,this.getInstDep().getNombre());
+	}
 }

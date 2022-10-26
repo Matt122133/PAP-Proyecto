@@ -23,6 +23,11 @@ import interfaces.IControladorModificarUsuario;
 import interfaces.IControladorRankingActividadDeportiva;
 import interfaces.IControladorRankingClases;
 import interfaces.IControladorRegistroClase;
+import publicadores.ControladorPublishAltaClase;
+import publicadores.ControladorPublishConsultaClase;
+import publicadores.ControladorPublishConsultaUsuario;
+import publicadores.ControladorPublishLogin;
+import publicadores.ControladorPublishModificarUsuario;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -65,6 +70,19 @@ public class Principal {
 	 * Create the application.
 	 */
 	public Principal() {
+		ControladorPublishLogin cpl = new ControladorPublishLogin();
+		ControladorPublishConsultaClase cpcc = new ControladorPublishConsultaClase();
+		ControladorPublishConsultaUsuario cpcu = new ControladorPublishConsultaUsuario();
+		ControladorPublishAltaClase cpac = new ControladorPublishAltaClase();
+		ControladorPublishModificarUsuario cpmu = new ControladorPublishModificarUsuario();
+		cpl.publicar();
+		cpcc.publicar();
+		cpcu.publicar();
+		cpac.publicar();
+		cpmu.publicar();
+		
+	
+		
 		initialize();
 		Fabrica fabrica = Fabrica.getInstancia();
 		IControladorAltaUsuario iconAU = fabrica.getIControladorAU();
