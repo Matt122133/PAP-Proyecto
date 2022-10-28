@@ -8,7 +8,6 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import configuraciones.WebServiceConfiguracion;
-import datatypes.DtClase;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
@@ -71,8 +70,8 @@ public class ControladorPublishConsultaUsuario {
 	}
 	
 	@WebMethod
-	public DtClase[] obtenerClasePorProfe(String nickname) {
-		return iconCU.buscarClasesProfe(nickname);
+	public String[] sociosRegistros(String nickname) {
+		return iconCU.registroSocios(nickname);
 	}
 	
 }

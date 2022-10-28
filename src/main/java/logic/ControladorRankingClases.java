@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+import datatypes.DtClase;
 import interfaces.IControladorRankingClases;
 
 public class ControladorRankingClases implements IControladorRankingClases{
@@ -46,32 +47,30 @@ public class ControladorRankingClases implements IControladorRankingClases{
 		
 	}
 	
-	/*@SuppressWarnings("removal")
+	@SuppressWarnings("removal")
 	public List<DtClase> clasesOrdenadas(){
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
 		ArrayList<InstitucionDeportiva> instis = mI.obtenerInstis();
-		ArrayList<DtClase> dtClases = new ArrayList<DtClase>();
+		ArrayList<Clase> lstClases = new ArrayList<Clase>();
 		for(InstitucionDeportiva i: instis) {
 			ArrayList<ActividadDeportiva> acts = i.listarAct();
 			for(ActividadDeportiva o: acts) {
-				ArrayList<DtClase> clases = o.obtenerDtClase();
-				for(DtClase u: clases) {
-					dtClases.add(u);
+				List<Clase> clases = o.getClases();
+				for(Clase u: clases) {
+					lstClases.add(u);
 					
 				}
 			}
 		}
 		
-		Collections.sort(dtClases, (c1,c2) -> new Integer (c2.getRegistros().size()).compareTo(new Integer(c1.getRegistros().size())) );
-		List<DtClase> clases_ret = new ArrayList<DtClase>(dtClases.size());
-		for(DtClase e: dtClases) {
-			clases_ret.add(e);
+		Collections.sort(lstClases, (c1,c2) -> new Integer (c2.getRegistros().size()).compareTo(new Integer(c1.getRegistros().size())) );
+		List<DtClase> clases_ret = new ArrayList<DtClase>(lstClases.size());
+		for(Clase e: lstClases) {
+			clases_ret.add(e.getDtClase());
 		}
 		
 		return clases_ret;
-		
-		
-	}*/
+	}
 	
 	
 	

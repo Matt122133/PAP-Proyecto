@@ -1,13 +1,9 @@
 package datatypes;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-
-import logic.Clase;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DtProfesor extends DtUsuario{
@@ -15,7 +11,7 @@ public class DtProfesor extends DtUsuario{
 	private String biografia;
 	private String sitioWeb;
 	private String instDep;
-	private List<Clase> clases = new ArrayList<Clase>();
+	//private List<Clase> clases = new ArrayList<Clase>();
 
 	public DtProfesor(String nickname, String nombre, String apellido, String email, Calendar fechaNac, String password, String imagenURL, String descripcion, String biografia, String sitioWeb, String instDep) {
 		super(nickname, nombre, apellido, email, fechaNac, password, imagenURL);
@@ -37,9 +33,10 @@ public class DtProfesor extends DtUsuario{
 	public String getInstDep() {
 		return instDep;
 	}
-	public List<Clase> getClases() {
+	
+	/*public List<Clase> getClases() {
 		return clases;
-	}
+	}*/
 	
 	
 }

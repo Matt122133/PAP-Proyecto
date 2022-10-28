@@ -117,7 +117,7 @@ public class ActividadDeportiva {
 	}
 	
 	public DtActividadDeportiva obtenerDt() {
-		return new DtActividadDeportiva(this.getNombre(),this.getDescripcion(), this.getDuracion(), this.getCosto(), this.getFechaReg(), this.getImagenActURL(),this.getClases());
+		return new DtActividadDeportiva(this.getNombre(),this.getDescripcion(), this.getDuracion(), this.getCosto(), this.getFechaReg(), this.getImagenActURL()/*,this.getClases()*/);
 	}
 	
 	public ArrayList<String> listarClases() {

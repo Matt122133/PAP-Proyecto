@@ -60,19 +60,19 @@ public class ControladorRankingActividadDeportiva implements IControladorRanking
 	public List<DtActividadDeportiva> actOrdenadas(){
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
 		ArrayList<InstitucionDeportiva> instis = mI.obtenerInstis();
-		List<DtActividadDeportiva> act = new ArrayList<DtActividadDeportiva>();
-		List<DtActividadDeportiva> acts = new ArrayList<DtActividadDeportiva>();
+		List<ActividadDeportiva> act = new ArrayList<ActividadDeportiva>();
+		List<ActividadDeportiva> acts = new ArrayList<ActividadDeportiva>();
 		for(InstitucionDeportiva i: instis) {
-			act = i.listarDtActDeportiva();
-			for(DtActividadDeportiva s: act) {
+			act = i.getActDeportivas();
+			for(ActividadDeportiva s: act) {
 				acts.add(s);
 			}
 		}
 		
 		Collections.sort(acts, (a1,a2) -> new Integer (a2.getClases().size()).compareTo(new Integer(a1.getClases().size())));  
 		List<DtActividadDeportiva> act_ret = new ArrayList<DtActividadDeportiva>(acts.size());
-		for(DtActividadDeportiva o: acts) {
-			act_ret.add(o);
+		for(ActividadDeportiva o: acts) {
+			act_ret.add(o.obtenerDt());
 		}
 		
 		return act_ret;

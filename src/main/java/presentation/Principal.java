@@ -24,6 +24,7 @@ import interfaces.IControladorRankingActividadDeportiva;
 import interfaces.IControladorRankingClases;
 import interfaces.IControladorRegistroClase;
 import publicadores.ControladorPublishAltaClase;
+import publicadores.ControladorPublishConsultaActividad;
 import publicadores.ControladorPublishConsultaClase;
 import publicadores.ControladorPublishConsultaUsuario;
 import publicadores.ControladorPublishLogin;
@@ -75,14 +76,14 @@ public class Principal {
 		ControladorPublishConsultaUsuario cpcu = new ControladorPublishConsultaUsuario();
 		ControladorPublishAltaClase cpac = new ControladorPublishAltaClase();
 		ControladorPublishModificarUsuario cpmu = new ControladorPublishModificarUsuario();
+		ControladorPublishConsultaActividad cpca = new ControladorPublishConsultaActividad();
 		cpl.publicar();
 		cpcc.publicar();
 		cpcu.publicar();
 		cpac.publicar();
 		cpmu.publicar();
-		
-	
-		
+		cpca.publicar();
+
 		initialize();
 		Fabrica fabrica = Fabrica.getInstancia();
 		IControladorAltaUsuario iconAU = fabrica.getIControladorAU();

@@ -9,11 +9,9 @@ import javax.swing.JOptionPane;
 
 
 import interfaces.IControladorModificarActividad;
-import logic.Clase;
 
 import java.awt.event.ActionListener;
 import java.util.Calendar;
-import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -175,10 +173,10 @@ public class ModificarActividad extends JInternalFrame {
 			Calendar fechaReg = Calendar.getInstance();
 			String imagenURL = this.textFieldImagenURL.getText();
 			
-			DtActividadDeportiva dtAct = this.iconMA.obtenerDtActividad(nombre);
-			List<Clase> clases = dtAct.getClases();
+			//DtActividadDeportiva dtAct = this.iconMA.obtenerDtActividad(nombre);
+			//List<Clase> clases = dtAct.getClases();
 			
-			DtActividadDeportiva actualizada = new DtActividadDeportiva(nombre,desc,duracion,costo,fechaReg, imagenURL,clases);
+			DtActividadDeportiva actualizada = new DtActividadDeportiva(nombre,desc,duracion,costo,fechaReg, imagenURL/*,clases*/);
 		
 			this.iconMA.modificarActDep(actualizada);
 			JOptionPane.showMessageDialog(this, "La actividad ha sido modificada con éxito", "Modificar Actividad", JOptionPane.INFORMATION_MESSAGE);

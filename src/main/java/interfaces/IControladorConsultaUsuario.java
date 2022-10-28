@@ -37,4 +37,6 @@ public interface IControladorConsultaUsuario {
 	
 	public DtClase[] buscarClasesProfe(String nickname);
 	
+	public String[] registroSocios(String nickname);
+	
 }

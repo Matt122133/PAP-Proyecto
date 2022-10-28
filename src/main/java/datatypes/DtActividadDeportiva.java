@@ -1,13 +1,9 @@
 package datatypes;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
-import logic.Clase;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DtActividadDeportiva {
@@ -18,11 +14,11 @@ public class DtActividadDeportiva {
 	private Calendar fechaReg;
 	private String imagenActURL;
 	
-	private List<Clase> clases = new ArrayList<Clase>();
+	//private List<Clase> clases = new ArrayList<Clase>();
 	
 	
 	public DtActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, Calendar fechaReg,
-			String imagenActURL, List<Clase> clases) {
+			String imagenActURL/*, List<Clase> clases*/) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -30,7 +26,7 @@ public class DtActividadDeportiva {
 		this.costo = costo;
 		this.fechaReg = fechaReg;
 		this.imagenActURL = imagenActURL;
-		this.clases = clases;
+		//this.clases = clases;
 	}
 
 	public String getNombre() {
@@ -57,9 +53,9 @@ public class DtActividadDeportiva {
 		return imagenActURL;
 	}
 	
-	public List<Clase> getClases() {
+	/*public List<Clase> getClases() {
 		return clases;
-	}
+	}*/
 
 	@Override
 	public String toString() {

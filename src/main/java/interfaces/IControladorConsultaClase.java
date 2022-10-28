@@ -19,4 +19,6 @@ public interface IControladorConsultaClase {
 	public ArrayList<String> listarClasesProfe(String nickProfe);
 	
 	public DtClase obtenerDtClasePorNombreBD(String nomClase);
+	
+	public String[] listarRegistros(String nombre);
 }

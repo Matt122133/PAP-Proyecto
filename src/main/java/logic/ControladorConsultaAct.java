@@ -1,10 +1,15 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import interfaces.IControladorConsultaAct;
+import persistencia.Conexion;
 
 public class ControladorConsultaAct implements IControladorConsultaAct {
 	
@@ -66,6 +71,62 @@ public class ControladorConsultaAct implements IControladorConsultaAct {
 		Clase clase = actDep.buscarClase(nombreClase);
 		DtClase dtClase = clase.getDtClase();
 		return dtClase;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String[] listarActividades() {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM = conexion.getEntityManager();
+		
+		Query query = eM.createQuery("select a from ActividadDeportiva a");
+		List<ActividadDeportiva> actsDep = (List<ActividadDeportiva>) query.getResultList();
+		
+		String[] aRetornar = new  String[actsDep.size()];
+		int a = 0;
+		for(ActividadDeportiva i: actsDep) {
+			aRetornar[a] = i.getNombre();	
+			a++;
+		}
+		return aRetornar;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public DtActividadDeportiva obtenerDtAct(String nomAct) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM = conexion.getEntityManager();
+		DtActividadDeportiva dtAct = null;
+		Query query = eM.createQuery("select i from InstitucionDeportiva i");
+		List<InstitucionDeportiva> instis = (List<InstitucionDeportiva>) query.getResultList();
+		
+			ArrayList<DtActividadDeportiva> actividades = new ArrayList<DtActividadDeportiva>();
+			for(InstitucionDeportiva i: instis) {
+				ArrayList<DtActividadDeportiva> acts = i.listarDtActDeportiva();
+				for(DtActividadDeportiva a: acts) {
+					actividades.add(a);
+					for(DtActividadDeportiva o: actividades) {
+						if(o.getNombre().equals(nomAct)) {
+							dtAct = o;
+						}	
+					}
+				}
+			}
+		return dtAct;
+	}
+		
+	
+	public String[] listarClasesDeAct(String nomAct) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM = conexion.getEntityManager();
+		
+		ActividadDeportiva act = eM.find(ActividadDeportiva.class, nomAct);
+		List<Clase> clases = act.getClases();
+		String[] array_ret = new String[clases.size()];
+		int a = 0;
+		for(Clase i: clases) {
+			array_ret[a] = i.getNombre();	
+			a++;
+		}
+		return array_ret;
 	}
 
 }

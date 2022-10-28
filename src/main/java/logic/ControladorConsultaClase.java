@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -99,9 +100,20 @@ public class ControladorConsultaClase implements IControladorConsultaClase{
 		EntityManager eM = conexion.getEntityManager();
 		
 		Clase clase = eM.find(Clase.class, nomClase);
-		if(clase == null) {
-			System.out.println("Clase nula");
-		}
 		return clase.getDtClase();
+	}
+	
+	public String[] listarRegistros(String nombre){
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM = conexion.getEntityManager();
+		Clase clase = eM.find(Clase.class, nombre);
+		List<Registro> registros = clase.getRegistros();
+		String[] array_ret = new String[registros.size()];
+		int a=0;
+	    for(Registro i:registros) {
+	    	array_ret[a]=i.getNicknameSocio();
+	    	a++;
+	    }
+	    return array_ret;
 	}
 }

@@ -50,6 +50,11 @@ public class ControladorPublishConsultaClase {
 	}
 	
 	@WebMethod
+	public String[] obtenerRegistro(String nombre) {
+		return iconCC.listarRegistros(nombre);
+	}
+	
+	@WebMethod
 	public String[] listarNomClaseProfe(String nickProfe) {
 		ArrayList<String> clases = iconCC.listarClasesProfe(nickProfe);
 		String[] clases_ret = new String[clases.size()];

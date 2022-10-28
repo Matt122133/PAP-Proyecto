@@ -3,12 +3,15 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
 import interfaces.IControladorConsultaUsuario;
+import persistencia.Conexion;
 
 public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 
@@ -70,6 +73,21 @@ public class ControladorConsultaUsuario implements IControladorConsultaUsuario{
 		}else {
 			return false;
 		}
+	}
+	
+	public String[] registroSocios(String nickname) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM = conexion.getEntityManager();
+		Socio socio = eM.find(Socio.class, nickname);
+		List<Registro> registros = socio.getRegistros();
+		String[] array_ret = new String[registros.size()];
+		int a = 0;
+		for(Registro i:registros) {
+			array_ret[a] = i.getNombreClase();
+			a++;
+		}
+		
+		return array_ret;
 	}
 	
 	public DtClase[] buscarClasesProfe(String nickname) {
