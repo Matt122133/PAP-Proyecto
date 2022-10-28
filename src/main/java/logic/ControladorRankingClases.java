@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import datatypes.DtClase;
 import interfaces.IControladorRankingClases;
 
 public class ControladorRankingClases implements IControladorRankingClases{
@@ -47,7 +46,7 @@ public class ControladorRankingClases implements IControladorRankingClases{
 		
 	}
 	
-	@SuppressWarnings("removal")
+	/*@SuppressWarnings("removal")
 	public List<DtClase> clasesOrdenadas(){
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
 		ArrayList<InstitucionDeportiva> instis = mI.obtenerInstis();
@@ -72,7 +71,7 @@ public class ControladorRankingClases implements IControladorRankingClases{
 		return clases_ret;
 		
 		
-	}
+	}*/
 	
 	
 	

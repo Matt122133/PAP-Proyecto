@@ -1,5 +1,7 @@
 package publicadores;
 
+import java.util.ArrayList;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -43,13 +45,20 @@ public class ControladorPublishConsultaClase {
 	}
 	
 	@WebMethod
-	public DtClase obtenerDtClasePorNomClase(String nomClase) {
-		 return iconCC.obtenerDtClasePorNomClase(nomClase);
+	public DtClase obtenerDtClasePorNomClase(String nombre) {
+		 return iconCC.obtenerDtClasePorNombreBD(nombre);
 	}
 	
 	@WebMethod
-	public DtClase[] obtenerDtClaseDeProfe(String nickProfe) {
-		return iconCC.listarDtClasePorProfe(nickProfe);
+	public String[] listarNomClaseProfe(String nickProfe) {
+		ArrayList<String> clases = iconCC.listarClasesProfe(nickProfe);
+		String[] clases_ret = new String[clases.size()];
+		int i = 0;
+		for(String s: clases) {
+			clases_ret[i] = s;
+			i++;
+		}
+		return clases_ret;
 	}
 
 }

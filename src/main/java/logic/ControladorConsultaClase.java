@@ -2,8 +2,11 @@ package logic;
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+
 import datatypes.DtClase;
 import interfaces.IControladorConsultaClase;
+import persistencia.Conexion;
 
 public class ControladorConsultaClase implements IControladorConsultaClase{
 
@@ -51,24 +54,14 @@ public class ControladorConsultaClase implements IControladorConsultaClase{
 		return arrayClases_ret;
 	}
 	
-	public DtClase[] listarDtClasePorProfe(String nickname) {
+	public ArrayList<String> listarClasesProfe(String nickProfe){
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
-		Usuario user = mU.buscarUsuario(nickname);
-		ArrayList<DtClase> clases = new ArrayList<DtClase>();
+		Usuario user = mU.buscarUsuario(nickProfe);
+		ArrayList<String> clases = new ArrayList<String>();
 		if(user instanceof Profesor){
-			clases = ((Profesor)user).obtenerDtClases();
-			System.out.println("Soy la tarea 1");
-			System.out.println(clases);
-			DtClase[] ret  = new DtClase[clases.size()];
-			int i = 0;
-			for(DtClase s : clases) {
-				ret[i]=s;
-				i++;
-			}
-			return ret;
-			
+			clases = ((Profesor) user).obtenerClases();
 		}
-		return null;
+		return clases;	
 	}
 	
 	public DtClase obtenerDtClase(String nombreInsti, String nombreActividad, String nombreClase) {
@@ -80,8 +73,7 @@ public class ControladorConsultaClase implements IControladorConsultaClase{
 		return dtClase;
 	}
 	
-	public DtClase obtenerDtClasePorNomClase(String nombreClase) {
-		DtClase clase = null;
+	public DtClase obtenerDtClasePorNombreClase(String nombreClase) {
 		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
 		ArrayList<InstitucionDeportiva> instis = mI.obtenerInstis();
 		ArrayList<DtClase> dtClases = new ArrayList<DtClase>();
@@ -93,12 +85,23 @@ public class ControladorConsultaClase implements IControladorConsultaClase{
 					dtClases.add(u);
 					for(DtClase e: dtClases) {
 						if(e.getNombre().equals(nombreClase)) {
-							clase = e;
+							return e;
 						}
 					}
 				}
 			}
 		}
-		return clase;
+		return null;
+	}
+	
+	public DtClase obtenerDtClasePorNombreBD(String nomClase) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM = conexion.getEntityManager();
+		
+		Clase clase = eM.find(Clase.class, nomClase);
+		if(clase == null) {
+			System.out.println("Clase nula");
+		}
+		return clase.getDtClase();
 	}
 }

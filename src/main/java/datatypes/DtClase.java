@@ -1,13 +1,9 @@
 package datatypes;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-
-import logic.Registro;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DtClase {
@@ -18,7 +14,7 @@ public class DtClase {
 	private Calendar fechaReg;
 	private String imagenClaseURL;
 	
-	private List<Registro> registros = new ArrayList<Registro>();
+	//private List<Registro> registros = new ArrayList<Registro>();
 	
 	public String getNombre() {
 		return nombre;
@@ -44,12 +40,12 @@ public class DtClase {
 		return imagenClaseURL;
 	}
 
-	public List<Registro> getRegistros() {
+	/*public List<Registro> getRegistros() {
 		return registros;
-	}
+	}*/
 	
 	
-	public DtClase(String nombre, Calendar fecha, Integer horaInicio, String url, Calendar fechaReg, String imagenClaseURL, List<Registro> registros) {
+	public DtClase(String nombre, Calendar fecha, Integer horaInicio, String url, Calendar fechaReg, String imagenClaseURL/*, List<Registro> registros*/) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
@@ -57,10 +53,12 @@ public class DtClase {
 		this.url = url;
 		this.fechaReg = fechaReg;
 		this.imagenClaseURL = imagenClaseURL;
-		this.registros = registros;
+		//this.registros = registros;
 	}
 
-	public DtClase() {}
+	public DtClase() {
+		super();
+	}
 	
 	
 }
