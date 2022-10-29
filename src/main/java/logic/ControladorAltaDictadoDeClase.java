@@ -100,6 +100,40 @@ public class ControladorAltaDictadoDeClase implements IControladorAltaDictadoDeC
 		return prof_ret;
 	}
 	
+	public boolean validarInsti(String nomi) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM = conexion.getEntityManager();
+		InstitucionDeportiva insti = eM.find(InstitucionDeportiva.class, nomi);
+		if(insti != null) {
+			return true;
+		}else return false;
+		
+	}
 	
+	public boolean validarAct(String nomi,String noma) {
+		boolean b = false;
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM = conexion.getEntityManager();
+		InstitucionDeportiva insti = eM.find(InstitucionDeportiva.class, nomi);
+		if(insti != null) {
+			ArrayList<String> actDep = insti.listarActividadesDeportivas();
+	        for(String i:actDep) {
+	        	if(i.equals(noma)) {
+	        		b=true;
+	        	}
+	        }
+		} 
+		return b;
+	}
+	
+	public boolean validarC(String nomc) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager eM = conexion.getEntityManager();
+		Clase clase = eM.find(Clase.class, nomc);
+		if(clase!= null) {
+			return false;
+		}else return true;
+		
+	}
 
 }

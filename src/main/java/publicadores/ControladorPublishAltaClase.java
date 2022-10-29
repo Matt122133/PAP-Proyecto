@@ -47,11 +47,28 @@ public class ControladorPublishAltaClase {
 	@WebMethod
 	public void altaDictadoClase(String nombreInst, String nombreAct, String nicknameProf, String nombre, Calendar fecha, int horaIni, String url, Calendar fechaReg, String imagenClaseURL){
 			try {
-				iconAC.altaDictadoClase(nombreInst, nombreAct, nombreAct, nombre, fecha, horaIni, url, fechaReg, imagenClaseURL);
+				iconAC.altaDictadoClase(nombreInst, nombreAct, nicknameProf, nombre, fecha, horaIni, url, fechaReg, imagenClaseURL);
 			} catch (ClaseRepetidaException e) {
 				e.printStackTrace();
 			}
 		
 	}
+	
+	@WebMethod
+	public boolean validarInsti(String nomi) {
+		return iconAC.validarInsti(nomi);
+	}
+	
+	@WebMethod
+	public boolean validarAct(String nomI,String nomA) {
+		return iconAC.validarAct(nomI, nomA);
+	}
+	
+	@WebMethod
+	public boolean validarC(String nomc) {
+		return iconAC.validarC(nomc);
+	}
+	
+	
 
 }

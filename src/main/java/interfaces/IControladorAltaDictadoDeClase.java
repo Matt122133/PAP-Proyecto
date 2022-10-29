@@ -13,4 +13,10 @@ public interface IControladorAltaDictadoDeClase {
 	public String[] obtenerActividadesDeportivas(String nombreinsti);
 	
 	public String[] obtenerProfesor(String nombreInsti);
+	
+	public boolean validarInsti(String nomi);
+	
+	public boolean validarAct(String nomi,String noma);
+	
+	public boolean validarC(String nomc);
 }
