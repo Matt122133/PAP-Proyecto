@@ -10,7 +10,6 @@ import javax.xml.ws.Endpoint;
 import configuraciones.WebServiceConfiguracion;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
-import datatypes.DtUsuario;
 import interfaces.Fabrica;
 import interfaces.IControladorModificarUsuario;
 
@@ -45,21 +44,6 @@ public class ControladorPublishModificarUsuario {
 	}
 	
 	@WebMethod
-	public boolean validarProf(String nickname) {
-		return iconMU.validarProfe(nickname);
-	}
-	
-	@WebMethod
-	public boolean validarSocio(String nickname) {
-		return iconMU.validarSocio(nickname);
-	}
-	
-	@WebMethod
-	public void modificarUsuario(DtUsuario dtUser) {
-		iconMU.modificarUsuario(dtUser);
-	}
-	
-	@WebMethod
 	public void modificarSocio(DtSocio dtSocio) {
 		iconMU.modificarSocio(dtSocio);
 	}
@@ -67,16 +51,6 @@ public class ControladorPublishModificarUsuario {
 	@WebMethod
 	public void modificarProfe(DtProfesor dtProf) {
 		iconMU.modificarProfesor(dtProf);
-	}
-	
-	@WebMethod
-	public void obtenerProfe(String nickname) {
-		iconMU.obtenerProfesor(nickname);
-	}
-	
-	@WebMethod
-	public void obtenerSocio(String nickname) {
-		iconMU.obtenerSocio(nickname);
 	}
 	
 }

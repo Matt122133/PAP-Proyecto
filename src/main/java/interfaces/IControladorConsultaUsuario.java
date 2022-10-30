@@ -20,8 +20,6 @@ public interface IControladorConsultaUsuario {
 	public DtClase obtenerDtClasePorUsuario(String nombreProfe, String nombreClase);
 	
 	public String ActDepDeClase(String nombreClase);
-	
-	public DtActividadDeportiva dtActDeClase(String nomClase);
 
 	public DtUsuario obtenerUserDt(String user);
 	

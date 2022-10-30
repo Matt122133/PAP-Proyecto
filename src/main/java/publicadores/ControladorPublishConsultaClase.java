@@ -10,6 +10,7 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import configuraciones.WebServiceConfiguracion;
+import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import interfaces.Fabrica;
 import interfaces.IControladorConsultaClase;
@@ -65,5 +66,9 @@ public class ControladorPublishConsultaClase {
 		}
 		return clases_ret;
 	}
-
+	
+	@WebMethod
+	public DtActividadDeportiva obtenerDtActividadDeClase(String nombreClase){
+		return iconCC.dtActDeClase(nombreClase);
+	}
 }

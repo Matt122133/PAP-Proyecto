@@ -47,7 +47,7 @@ public class ControladorModificarUsuario implements IControladorModificarUsuario
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		Usuario aModificar = mU.buscarUsuario(socioModificado.getNickname());
 		if(aModificar instanceof Socio) {
-			((Socio) aModificar).actualizarSocioWeb(socioModificado);
+			((Socio) aModificar).actualizarSocio(socioModificado);
 		}
 		
 		Conexion conexion = Conexion.getInstancia();
@@ -56,25 +56,6 @@ public class ControladorModificarUsuario implements IControladorModificarUsuario
 		eM.persist(aModificar);
 		eM.getTransaction().commit();
 	}
-	
-	public DtSocio obtenerSocio(String nickname) {
-		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
-		Usuario user = mU.buscarUsuario(nickname);
-		if(user instanceof Socio) {
-			return ((Socio) user).getDtSocio();
-		}
-		return null;
-	}
-	
-	public DtProfesor obtenerProfesor(String nickname) {
-		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
-		Usuario user = mU.buscarUsuario(nickname);
-		if(user instanceof Profesor) {
-			return ((Profesor) user).getDtProfesor();
-		}
-		return null;
-	}
-	
 	
 	public String[] listarUsuarios() {
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
@@ -107,26 +88,5 @@ public class ControladorModificarUsuario implements IControladorModificarUsuario
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		return mU.getDtUser(user);
 	}
-	
-	public boolean validarProfe(String nickname) {
-		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
-		Usuario user = mU.buscarUsuario(nickname);
-		if(user instanceof Profesor) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	public boolean validarSocio(String nickname) {
-		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
-		Usuario user = mU.buscarUsuario(nickname);
-		if(user instanceof Socio) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-
 
 }

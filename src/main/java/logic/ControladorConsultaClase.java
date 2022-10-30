@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import interfaces.IControladorConsultaClase;
 import persistencia.Conexion;
@@ -115,5 +116,28 @@ public class ControladorConsultaClase implements IControladorConsultaClase{
 	    	a++;
 	    }
 	    return array_ret;
+	}
+	
+	public DtActividadDeportiva dtActDeClase(String nomClase) {
+		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
+		ArrayList<InstitucionDeportiva> instituciones = mI.obtenerInstis();
+		List<ActividadDeportiva> acts = new ArrayList<ActividadDeportiva>();
+		List<ActividadDeportiva> actividades = new ArrayList<ActividadDeportiva>();
+		for(InstitucionDeportiva i:instituciones){
+			acts = i.listarAct();
+			for(ActividadDeportiva u: acts) {
+				actividades.add(u);
+				for(ActividadDeportiva e: actividades) {
+					ArrayList<DtClase> clases = e.obtenerDtClase();
+					for(DtClase w: clases) {
+						if(w.getNombre().equals(nomClase)) {
+							return e.obtenerDt();
+						}
+						
+					}
+				}	
+			}
+		}
+		return null;
 	}
 }

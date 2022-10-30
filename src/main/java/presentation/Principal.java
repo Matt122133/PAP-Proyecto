@@ -27,8 +27,12 @@ import publicadores.ControladorPublishAltaClase;
 import publicadores.ControladorPublishConsultaActividad;
 import publicadores.ControladorPublishConsultaClase;
 import publicadores.ControladorPublishConsultaUsuario;
+import publicadores.ControladorPublishEliminarRegistro;
 import publicadores.ControladorPublishLogin;
 import publicadores.ControladorPublishModificarUsuario;
+import publicadores.ControladorPublishRankingActividad;
+import publicadores.ControladorPublishRankingClases;
+import publicadores.ControladorPublishRegistroSocio;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -77,12 +81,21 @@ public class Principal {
 		ControladorPublishAltaClase cpac = new ControladorPublishAltaClase();
 		ControladorPublishModificarUsuario cpmu = new ControladorPublishModificarUsuario();
 		ControladorPublishConsultaActividad cpca = new ControladorPublishConsultaActividad();
+		ControladorPublishRankingClases cprc = new ControladorPublishRankingClases();
+		ControladorPublishRankingActividad cpra = new ControladorPublishRankingActividad();
+		ControladorPublishRegistroSocio cprs = new ControladorPublishRegistroSocio();
+		ControladorPublishEliminarRegistro cper = new ControladorPublishEliminarRegistro();
+		
 		cpl.publicar();
 		cpcc.publicar();
 		cpcu.publicar();
 		cpac.publicar();
 		cpmu.publicar();
 		cpca.publicar();
+		cprc.publicar();
+		cpra.publicar();
+		cprs.publicar();
+		cper.publicar();
 
 		initialize();
 		Fabrica fabrica = Fabrica.getInstancia();

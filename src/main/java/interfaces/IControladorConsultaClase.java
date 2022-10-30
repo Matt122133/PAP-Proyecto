@@ -2,6 +2,7 @@ package interfaces;
 
 import java.util.ArrayList;
 
+import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 
 public interface IControladorConsultaClase {
@@ -21,4 +22,6 @@ public interface IControladorConsultaClase {
 	public DtClase obtenerDtClasePorNombreBD(String nomClase);
 	
 	public String[] listarRegistros(String nombre);
+	
+	public DtActividadDeportiva dtActDeClase(String nomClase);
 }
