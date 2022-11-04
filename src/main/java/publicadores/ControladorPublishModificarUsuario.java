@@ -1,5 +1,7 @@
 package publicadores;
 
+import java.util.Calendar;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -8,8 +10,7 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import configuraciones.WebServiceConfiguracion;
-import datatypes.DtProfesor;
-import datatypes.DtSocio;
+import datatypes.DtUsuario;
 import interfaces.Fabrica;
 import interfaces.IControladorModificarUsuario;
 
@@ -44,13 +45,19 @@ public class ControladorPublishModificarUsuario {
 	}
 	
 	@WebMethod
-	public void modificarSocio(DtSocio dtSocio) {
-		iconMU.modificarSocio(dtSocio);
+	public void modificarSocio(String nickname, String nombre, String apellido, Calendar fechaNac, String password ,String imagenURL) {
+		iconMU.modificarSocio(nickname, nombre, apellido, fechaNac, password, imagenURL);
 	}
 	
 	@WebMethod
-	public void modificarProfe(DtProfesor dtProf) {
-		iconMU.modificarProfesor(dtProf);
+	public void modificarProfe(String nickname, String nombre, String apellido, Calendar fechaNac, String password, String imagenURL, String descripcion,
+			String biografia, String sitioWeb, String instDep) {
+		iconMU.modificarProfesor(nickname, nombre, apellido, fechaNac, password, imagenURL, descripcion, biografia, sitioWeb, instDep);
+	}
+	
+	@WebMethod
+	public DtUsuario obtenerDtUsuario(String nickname) {
+		return iconMU.obtenerUserDt(nickname);
 	}
 	
 }

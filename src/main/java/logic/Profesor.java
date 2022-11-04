@@ -131,6 +131,22 @@ public class Profesor extends Usuario{
 		}
 	}
 	
+	public void ap(DtProfesor actualizado) {
+		this.setNombre(actualizado.getNombre());
+		this.setApellido(actualizado.getApellido());
+		this.setEmail(actualizado.getEmail());
+		this.setFechaNac(actualizado.getFechaNac());
+		this.setNickname(actualizado.getNickname());
+		this.setPassword(actualizado.getPassword());
+		this.setImagenURL(actualizado.getImagenURL());
+		ManejadorInstitucion mI = ManejadorInstitucion.getInstancia();
+		InstitucionDeportiva instDeportiva = mI.buscarInstitucion(actualizado.getInstDep());
+		this.setInstDep(instDeportiva);
+		this.setBiografia(actualizado.getBiografia());
+		this.setDescripcion(actualizado.getDescripcion());
+		this.setSitioWeb(actualizado.getSitioWeb());
+	}
+	
 	@Override
 	public DtUsuario getDtUsuario() {
 		return new DtProfesor(this.getNickname(), this.getNombre(),this.getApellido(), this.getEmail(), this.getFechaNac(), this.getPassword(), this.getImagenURL(), this.getDescripcion(), this.getBiografia(), this.getSitioWeb() ,this.getInstDep().getNombre());

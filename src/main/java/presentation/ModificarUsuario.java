@@ -252,7 +252,7 @@ public class ModificarUsuario extends JInternalFrame {
 				}
 			
 			actualizado = new DtSocio(nick, nombre, apellido, email, fechaNac, contrasenia, imagenURL);
-			this.iconMU.modificarSocio((DtSocio) actualizado);
+			this.iconMU.modificarUsuario(actualizado);
 			JOptionPane.showMessageDialog(this, "El usuario ha sido modificado con éxito", "Modificar Usuario", JOptionPane.INFORMATION_MESSAGE);
 			limpiarFormulario();
 			setVisible(false);
@@ -279,7 +279,7 @@ public class ModificarUsuario extends JInternalFrame {
 				String institucion = this.comboBoxInstitucion.getSelectedItem().toString();
 				actualizado = new DtProfesor(nick, nombre, apellido, email, fechaNac, contrasenia, imagenURL, descripcion, biografia, sitioWeb, institucion);
 				
-				this.iconMU.modificarProfesor((DtProfesor) actualizado);
+				this.iconMU.modificarUsuario(actualizado);
 				JOptionPane.showMessageDialog(this, "El usuario ha sido modificado con éxito", "Modificar Usuario", JOptionPane.INFORMATION_MESSAGE);
 				limpiarFormulario();
 				setVisible(false);

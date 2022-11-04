@@ -77,6 +77,16 @@ public class Socio extends Usuario{
 		}
 	}
 	
+	public void as(DtSocio actualizado) {
+		this.setNombre(actualizado.getNombre());
+		this.setApellido(actualizado.getApellido());
+		this.setEmail(actualizado.getEmail());
+		this.setFechaNac(actualizado.getFechaNac());
+		this.setNickname(actualizado.getNickname());
+		this.setPassword(actualizado.getPassword());
+		this.setImagenURL(actualizado.getImagenURL());
+	}
+	
 	@Override
 	public DtUsuario getDtUsuario() {
 		return new DtSocio(this.getNickname(), this.getNombre(),this.getApellido(),this.getEmail(),this.getFechaNac(), this.getPassword(), this.getImagenURL());
